@@ -1175,7 +1175,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #af04ff;
+  background: #50b1c7;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2199,7 +2199,7 @@ hr {
   }
 }
 .header {
-  background: var(--content-bg-color);
+  background: #ebf2ea none repeat scroll !important;
 }
 .header-inner {
   align-items: center;
