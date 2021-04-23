@@ -28,7 +28,7 @@
 <meta property="og:description" content="基于JAVA Socket的网络聊天室完整内容及代码 github 主要特点1. 连接mysql，具有用户的注册和登陆验证功能，端口号：9611 存储用户的账户名和密码，以及昵称和salt值。 密码存储的格式应该是以hash摘要的形式储存，为了避免hash冲突，同时储存salt值，提升安全性。 密码的验证方式应该为： 用户输入账号密码。 客户端基于账号向服务器段请求salt值。 客户端收到salt">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-04-22T16:04:16.000Z">
-<meta property="article:modified_time" content="2021-04-23T10:52:29.434Z">
+<meta property="article:modified_time" content="2021-04-23T11:03:03.966Z">
 <meta property="article:author" content="泉雨">
 <meta property="article:tag" content="Socket">
 <meta property="article:tag" content="计算机网络">
@@ -210,7 +210,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-04-23 00:04:16 / Modified: 18:52:29" itemprop="dateCreated datePublished" datetime="2021-04-23T00:04:16+08:00">2021-04-23</time>
+              <time title="Created: 2021-04-23 00:04:16 / Modified: 19:03:03" itemprop="dateCreated datePublished" datetime="2021-04-23T00:04:16+08:00">2021-04-23</time>
             </span>
 
           
@@ -232,7 +232,7 @@
 <li>用户输入账号密码。</li>
 <li>客户端基于账号向服务器段请求<code>salt</code>值。</li>
 <li>客户端收到<code>salt</code>生成<code>hash digest=hash(password+salt)</code>;</li>
-<li>将生成的<code>hash digest</code>和账号一起到服务器数据库验证。<h6 id="2-聊天功能-端口号：9806"><a href="#2-聊天功能-端口号：9806" class="headerlink" title="2. 聊天功能,端口号：9806"></a>2. 聊天功能,端口号：<code>9806</code></h6></li>
+<li>将生成的<code>hash digest</code>和账号一起到服务器数据库验证。<h6 id="2-聊天功能-端口号：9806"><a href="#2-聊天功能-端口号：9806" class="headerlink" title="2. 聊天功能, 端口号：9806"></a>2. 聊天功能, 端口号：<code>9806</code></h6></li>
 </ol>
 </li>
 <li>所有传输的信息加密：基于<code>SSL</code></li>
@@ -340,7 +340,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8EJAVA-Socket%E7%9A%84%E7%BD%91%E7%BB%9C%E8%81%8A%E5%A4%A9%E5%AE%A4"><span class="nav-number">1.</span> <span class="nav-text">基于JAVA Socket的网络聊天室</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9"><span class="nav-number">1.1.</span> <span class="nav-text">主要特点</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-%E8%BF%9E%E6%8E%A5mysql%EF%BC%8C%E5%85%B7%E6%9C%89%E7%94%A8%E6%88%B7%E7%9A%84%E6%B3%A8%E5%86%8C%E5%92%8C%E7%99%BB%E9%99%86%E9%AA%8C%E8%AF%81%E5%8A%9F%E8%83%BD%EF%BC%8C%E7%AB%AF%E5%8F%A3%E5%8F%B7%EF%BC%9A9611"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 连接mysql，具有用户的注册和登陆验证功能，端口号：9611</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-%E8%81%8A%E5%A4%A9%E5%8A%9F%E8%83%BD-%E7%AB%AF%E5%8F%A3%E5%8F%B7%EF%BC%9A9806"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 聊天功能,端口号：9806</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-%E4%B8%8B%E4%BC%A0%E5%8F%8A%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E5%8A%9F%E8%83%BD%EF%BC%8C%E7%AB%AF%E5%8F%A3%E5%8F%B7%EF%BC%9A8888-amp-9999"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.下传及下载文件功能，端口号：8888&amp;9999</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8EJAVA-Socket%E7%9A%84%E7%BD%91%E7%BB%9C%E8%81%8A%E5%A4%A9%E5%AE%A4"><span class="nav-number">1.</span> <span class="nav-text">基于JAVA Socket的网络聊天室</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9"><span class="nav-number">1.1.</span> <span class="nav-text">主要特点</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-%E8%BF%9E%E6%8E%A5mysql%EF%BC%8C%E5%85%B7%E6%9C%89%E7%94%A8%E6%88%B7%E7%9A%84%E6%B3%A8%E5%86%8C%E5%92%8C%E7%99%BB%E9%99%86%E9%AA%8C%E8%AF%81%E5%8A%9F%E8%83%BD%EF%BC%8C%E7%AB%AF%E5%8F%A3%E5%8F%B7%EF%BC%9A9611"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 连接mysql，具有用户的注册和登陆验证功能，端口号：9611</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-%E8%81%8A%E5%A4%A9%E5%8A%9F%E8%83%BD-%E7%AB%AF%E5%8F%A3%E5%8F%B7%EF%BC%9A9806"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 聊天功能, 端口号：9806</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-%E4%B8%8B%E4%BC%A0%E5%8F%8A%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E5%8A%9F%E8%83%BD%EF%BC%8C%E7%AB%AF%E5%8F%A3%E5%8F%B7%EF%BC%9A8888-amp-9999"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.下传及下载文件功能，端口号：8888&amp;9999</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
