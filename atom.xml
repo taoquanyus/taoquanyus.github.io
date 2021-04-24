@@ -6,7 +6,7 @@
   <link href="http://taoquanyus.cn/atom.xml" rel="self"/>
   
   <link href="http://taoquanyus.cn/"/>
-  <updated>2021-04-24T16:00:30.772Z</updated>
+  <updated>2021-04-24T22:06:05.040Z</updated>
   <id>http://taoquanyus.cn/</id>
   
   <author>
@@ -21,13 +21,21 @@
     <link href="http://taoquanyus.cn/2021/04/23/BNSS/"/>
     <id>http://taoquanyus.cn/2021/04/23/BNSS/</id>
     <published>2021-04-23T11:44:09.000Z</published>
-    <updated>2021-04-24T16:00:30.772Z</updated>
+    <updated>2021-04-24T22:06:05.040Z</updated>
     
     
-      
-      
-    <summary type="html">&lt;h3 id=&quot;模拟搭建公司安全内网&quot;&gt;&lt;a href=&quot;#模拟搭建公司安全内网&quot; class=&quot;headerlink&quot; title=&quot;模拟搭建公司安全内网&quot;&gt;&lt;/a&gt;模拟搭建公司安全内网&lt;/h3&gt;&lt;p&gt;报告原文：&lt;a href=&quot;/pdf/BNSS_Report.pdf&quot;&gt;pd</summary>
-      
+    <summary type="html">&lt;h3 id=&quot;模拟搭建公司安全内网&quot;&gt;&lt;a href=&quot;#模拟搭建公司安全内网&quot; class=&quot;headerlink&quot; title=&quot;模拟搭建公司安全内网&quot;&gt;&lt;/a&gt;模拟搭建公司安全内网&lt;/h3&gt;&lt;p&gt;报告原文：&lt;a href=&quot;/pdf/BNSS_Report.pdf&quot;&gt;pdf&lt;/a&gt;&lt;br&gt;完整配置：&lt;a href=&quot;/pdf/BNSS_README.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;描述&quot;&gt;&lt;a href=&quot;#描述&quot; class=&quot;headerlink&quot; title=&quot;描述&quot;&gt;&lt;/a&gt;描述&lt;/h4&gt;&lt;p&gt;某公司分为总部（Stockholm）和若干分部（如London分公司），现根据需求建立一个内网系统&lt;/p&gt;
+&lt;h4 id=&quot;要求&quot;&gt;&lt;a href=&quot;#要求&quot; class=&quot;headerlink&quot; title=&quot;要求&quot;&gt;&lt;/a&gt;要求&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;用户认证：&lt;ul&gt;
+&lt;li&gt;在公司内办公的员工（包括总部和伦敦分公司）能够直接登陆公司的内网，进入主网站&lt;/li&gt;
+&lt;li&gt;不在公司的员工能够通过其它方式登陆，但必须要经过&lt;code&gt;two-factor&lt;/code&gt;认证&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;具有文件传输功能&lt;/li&gt;
+&lt;li&gt;加密性：所有的用户和服务器之间的通信都应该经过加密和认证&lt;/li&gt;
+&lt;li&gt;无线安全：伦敦分公司的访问者可以直接通过无线网进行认证连接&lt;/li&gt;
+&lt;li&gt;入侵检测：系统如果被入侵应当给予警报</summary>
     
     
     

@@ -212,7 +212,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-25 00:00:30" itemprop="dateModified" datetime="2021-04-25T00:00:30+08:00">2021-04-25</time>
+                <time title="Modified: 2021-04-25 06:06:05" itemprop="dateModified" datetime="2021-04-25T06:06:05+08:00">2021-04-25</time>
               </span>
 
           
@@ -237,35 +237,15 @@
 <li>具有文件传输功能</li>
 <li>加密性：所有的用户和服务器之间的通信都应该经过加密和认证</li>
 <li>无线安全：伦敦分公司的访问者可以直接通过无线网进行认证连接</li>
-<li>入侵检测：系统如果被入侵应当给予警报</li>
-</ol>
-<h4 id="设计方案："><a href="#设计方案：" class="headerlink" title="设计方案："></a>设计方案：</h4><h5 id="网络拓扑图"><a href="#网络拓扑图" class="headerlink" title="网络拓扑图:"></a>网络拓扑图:</h5><img style="margin: auto;" src="https://raw.githubusercontent.com/taoquanyus/taoquanyus.github.io/main/image/pic1.jpg" alt="pic1" width="770" height="285" />
-
-<h5 id="设施结构图"><a href="#设施结构图" class="headerlink" title="设施结构图:"></a>设施结构图:</h5><img style="margin: auto;" src="https://raw.githubusercontent.com/taoquanyus/taoquanyus.github.io/main/image/pic2.png" alt="png2" width="634" height="776" />
-
-<h5 id="设计说明"><a href="#设计说明" class="headerlink" title="设计说明"></a>设计说明</h5><h6 id="认证方式："><a href="#认证方式：" class="headerlink" title="认证方式："></a>认证方式：</h6><ul>
-<li>使用公司设备的用户可以直接通过证书自动登陆</li>
-<li>使用自己设备的用户连接<code>VPN</code>+<code>Google Authenticator</code>双重验证</li>
-<li>在分公司工作的用户可以直接通过连接<code>WLAN</code>直接验证</li>
-</ul>
-<h6 id="虚拟机分布："><a href="#虚拟机分布：" class="headerlink" title="虚拟机分布："></a>虚拟机分布：</h6><ul>
-<li>VM1:<code>Kerberos Server</code>，用于申请票据登陆。</li>
-<li>VM2: <code>WebServer</code>,<code>Snort</code>,<code>Apache Server</code> 装载主页面的容器，其中搭载<code>snort</code>是用于侦测入侵。</li>
-<li>VM3: <code>Seafile</code>,<code>Snort</code> 用于文件交互，其中<code>Seafile</code>可以支持<code>google Authenticator</code>双重认证。</li>
-<li>VM4: <code>OpenVPN Server</code>, <code>Firewall</code>,<code>Snort</code>提供进入内网的许可，在公司外所有的流量都需要经过这里进行验证并转发。</li>
-<li>VM5: <code>Radius Server</code>, 由<code>FreeRadius</code>+<code>MySQL</code>实现, 用于实现在分公司上网的用户连接<code>WLAN</code>时的WPA2认证。</li>
-<li>VM6: <code>CA</code> 证书服务器，完成证书<code>签发</code>和<code>更新</code>工作，但是<code>Kerberos Server</code>和<code>VPN Server</code>都自带了证书库，<code>CA</code>签发证书后直接添加到两者的证书库中，所以证书的<code>查询</code>，<code>删除</code>功能由两者自带的证书库完成。</li>
-<li>分公司路由：<code>OpenWrt</code>，<code>OpenVPN Client</code>，<code>Radius Client</code>，路由器和<code>OpenVPN Server</code>保持长连接。用户通过WPA2认证</li>
-</ul>
-<h6 id="防火墙配置策略"><a href="#防火墙配置策略" class="headerlink" title="防火墙配置策略"></a>防火墙配置策略</h6><p><code>default drop policy</code>：不满足以下条件的流量将直接丢弃：</p>
-<ul>
-<li>访问<code>VPN Server</code>的流量</li>
-<li>访问<code>Radius Server</code>的流量</li>
-<li>已经建立或者相关状态的链接</li>
-<li>来自<code>SSH</code>的流量</li>
-<li>来自网关服务器转发的流量</li>
-</ul>
-
+<li>入侵检测：系统如果被入侵应当给予警报
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/23/BNSS/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
