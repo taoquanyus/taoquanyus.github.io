@@ -287,10 +287,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-04-23 00:04:16 / Modified: 19:14:36" itemprop="dateCreated datePublished" datetime="2021-04-23T00:04:16+08:00">2021-04-23</time>
+              <time title="Created: 2021-04-23 00:04:16" itemprop="dateCreated datePublished" datetime="2021-04-23T00:04:16+08:00">2021-04-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-25 06:29:20" itemprop="dateModified" datetime="2021-04-25T06:29:20+08:00">2021-04-25</time>
+              </span>
 
           
 
@@ -311,36 +317,15 @@
 <li>用户输入账号密码。</li>
 <li>客户端基于账号向服务器段请求<code>salt</code>值。</li>
 <li>客户端收到<code>salt</code>生成<code>hash digest=hash(password+salt)</code>;</li>
-<li>将生成的<code>hash digest</code>和账号一起到服务器数据库验证。</li>
-</ol>
-</li>
-</ul>
-<h5 id="2-进入聊天室-端口号：9806"><a href="#2-进入聊天室-端口号：9806" class="headerlink" title="2. 进入聊天室, 端口号：9806"></a>2. 进入聊天室, 端口号：<code>9806</code></h5><ul>
-<li>所有传输的信息加密：基于<code>SSL</code></li>
-<li>服务器端：<ol>
-<li>监听阻塞 listen()</li>
-<li>建立SSLSocket连接后加入SSLSocketList accept() -&gt; SSLSocketList()<ul>
-<li>验证证书及密钥</li>
-</ul>
-</li>
-<li>新建接受线程 New ReceiveThread(Socket) -&gt; ReceiveThread.Start()</li>
-<li>广播消息：ReceiveThread() -&gt; for each(SendThread())  </li>
-</ol>
-</li>
-<li>客户端：<ol>
-<li>发送SSLSocket请求 <ul>
-<li>包括证书和密钥</li>
-</ul>
-</li>
-<li>新建两个线程：<ul>
-<li>接收线程: ReceiveThread.start()   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ReceiceThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    Socket socket;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ReceiceThread</span><span class="params">(Socket socket)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.socket=socket;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            InputStream inputStream=socket.getInputStream();</span><br><span class="line">            InputStreamReader isr=<span class="keyword">new</span> InputStreamReader(inputStream);</span><br><span class="line">            BufferedReader br =<span class="keyword">new</span> BufferedReader(isr);</span><br><span class="line">            <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">                String receiveMessage=br.readLine();</span><br><span class="line">                <span class="keyword">if</span>(receiveMessage==<span class="keyword">null</span>)&#123;</span><br><span class="line">                    socket.shutdownInput();</span><br><span class="line">                    socket.close();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.println(receiveMessage);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>发送线程: SendThread.start()  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SendThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    Socket socket;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SendThread</span><span class="params">(Socket socket)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.socket=socket;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            OutputStream outputStream=socket.getOutputStream();</span><br><span class="line">            OutputStreamWriter osw=<span class="keyword">new</span> OutputStreamWriter(outputStream);</span><br><span class="line">            PrintWriter pw=<span class="keyword">new</span> PrintWriter(osw,<span class="keyword">true</span>);</span><br><span class="line">            Scanner scanner=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">            String join_text=<span class="string">&quot;【&quot;</span>+nickname+<span class="string">&quot; join the chatroom】&quot;</span>;</span><br><span class="line">            pw.println(join_text);</span><br><span class="line">            <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">                String message=scanner.nextLine();</span><br><span class="line">                <span class="keyword">if</span>(message.equals(<span class="string">&quot;\\quit&quot;</span>))&#123;<span class="comment">//退出聊天程序</span></span><br><span class="line">                    String leave_text=<span class="string">&quot;【&quot;</span>+nickname+<span class="string">&quot; left the chatroom】&quot;</span>;</span><br><span class="line">                    pw.println(leave_text);</span><br><span class="line">                    chatFlag=<span class="keyword">false</span>;</span><br><span class="line">                    socket.shutdownOutput();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                String text_temp=<span class="string">&quot;【&quot;</span>+nickname+<span class="string">&quot;】&quot;</span>+<span class="string">&quot; : &quot;</span>+message;</span><br><span class="line">                pw.println(text_temp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ol>
-</li>
-</ul>
-<h5 id="3-下传及下载文件功能，端口号：8888-amp-9999"><a href="#3-下传及下载文件功能，端口号：8888-amp-9999" class="headerlink" title="3.下传及下载文件功能，端口号：8888&amp;9999"></a>3.下传及下载文件功能，端口号：<code>8888</code>&amp;<code>9999</code></h5>
+<li>将生成的<code>hash digest</code>和账号一起到服务器数据库验证。
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/22/Socket-based-Chatroom/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -390,7 +375,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-24 22:28:35" itemprop="dateModified" datetime="2021-04-24T22:28:35+08:00">2021-04-24</time>
+                <time title="Modified: 2021-04-25 06:30:02" itemprop="dateModified" datetime="2021-04-25T06:30:02+08:00">2021-04-25</time>
               </span>
 
           
@@ -408,15 +393,15 @@
 <h6 id="设计内容："><a href="#设计内容：" class="headerlink" title="设计内容："></a>设计内容：</h6><ul>
 <li>对天线阵列（规则，非规则）进行分析，探究天线阵干涉后的波束分布，从而完成波束赋形。</li>
 <li>在分析的基础上引入butler矩阵，并根据波束的形成方式，提出了一种低旁瓣的8x8码本设计。</li>
-<li>因仿真工具的匮乏，在文章的最后一部分基于<code>matlab GUI</code> 和 <code>phaseshift</code>&amp;<code>Antenna</code> 库写了一个仿真程序，方便研究者即时验证自己设计的阵列。<h6 id="四个仿真功能："><a href="#四个仿真功能：" class="headerlink" title="四个仿真功能："></a>四个仿真功能：</h6></li>
-</ul>
-<ol>
-<li>Regular Array pattern<br>基础的仿真功能，规则天线阵列仿真，等间距，矩形，等相位</li>
-<li>Arbitary Array pattern<br>在16x16的矩形天线阵上任意排布天线阵列</li>
-<li>Beamforming By Steering Vevtor<br>输入控制矩阵，得到波束赋形方向图</li>
-<li>Beamforming by codebook<br>基于码本的波束赋形，其中两个码本来自参考文献，一个由自己所提出</li>
-</ol>
-
+<li>因仿真工具的匮乏，在文章的最后一部分基于<code>matlab GUI</code> 和 <code>phaseshift</code>&amp;<code>Antenna</code> 库写了一个仿真程序，方便研究者即时验证自己设计的阵列。
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/22/Beamforming/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -466,7 +451,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-24 23:09:04" itemprop="dateModified" datetime="2021-04-24T23:09:04+08:00">2021-04-24</time>
+                <time title="Modified: 2021-04-25 06:29:44" itemprop="dateModified" datetime="2021-04-25T06:29:44+08:00">2021-04-25</time>
               </span>
 
           
@@ -481,8 +466,14 @@
 
       
           <h5 id="第一篇博客"><a href="#第一篇博客" class="headerlink" title="第一篇博客"></a>第一篇博客</h5><h6 id="今天试着用hexo-next-引擎搭建了第一个博客"><a href="#今天试着用hexo-next-引擎搭建了第一个博客" class="headerlink" title="今天试着用hexo+next 引擎搭建了第一个博客"></a>今天试着用<code>hexo</code>+<code>next</code> 引擎搭建了第一个博客</h6><p>去年在哈工大做毕设的时候，拿着经费申请了两年的服务器。<br>一开始本来想把博客放到我自己的服务器上的，但是后来发现<code>github</code>有自带<code>page</code>功能，而且更加方便<br>于是我索性把域名解析地址放到了<code>github</code>上</p>
-<p>折腾了一天，发现这玩意儿竟然是用<code>markdown</code>写的。<br><code>hexo</code>和<code>next</code>还有很多没有探索的地方，毕竟对前端不怎么熟悉。<br>我感觉这会是一个很有意思的东西<br>以后这个网站就是我的垃圾桶啦！</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/19/First-Post/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
