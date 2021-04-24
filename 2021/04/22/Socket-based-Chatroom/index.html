@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon-apple-touch.jpeg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon-32x32.jpeg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon-16x16.jpeg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"taoquanyus.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="基于JAVA Socket的网络聊天室完整内容及代码 github 主要特点1. 连接mysql，具有用户的注册和登陆验证功能，端口号：9611 存储用户的账户名和密码，以及昵称和salt值。 密码存储的格式应该是以hash摘要的形式储存，为了避免hash冲突，同时储存salt值，提升安全性。 密码的验证方式应该为： 用户输入账号密码。 客户端基于账号向服务器段请求salt值。 客户端收到salt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Socket-based Chatroom">
+<meta property="og:url" content="http://taoquanyus.cn/2021/04/22/Socket-based-Chatroom/index.html">
+<meta property="og:site_name" content="Bettilarity">
+<meta property="og:description" content="基于JAVA Socket的网络聊天室完整内容及代码 github 主要特点1. 连接mysql，具有用户的注册和登陆验证功能，端口号：9611 存储用户的账户名和密码，以及昵称和salt值。 密码存储的格式应该是以hash摘要的形式储存，为了避免hash冲突，同时储存salt值，提升安全性。 密码的验证方式应该为： 用户输入账号密码。 客户端基于账号向服务器段请求salt值。 客户端收到salt">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-22T16:04:16.000Z">
+<meta property="article:modified_time" content="2021-04-23T11:14:36.722Z">
+<meta property="article:author" content="泉雨">
+<meta property="article:tag" content="计算机网络">
+<meta property="article:tag" content="Socket">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://taoquanyus.cn/2021/04/22/Socket-based-Chatroom/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Socket-based Chatroom | Bettilarity</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Bettilarity" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Bettilarity</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">4</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://taoquanyus.cn/2021/04/22/Socket-based-Chatroom/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="泉雨">
+      <meta itemprop="description" content="Love is patient, Love is kind.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bettilarity">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Socket-based Chatroom
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-04-23 00:04:16 / Modified: 19:14:36" itemprop="dateCreated datePublished" datetime="2021-04-23T00:04:16+08:00">2021-04-23</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="基于JAVA-Socket的网络聊天室"><a href="#基于JAVA-Socket的网络聊天室" class="headerlink" title="基于JAVA Socket的网络聊天室"></a>基于JAVA Socket的网络聊天室</h3><p>完整内容及代码 <a target="_blank" rel="noopener" href="https://github.com/taoquanyus/ChatRoom-Sockets#chat-room-based-on-java-socket">github</a></p>
+<h4 id="主要特点"><a href="#主要特点" class="headerlink" title="主要特点"></a>主要特点</h4><h5 id="1-连接mysql，具有用户的注册和登陆验证功能，端口号：9611"><a href="#1-连接mysql，具有用户的注册和登陆验证功能，端口号：9611" class="headerlink" title="1. 连接mysql，具有用户的注册和登陆验证功能，端口号：9611"></a>1. 连接<code>mysql</code>，具有用户的注册和登陆验证功能，端口号：<code>9611</code></h5><ul>
+<li>存储用户的账户名和密码，以及昵称和<code>salt</code>值。</li>
+<li>密码存储的格式应该是以hash摘要的形式储存，为了避免<code>hash</code>冲突，同时储存<code>salt</code>值，提升安全性。</li>
+<li>密码的验证方式应该为：<ol>
+<li>用户输入账号密码。</li>
+<li>客户端基于账号向服务器段请求<code>salt</code>值。</li>
+<li>客户端收到<code>salt</code>生成<code>hash digest=hash(password+salt)</code>;</li>
+<li>将生成的<code>hash digest</code>和账号一起到服务器数据库验证。</li>
+</ol>
+</li>
+</ul>
+<h5 id="2-进入聊天室-端口号：9806"><a href="#2-进入聊天室-端口号：9806" class="headerlink" title="2. 进入聊天室, 端口号：9806"></a>2. 进入聊天室, 端口号：<code>9806</code></h5><ul>
+<li>所有传输的信息加密：基于<code>SSL</code></li>
+<li>服务器端：<ol>
+<li>监听阻塞 listen()</li>
+<li>建立SSLSocket连接后加入SSLSocketList accept() -&gt; SSLSocketList()<ul>
+<li>验证证书及密钥</li>
+</ul>
+</li>
+<li>新建接受线程 New ReceiveThread(Socket) -&gt; ReceiveThread.Start()</li>
+<li>广播消息：ReceiveThread() -&gt; for each(SendThread())  </li>
+</ol>
+</li>
+<li>客户端：<ol>
+<li>发送SSLSocket请求 <ul>
+<li>包括证书和密钥</li>
+</ul>
+</li>
+<li>新建两个线程：<ul>
+<li>接收线程: ReceiveThread.start()   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ReceiceThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    Socket socket;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ReceiceThread</span><span class="params">(Socket socket)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.socket=socket;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            InputStream inputStream=socket.getInputStream();</span><br><span class="line">            InputStreamReader isr=<span class="keyword">new</span> InputStreamReader(inputStream);</span><br><span class="line">            BufferedReader br =<span class="keyword">new</span> BufferedReader(isr);</span><br><span class="line">            <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">                String receiveMessage=br.readLine();</span><br><span class="line">                <span class="keyword">if</span>(receiveMessage==<span class="keyword">null</span>)&#123;</span><br><span class="line">                    socket.shutdownInput();</span><br><span class="line">                    socket.close();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.println(receiveMessage);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>发送线程: SendThread.start()  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SendThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    Socket socket;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SendThread</span><span class="params">(Socket socket)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.socket=socket;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            OutputStream outputStream=socket.getOutputStream();</span><br><span class="line">            OutputStreamWriter osw=<span class="keyword">new</span> OutputStreamWriter(outputStream);</span><br><span class="line">            PrintWriter pw=<span class="keyword">new</span> PrintWriter(osw,<span class="keyword">true</span>);</span><br><span class="line">            Scanner scanner=<span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">            String join_text=<span class="string">&quot;【&quot;</span>+nickname+<span class="string">&quot; join the chatroom】&quot;</span>;</span><br><span class="line">            pw.println(join_text);</span><br><span class="line">            <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">                String message=scanner.nextLine();</span><br><span class="line">                <span class="keyword">if</span>(message.equals(<span class="string">&quot;\\quit&quot;</span>))&#123;<span class="comment">//退出聊天程序</span></span><br><span class="line">                    String leave_text=<span class="string">&quot;【&quot;</span>+nickname+<span class="string">&quot; left the chatroom】&quot;</span>;</span><br><span class="line">                    pw.println(leave_text);</span><br><span class="line">                    chatFlag=<span class="keyword">false</span>;</span><br><span class="line">                    socket.shutdownOutput();</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                String text_temp=<span class="string">&quot;【&quot;</span>+nickname+<span class="string">&quot;】&quot;</span>+<span class="string">&quot; : &quot;</span>+message;</span><br><span class="line">                pw.println(text_temp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h5 id="3-下传及下载文件功能，端口号：8888-amp-9999"><a href="#3-下传及下载文件功能，端口号：8888-amp-9999" class="headerlink" title="3.下传及下载文件功能，端口号：8888&amp;9999"></a>3.下传及下载文件功能，端口号：<code>8888</code>&amp;<code>9999</code></h5>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag"># 计算机网络</a>
+              <a href="/tags/Socket/" rel="tag"># Socket</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/22/Beamforming/" rel="prev" title="Massive-MIMO Beamforming">
+      <i class="fa fa-chevron-left"></i> Massive-MIMO Beamforming
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/04/23/BNSS/" rel="next" title="Building Network System Security">
+      Building Network System Security <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8EJAVA-Socket%E7%9A%84%E7%BD%91%E7%BB%9C%E8%81%8A%E5%A4%A9%E5%AE%A4"><span class="nav-number">1.</span> <span class="nav-text">基于JAVA Socket的网络聊天室</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E7%89%B9%E7%82%B9"><span class="nav-number">1.1.</span> <span class="nav-text">主要特点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-%E8%BF%9E%E6%8E%A5mysql%EF%BC%8C%E5%85%B7%E6%9C%89%E7%94%A8%E6%88%B7%E7%9A%84%E6%B3%A8%E5%86%8C%E5%92%8C%E7%99%BB%E9%99%86%E9%AA%8C%E8%AF%81%E5%8A%9F%E8%83%BD%EF%BC%8C%E7%AB%AF%E5%8F%A3%E5%8F%B7%EF%BC%9A9611"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 连接mysql，具有用户的注册和登陆验证功能，端口号：9611</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E8%BF%9B%E5%85%A5%E8%81%8A%E5%A4%A9%E5%AE%A4-%E7%AB%AF%E5%8F%A3%E5%8F%B7%EF%BC%9A9806"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 进入聊天室, 端口号：9806</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E4%B8%8B%E4%BC%A0%E5%8F%8A%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%E5%8A%9F%E8%83%BD%EF%BC%8C%E7%AB%AF%E5%8F%A3%E5%8F%B7%EF%BC%9A8888-amp-9999"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.下传及下载文件功能，端口号：8888&amp;9999</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="泉雨"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">泉雨</p>
+  <div class="site-description" itemprop="description">Love is patient, Love is kind.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/taoquanyus" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;taoquanyus" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:quanyu@kth.se" title="E-Mail → mailto:quanyu@kth.se" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  <!--
+  &copy; 2021-04 – 
+  <span itemprop="copyrightYear">2021</span>
+  -->
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">泉雨</span>
+</div>
+  <!-- <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>-->
+<!-- 记录访问量-->
+<!--
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":false}});</script></body>
+</html>
