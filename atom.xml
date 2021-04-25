@@ -6,7 +6,7 @@
   <link href="http://taoquanyus.cn/atom.xml" rel="self"/>
   
   <link href="http://taoquanyus.cn/"/>
-  <updated>2021-04-25T06:36:39.720Z</updated>
+  <updated>2021-04-25T23:41:48.793Z</updated>
   <id>http://taoquanyus.cn/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>操作系统总结</title>
+    <link href="http://taoquanyus.cn/2021/04/25/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93/"/>
+    <id>http://taoquanyus.cn/2021/04/25/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93/</id>
+    <published>2021-04-25T16:58:15.000Z</published>
+    <updated>2021-04-25T23:41:48.793Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;Operating-System&quot;&gt;&lt;a href=&quot;#Operating-System&quot; class=&quot;headerlink&quot; title=&quot;Operating System&quot;&gt;&lt;/a&gt;Operating System&lt;/h1&gt;&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;操作系统（Operating System，简称 OS）是管理计算机硬件与软件资源的程序，是计算机的基石。&lt;/li&gt;
+&lt;li&gt;操作系统本质上是一个运行在计算机上的软件程序 ，用于管理计算机硬件和软件资源。 举例：运行在你电脑上的所有应用程序都通过操作系统来调用系统内存以及磁盘等等硬件。&lt;/li&gt;
+&lt;li&gt;操作系统存在屏蔽了硬件层的复杂性。 操作系统就像是硬件使用的负责人，统筹着各种相关事项。&lt;/li&gt;
+&lt;li&gt;操作系统的内核（Kernel）是操作系统的核心部分，它负责系统的内存管理，硬件设备的管理，文件系统的管理以及应用程序的管理。&lt;/li&gt;
+&lt;/ol&gt;</summary>
+    
+    
+    
+    
+    <category term="操作系统" scheme="http://taoquanyus.cn/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="计算机基础" scheme="http://taoquanyus.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
   
   <entry>
     <title>Building Network System Security</title>
