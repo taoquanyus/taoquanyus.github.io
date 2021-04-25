@@ -285,7 +285,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-25 06:31:58" itemprop="dateModified" datetime="2021-04-25T06:31:58+08:00">2021-04-25</time>
+                <time title="Modified: 2021-04-25 21:35:13" itemprop="dateModified" datetime="2021-04-25T21:35:13+08:00">2021-04-25</time>
               </span>
 
           
@@ -302,15 +302,7 @@
           <h3 id="基于JAVA-Socket的网络聊天室"><a href="#基于JAVA-Socket的网络聊天室" class="headerlink" title="基于JAVA Socket的网络聊天室"></a>基于JAVA Socket的网络聊天室</h3><p>完整内容及代码 <a target="_blank" rel="noopener" href="https://github.com/taoquanyus/ChatRoom-Sockets#chat-room-based-on-java-socket">github</a></p>
 <h4 id="主要特点"><a href="#主要特点" class="headerlink" title="主要特点"></a>主要特点</h4><h5 id="1-连接mysql，具有用户的注册和登陆验证功能，端口号：9611"><a href="#1-连接mysql，具有用户的注册和登陆验证功能，端口号：9611" class="headerlink" title="1. 连接mysql，具有用户的注册和登陆验证功能，端口号：9611"></a>1. 连接<code>mysql</code>，具有用户的注册和登陆验证功能，端口号：<code>9611</code></h5><ul>
 <li>存储用户的账户名和密码，以及昵称和<code>salt</code>值。</li>
-<li>密码存储的格式应该是以hash摘要的形式储存，为了避免<code>hash</code>冲突，同时储存<code>salt</code>值，提升安全性。</li>
-<li>密码的验证方式应该为：<ol>
-<li>用户输入账号密码。</li>
-<li>客户端基于账号向服务器段请求<code>salt</code>值。</li>
-<li>客户端收到<code>salt</code>生成<code>hash digest=hash(password+salt)</code>;</li>
-<li>将生成的<code>hash digest</code>和账号一起到服务器数据库验证。</li>
-</ol>
-</li>
-</ul>
+<li>密码存储的格式应该是以hash摘要的形式储存，为了避免<code>hash</code>冲突，同时储存<code>salt</code>值，提升安全性。
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/04/22/Socket-based-Chatroom/#more" rel="contents">

@@ -43,21 +43,13 @@
     <link href="http://taoquanyus.cn/2021/04/22/Socket-based-Chatroom/"/>
     <id>http://taoquanyus.cn/2021/04/22/Socket-based-Chatroom/</id>
     <published>2021-04-22T16:04:16.000Z</published>
-    <updated>2021-04-24T22:31:58.740Z</updated>
+    <updated>2021-04-25T13:35:13.051Z</updated>
     
     
     <summary type="html">&lt;h3 id=&quot;基于JAVA-Socket的网络聊天室&quot;&gt;&lt;a href=&quot;#基于JAVA-Socket的网络聊天室&quot; class=&quot;headerlink&quot; title=&quot;基于JAVA Socket的网络聊天室&quot;&gt;&lt;/a&gt;基于JAVA Socket的网络聊天室&lt;/h3&gt;&lt;p&gt;完整内容及代码 &lt;a href=&quot;https://github.com/taoquanyus/ChatRoom-Sockets#chat-room-based-on-java-socket&quot;&gt;github&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id=&quot;主要特点&quot;&gt;&lt;a href=&quot;#主要特点&quot; class=&quot;headerlink&quot; title=&quot;主要特点&quot;&gt;&lt;/a&gt;主要特点&lt;/h4&gt;&lt;h5 id=&quot;1-连接mysql，具有用户的注册和登陆验证功能，端口号：9611&quot;&gt;&lt;a href=&quot;#1-连接mysql，具有用户的注册和登陆验证功能，端口号：9611&quot; class=&quot;headerlink&quot; title=&quot;1. 连接mysql，具有用户的注册和登陆验证功能，端口号：9611&quot;&gt;&lt;/a&gt;1. 连接&lt;code&gt;mysql&lt;/code&gt;，具有用户的注册和登陆验证功能，端口号：&lt;code&gt;9611&lt;/code&gt;&lt;/h5&gt;&lt;ul&gt;
 &lt;li&gt;存储用户的账户名和密码，以及昵称和&lt;code&gt;salt&lt;/code&gt;值。&lt;/li&gt;
-&lt;li&gt;密码存储的格式应该是以hash摘要的形式储存，为了避免&lt;code&gt;hash&lt;/code&gt;冲突，同时储存&lt;code&gt;salt&lt;/code&gt;值，提升安全性。&lt;/li&gt;
-&lt;li&gt;密码的验证方式应该为：&lt;ol&gt;
-&lt;li&gt;用户输入账号密码。&lt;/li&gt;
-&lt;li&gt;客户端基于账号向服务器段请求&lt;code&gt;salt&lt;/code&gt;值。&lt;/li&gt;
-&lt;li&gt;客户端收到&lt;code&gt;salt&lt;/code&gt;生成&lt;code&gt;hash digest=hash(password+salt)&lt;/code&gt;;&lt;/li&gt;
-&lt;li&gt;将生成的&lt;code&gt;hash digest&lt;/code&gt;和账号一起到服务器数据库验证。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/li&gt;
-&lt;/ul&gt;</summary>
+&lt;li&gt;密码存储的格式应该是以hash摘要的形式储存，为了避免&lt;code&gt;hash&lt;/code&gt;冲突，同时储存&lt;code&gt;salt&lt;/code&gt;值，提升安全性。</summary>
     
     
     
