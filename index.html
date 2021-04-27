@@ -124,7 +124,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">5</span></a>
+    <a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">6</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -177,6 +177,85 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://taoquanyus.cn/2021/04/27/%E6%8E%92%E9%98%9F%E8%AE%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="泉雨">
+      <meta itemprop="description" content="Love is patient, Love is kind.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bettilarity">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/27/%E6%8E%92%E9%98%9F%E8%AE%BA/" class="post-title-link" itemprop="url">排队论</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-04-27 15:12:03 / Modified: 22:12:54" itemprop="dateCreated datePublished" datetime="2021-04-27T15:12:03+08:00">2021-04-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Queuing-theory"><a href="#Queuing-theory" class="headerlink" title="Queuing theory"></a>Queuing theory</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="Poisson分布"><a href="#Poisson分布" class="headerlink" title="Poisson分布"></a>Poisson分布</h4><p>$P_k(t)=\frac{(\lambda t)^k}{k!}\cdot e^{-\lambda t}$<br>若单位时间内到达的顾客的个数服从$\lambda$的Poisson分布，则顾客相继到达时间服从以$\lambda$为参数的负指数分布:<br>$f(t)=\lambda \cdot e^{-\lambda t}$</p>
+<h4 id="Kendall’s-notation"><a href="#Kendall’s-notation" class="headerlink" title="Kendall’s notation"></a>Kendall’s notation</h4><div align="center"><font size="4">[A/B/C/D/E/F]</font></div> 
+
+<ul>
+<li>A: 用户到达的模型</li>
+<li>B: 用户离开的模型</li>
+<li>C: 服务器的个数</li>
+<li>D: 排队最大容量</li>
+<li>E: 顾客源最大容量</li>
+<li>F: 排队规则，如FCFS，LCFS<h4 id="Little-Theorm"><a href="#Little-Theorm" class="headerlink" title="Little Theorm"></a>Little Theorm</h4></li>
+<li>系统总顾客数 $L=\sum_{k=0}^\infty k\cdot P_k$</li>
+<li>平均等待顾客个数 $L_q=\sum_{k=1}^\infty (k-1)\cdot P_k$</li>
+<li>包括服务的平均时间 $W=\frac{L}{\lambda}$</li>
+<li>平均顾客等待时间 $W_q=\frac{L_q}{\lambda}$<h3 id="排队论模型"><a href="#排队论模型" class="headerlink" title="排队论模型"></a>排队论模型</h3><h4 id="基本模型-M-M-1"><a href="#基本模型-M-M-1" class="headerlink" title="基本模型 M/M/1"></a>基本模型 M/M/1</h4><h5 id="状态转移方程"><a href="#状态转移方程" class="headerlink" title="状态转移方程"></a>状态转移方程</h5>$$<br>\begin{cases}</li>
+</ul>
+<p>-P_0\cdot \lambda+P_1\cdot \mu=0 &amp; n=0\<br>-P_n(\lambda+\mu)+P_{n-1}\cdot \lambda+P_{n+1}\cdot \mu =0 &amp; n\geq 1\<br>\sum P_k=1<br>\end{cases}<br>$$</p>
+<h5 id="状态概率"><a href="#状态概率" class="headerlink" title="状态概率"></a>状态概率</h5><p>$$<br>\begin{cases}<br>-P_0=1-\rho\<br>-P_n=\rho^n\cdot (1-\rho)\<br>\end{cases}<br>$$</p>
+<h5 id="指标"><a href="#指标" class="headerlink" title="指标"></a>指标</h5><p>$L=\sum_{k=0}^\infty k\cdot P_k=\frac{\rho}{1-\rho}$<br>$L_q=\sum_{k=1}^\infty (k-1)\cdot P_k=\frac{\rho^2}{1-\rho}$<br>$W=\frac{L}{\lambda}=\frac{1}{\mu-\lambda}$<br>$W_q=\frac{L_q}{\lambda}=\frac{\lambda}{\mu(\mu-\lambda)}$</p>
+<h4 id="有限队列模型-M-M-1-N"><a href="#有限队列模型-M-M-1-N" class="headerlink" title="有限队列模型 M/M/1/N"></a>有限队列模型 M/M/1/N</h4><h5 id="状态转移方程-1"><a href="#状态转移方程-1" class="headerlink" title="状态转移方程"></a>状态转移方程</h5><p>$$<br>\begin{cases}<br>-P_0\cdot \lambda+P_1\cdot \mu=0 &amp; n=0\<br>-P_n(\lambda+\mu)+P_{n-1}\cdot \lambda+P_{n+1}\cdot \mu =0 &amp; N \geq n\geq 1\<br>\lambda \cdot P_{N-1}=\mu \cdot P_n\<br>\sum P_k=1<br>\end{cases}<br>$$</p>
+<h5 id="初始状态概率"><a href="#初始状态概率" class="headerlink" title="初始状态概率"></a>初始状态概率</h5><p>$$<br>\begin{cases}<br>P_0=\frac{1-\rho}{1-\rho^{N+1}} &amp; \rho=0\<br>P_0=\frac{1}{N+1} &amp; \rho=1<br>\end{cases}<br>$$</p>
+<h5 id="指标-1"><a href="#指标-1" class="headerlink" title="指标"></a>指标</h5><p>$L=\sum_{k=0}^\infty k\cdot P_k=\frac{\rho}{1-\rho}-\frac{(N+1)\rho^{N+1}}{1-\rho^{N+1}}$<br>$L_q=\sum_{k=1}^\infty (k-1)\cdot P_k=L-\frac{\lambda (1-P_N)}{\mu}$<br>$W=\frac{L}{\lambda}=\frac{L}{\lambda (1-P_n)}$<br>$W_q=\frac{L_q}{\lambda}=W-\frac{1}{\mu}$</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -614,12 +693,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
