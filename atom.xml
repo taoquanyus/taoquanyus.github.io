@@ -6,7 +6,7 @@
   <link href="http://taoquanyus.cn/atom.xml" rel="self"/>
   
   <link href="http://taoquanyus.cn/"/>
-  <updated>2021-04-27T14:22:55.564Z</updated>
+  <updated>2021-04-27T14:34:41.653Z</updated>
   <id>http://taoquanyus.cn/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://taoquanyus.cn/2021/04/27/%E6%8E%92%E9%98%9F%E8%AE%BA/"/>
     <id>http://taoquanyus.cn/2021/04/27/%E6%8E%92%E9%98%9F%E8%AE%BA/</id>
     <published>2021-04-27T07:12:03.000Z</published>
-    <updated>2021-04-27T14:22:55.564Z</updated>
+    <updated>2021-04-27T14:34:41.653Z</updated>
     
     
       
@@ -69,7 +69,7 @@
     
     
     <summary type="html">&lt;h3 id=&quot;模拟搭建公司安全内网&quot;&gt;&lt;a href=&quot;#模拟搭建公司安全内网&quot; class=&quot;headerlink&quot; title=&quot;模拟搭建公司安全内网&quot;&gt;&lt;/a&gt;模拟搭建公司安全内网&lt;/h3&gt;&lt;p&gt;报告原文：&lt;a href=&quot;/pdf/BNSS_Report.pdf&quot;&gt;pdf&lt;/a&gt;&lt;br&gt;完整配置：&lt;a href=&quot;/pdf/BNSS_README.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/p&gt;
-&lt;h4 id=&quot;描述&quot;&gt;&lt;a href=&quot;#描述&quot; class=&quot;headerlink&quot; title=&quot;描述&quot;&gt;&lt;/a&gt;描述&lt;/h4&gt;&lt;p&gt;某公司分为总部（Stockholm）和若干分部（如London分公司），现根据需求建立一个内网系统&lt;/p&gt;</summary>
+&lt;h4 id=&quot;描述&quot;&gt;&lt;a href=&quot;#描述&quot; class=&quot;headerlink&quot; title=&quot;描述&quot;&gt;&lt;/a&gt;描述&lt;/h4&gt;&lt;p&gt;某公司分为总部（Stockholm）和若干分部（如London分公司），现根据需求建立一个内网系统&lt;br&gt;</summary>
     
     
     
@@ -112,7 +112,7 @@
     <updated>2021-04-24T22:31:45.696Z</updated>
     
     
-    <summary type="html">&lt;h5 id=&quot;大规模天线波束赋形的实现与演示（本科毕业设计）&quot;&gt;&lt;a href=&quot;#大规模天线波束赋形的实现与演示（本科毕业设计）&quot; class=&quot;headerlink&quot; title=&quot;大规模天线波束赋形的实现与演示（本科毕业设计）&quot;&gt;&lt;/a&gt;大规模天线波束赋形的实现与演示（本科毕业设计）&lt;/h5&gt;&lt;p&gt;完整内容及代码 &lt;a href=&quot;https://github.com/taoquanyus/MassiveMIMO-Beanforming&quot;&gt;Github&lt;/a&gt;&lt;br&gt;论文 &lt;a href=&quot;/pdf/MassiveMIMO&amp;Beamforming.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/p&gt;
+    <summary type="html">&lt;h5 id=&quot;大规模天线波束赋形的实现与演示（本科毕业设计）&quot;&gt;&lt;a href=&quot;#大规模天线波束赋形的实现与演示（本科毕业设计）&quot; class=&quot;headerlink&quot; title=&quot;大规模天线波束赋形的实现与演示（本科毕业设计）&quot;&gt;&lt;/a&gt;大规模天线波束赋形的实现与演示（本科毕业设计）&lt;/h5&gt;&lt;p&gt;完整内容及代码 &lt;a href=&quot;https://github.com/taoquanyus/MassiveMIMO-Beanforming&quot;&gt;Github&lt;/a&gt;&lt;br&gt;论文 &lt;a href=&quot;/pdf/MassiveMIMO&amp;amp;Beamforming.pdf&quot;&gt;pdf&lt;/a&gt;&lt;/p&gt;
 &lt;h6 id=&quot;设计内容：&quot;&gt;&lt;a href=&quot;#设计内容：&quot; class=&quot;headerlink&quot; title=&quot;设计内容：&quot;&gt;&lt;/a&gt;设计内容：&lt;/h6&gt;&lt;ul&gt;
 &lt;li&gt;对天线阵列（规则，非规则）进行分析，探究天线阵干涉后的波束分布，从而完成波束赋形。&lt;/li&gt;
 &lt;li&gt;在分析的基础上引入butler矩阵，并根据波束的形成方式，提出了一种低旁瓣的8x8码本设计。&lt;/li&gt;

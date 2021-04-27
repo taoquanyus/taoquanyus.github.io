@@ -206,7 +206,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-04-27 15:12:03 / Modified: 22:22:55" itemprop="dateCreated datePublished" datetime="2021-04-27T15:12:03+08:00">2021-04-27</time>
+              <time title="Created: 2021-04-27 15:12:03 / Modified: 22:34:41" itemprop="dateCreated datePublished" datetime="2021-04-27T15:12:03+08:00">2021-04-27</time>
             </span>
 
           
@@ -235,15 +235,27 @@
 <li>包括服务的平均时间 $W=\frac{L}{\lambda}$</li>
 <li>平均顾客等待时间 $W_q=\frac{L_q}{\lambda}$<h3 id="排队论模型"><a href="#排队论模型" class="headerlink" title="排队论模型"></a>排队论模型</h3><h4 id="基本模型-M-M-1"><a href="#基本模型-M-M-1" class="headerlink" title="基本模型 M/M/1"></a>基本模型 M/M/1</h4><h5 id="状态转移方程"><a href="#状态转移方程" class="headerlink" title="状态转移方程"></a>状态转移方程</h5></li>
 </ul>
-<p>$$<br>\begin{cases}<br>-P_0\cdot \lambda+P_1\cdot \mu=0 &amp; n=0\<br>-P_n(\lambda+\mu)+P_{n-1}\cdot \lambda+P_{n+1}\cdot \mu =0 &amp; n\geq 1\<br>\sum P_k=1<br>\end{cases}<br>$$</p>
-<h5 id="状态概率"><a href="#状态概率" class="headerlink" title="状态概率"></a>状态概率</h5><p>$$<br>\begin{cases}<br>-P_0=1-\rho\<br>-P_n=\rho^n\cdot (1-\rho)\<br>\end{cases}<br>$$</p>
-<h5 id="指标"><a href="#指标" class="headerlink" title="指标"></a>指标</h5><p>$L=\sum_{k=0}^\infty k\cdot P_k=\frac{\rho}{1-\rho}$<br>$L_q=\sum_{k=1}^\infty (k-1)\cdot P_k=\frac{\rho^2}{1-\rho}$<br>$W=\frac{L}{\lambda}=\frac{1}{\mu-\lambda}$<br>$W_q=\frac{L_q}{\lambda}=\frac{\lambda}{\mu(\mu-\lambda)}$</p>
-<h4 id="有限队列模型-M-M-1-N"><a href="#有限队列模型-M-M-1-N" class="headerlink" title="有限队列模型 M/M/1/N"></a>有限队列模型 M/M/1/N</h4><h5 id="状态转移方程-1"><a href="#状态转移方程-1" class="headerlink" title="状态转移方程"></a>状态转移方程</h5><p>$$<br>\begin{cases}<br>-P_0\cdot \lambda+P_1\cdot \mu=0 &amp; n=0\<br>-P_n(\lambda+\mu)+P_{n-1}\cdot \lambda+P_{n+1}\cdot \mu =0 &amp; N \geq n\geq 1\<br>\lambda \cdot P_{N-1}=\mu \cdot P_n\<br>\sum P_k=1<br>\end{cases}<br>$$</p>
-<h5 id="初始状态概率"><a href="#初始状态概率" class="headerlink" title="初始状态概率"></a>初始状态概率</h5><p>$$<br>\begin{cases}<br>P_0=\frac{1-\rho}{1-\rho^{N+1}} &amp; \rho=0\<br>P_0=\frac{1}{N+1} &amp; \rho=1\<br>\end{cases}<br>$$</p>
-<h5 id="指标-1"><a href="#指标-1" class="headerlink" title="指标"></a>指标</h5><p>$L=\sum_{k=0}^\infty k\cdot P_k=\frac{\rho}{1-\rho}-\frac{(N+1)\rho^{N+1}}{1-\rho^{N+1}}$<br>$L_q=\sum_{k=1}^\infty (k-1)\cdot P_k=L-\frac{\lambda (1-P_N)}{\mu}$<br>$W=\frac{L}{\lambda}=\frac{L}{\lambda (1-P_n)}$<br>$W_q=\frac{L_q}{\lambda}=W-\frac{1}{\mu}$</p>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+<script type="math/tex; mode=display">
+\begin{cases}
+-P_0\cdot \lambda+P_1\cdot \mu=0 & n=0\\ 
+-P_n(\lambda+\mu)+P_{n-1}\cdot \lambda+P_{n+1}\cdot \mu =0 & n\geq 1\\
+\sum P_k=1
+\end{cases}</script><h5 id="状态概率"><a href="#状态概率" class="headerlink" title="状态概率"></a>状态概率</h5><script type="math/tex; mode=display">
+\begin{cases}
+-P_0=1-\rho\\ 
+-P_n=\rho^n\cdot (1-\rho)\\
+\end{cases}</script><h5 id="指标"><a href="#指标" class="headerlink" title="指标"></a>指标</h5><p>$L=\sum_{k=0}^\infty k\cdot P_k=\frac{\rho}{1-\rho}$<br>$L_q=\sum_{k=1}^\infty (k-1)\cdot P_k=\frac{\rho^2}{1-\rho}$<br>$W=\frac{L}{\lambda}=\frac{1}{\mu-\lambda}$<br>$W_q=\frac{L_q}{\lambda}=\frac{\lambda}{\mu(\mu-\lambda)}$</p>
+<h4 id="有限队列模型-M-M-1-N"><a href="#有限队列模型-M-M-1-N" class="headerlink" title="有限队列模型 M/M/1/N"></a>有限队列模型 M/M/1/N</h4><h5 id="状态转移方程-1"><a href="#状态转移方程-1" class="headerlink" title="状态转移方程"></a>状态转移方程</h5><script type="math/tex; mode=display">
+\begin{cases}
+-P_0\cdot \lambda+P_1\cdot \mu=0 & n=0\\ 
+-P_n(\lambda+\mu)+P_{n-1}\cdot \lambda+P_{n+1}\cdot \mu =0 & N \geq n\geq 1\\
+\lambda \cdot P_{N-1}=\mu \cdot P_n\\
+\sum P_k=1
+\end{cases}</script><h5 id="初始状态概率"><a href="#初始状态概率" class="headerlink" title="初始状态概率"></a>初始状态概率</h5><script type="math/tex; mode=display">
+\begin{cases}
+P_0=\frac{1-\rho}{1-\rho^{N+1}} & \rho=0\\ 
+P_0=\frac{1}{N+1} & \rho=1\\
+\end{cases}</script><h5 id="指标-1"><a href="#指标-1" class="headerlink" title="指标"></a>指标</h5><p>$L=\sum_{k=0}^\infty k\cdot P_k=\frac{\rho}{1-\rho}-\frac{(N+1)\rho^{N+1}}{1-\rho^{N+1}}$<br>$L_q=\sum_{k=1}^\infty (k-1)\cdot P_k=L-\frac{\lambda (1-P_N)}{\mu}$<br>$W=\frac{L}{\lambda}=\frac{L}{\lambda (1-P_n)}$<br>$W_q=\frac{L_q}{\lambda}=W-\frac{1}{\mu}$</p>
 
       
     </div>
@@ -380,7 +392,7 @@
 
       
           <h3 id="模拟搭建公司安全内网"><a href="#模拟搭建公司安全内网" class="headerlink" title="模拟搭建公司安全内网"></a>模拟搭建公司安全内网</h3><p>报告原文：<a href="/pdf/BNSS_Report.pdf">pdf</a><br>完整配置：<a href="/pdf/BNSS_README.pdf">pdf</a></p>
-<h4 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h4><p>某公司分为总部（Stockholm）和若干分部（如London分公司），现根据需求建立一个内网系统</p>
+<h4 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h4><p>某公司分为总部（Stockholm）和若干分部（如London分公司），现根据需求建立一个内网系统<br>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/04/23/BNSS/#more" rel="contents">
@@ -527,7 +539,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h5 id="大规模天线波束赋形的实现与演示（本科毕业设计）"><a href="#大规模天线波束赋形的实现与演示（本科毕业设计）" class="headerlink" title="大规模天线波束赋形的实现与演示（本科毕业设计）"></a>大规模天线波束赋形的实现与演示（本科毕业设计）</h5><p>完整内容及代码 <a target="_blank" rel="noopener" href="https://github.com/taoquanyus/MassiveMIMO-Beanforming">Github</a><br>论文 <a href="/pdf/MassiveMIMO&Beamforming.pdf">pdf</a></p>
+          <h5 id="大规模天线波束赋形的实现与演示（本科毕业设计）"><a href="#大规模天线波束赋形的实现与演示（本科毕业设计）" class="headerlink" title="大规模天线波束赋形的实现与演示（本科毕业设计）"></a>大规模天线波束赋形的实现与演示（本科毕业设计）</h5><p>完整内容及代码 <a target="_blank" rel="noopener" href="https://github.com/taoquanyus/MassiveMIMO-Beanforming">Github</a><br>论文 <a href="/pdf/MassiveMIMO&amp;Beamforming.pdf">pdf</a></p>
 <h6 id="设计内容："><a href="#设计内容：" class="headerlink" title="设计内容："></a>设计内容：</h6><ul>
 <li>对天线阵列（规则，非规则）进行分析，探究天线阵干涉后的波束分布，从而完成波束赋形。</li>
 <li>在分析的基础上引入butler矩阵，并根据波束的形成方式，提出了一种低旁瓣的8x8码本设计。</li>
@@ -873,6 +885,63 @@ window.addEventListener('pjax:success', () => {
 
     <div id="pjax">
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
