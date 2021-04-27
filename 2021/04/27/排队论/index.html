@@ -28,7 +28,7 @@
 <meta property="og:description" content="Queuing theory基本概念Poisson分布$P_k(t)&#x3D;\frac{(\lambda t)^k}{k!}\cdot e^{-\lambda t}$若单位时间内到达的顾客的个数服从$\lambda$的Poisson分布，则顾客相继到达时间服从以$\lambda$为参数的负指数分布:$f(t)&#x3D;\lambda \cdot e^{-\lambda t}$ Kendall’s notatio">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-04-27T07:12:03.000Z">
-<meta property="article:modified_time" content="2021-04-27T14:12:54.771Z">
+<meta property="article:modified_time" content="2021-04-27T14:16:41.766Z">
 <meta property="article:author" content="泉雨">
 <meta property="article:tag" content="排队论">
 <meta name="twitter:card" content="summary">
@@ -209,7 +209,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-04-27 15:12:03 / Modified: 22:12:54" itemprop="dateCreated datePublished" datetime="2021-04-27T15:12:03+08:00">2021-04-27</time>
+              <time title="Created: 2021-04-27 15:12:03 / Modified: 22:16:41" itemprop="dateCreated datePublished" datetime="2021-04-27T15:12:03+08:00">2021-04-27</time>
             </span>
 
           
@@ -244,6 +244,10 @@
 <h4 id="有限队列模型-M-M-1-N"><a href="#有限队列模型-M-M-1-N" class="headerlink" title="有限队列模型 M/M/1/N"></a>有限队列模型 M/M/1/N</h4><h5 id="状态转移方程-1"><a href="#状态转移方程-1" class="headerlink" title="状态转移方程"></a>状态转移方程</h5><p>$$<br>\begin{cases}<br>-P_0\cdot \lambda+P_1\cdot \mu=0 &amp; n=0\<br>-P_n(\lambda+\mu)+P_{n-1}\cdot \lambda+P_{n+1}\cdot \mu =0 &amp; N \geq n\geq 1\<br>\lambda \cdot P_{N-1}=\mu \cdot P_n\<br>\sum P_k=1<br>\end{cases}<br>$$</p>
 <h5 id="初始状态概率"><a href="#初始状态概率" class="headerlink" title="初始状态概率"></a>初始状态概率</h5><p>$$<br>\begin{cases}<br>P_0=\frac{1-\rho}{1-\rho^{N+1}} &amp; \rho=0\<br>P_0=\frac{1}{N+1} &amp; \rho=1<br>\end{cases}<br>$$</p>
 <h5 id="指标-1"><a href="#指标-1" class="headerlink" title="指标"></a>指标</h5><p>$L=\sum_{k=0}^\infty k\cdot P_k=\frac{\rho}{1-\rho}-\frac{(N+1)\rho^{N+1}}{1-\rho^{N+1}}$<br>$L_q=\sum_{k=1}^\infty (k-1)\cdot P_k=L-\frac{\lambda (1-P_N)}{\mu}$<br>$W=\frac{L}{\lambda}=\frac{L}{\lambda (1-P_n)}$<br>$W_q=\frac{L_q}{\lambda}=W-\frac{1}{\mu}$</p>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });
+</script>
 
     </div>
 
