@@ -6,7 +6,7 @@
   <link href="http://taoquanyus.cn/atom.xml" rel="self"/>
   
   <link href="http://taoquanyus.cn/"/>
-  <updated>2021-04-27T23:32:12.488Z</updated>
+  <updated>2021-04-28T22:33:00.120Z</updated>
   <id>http://taoquanyus.cn/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://taoquanyus.cn/2021/04/27/%E6%8E%92%E9%98%9F%E8%AE%BA/"/>
     <id>http://taoquanyus.cn/2021/04/27/%E6%8E%92%E9%98%9F%E8%AE%BA/</id>
     <published>2021-04-27T07:12:03.000Z</published>
-    <updated>2021-04-27T23:32:12.488Z</updated>
+    <updated>2021-04-28T22:33:00.120Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;Queuing-theory&quot;&gt;&lt;a href=&quot;#Queuing-theory&quot; class=&quot;headerlink&quot; title=&quot;Queuing theory&quot;&gt;&lt;/a&gt;Queuing theory&lt;/h2&gt;&lt;h3 id=&quot;基本概念&quot;&gt;&lt;a href=&quot;#基本概念&quot; class=&quot;headerlink&quot; title=&quot;基本概念&quot;&gt;&lt;/a&gt;基本概念&lt;/h3&gt;&lt;h4 id=&quot;Poisson分布&quot;&gt;&lt;a href=&quot;#Poisson分布&quot; class=&quot;headerlink&quot; title=&quot;Poisson分布&quot;&gt;&lt;/a&gt;Poisson分布&lt;/h4&gt;&lt;p&gt;$P_k(t)=\frac{(\lambda t)^k}{k!}\cdot e^{-\lambda t}$&lt;br&gt;若单位时间内到达的顾客的个数服从$\lambda$的Poisson分布，则顾客相继到达时间服从以$\lambda$为参数的负指数分布:&lt;br&gt;$f(t)=\lambda \cdot e^{-\lambda t}$&lt;br&gt;</summary>
