@@ -206,7 +206,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-04-30 00:32:13 / Modified: 06:36:15" itemprop="dateCreated datePublished" datetime="2021-04-30T00:32:13+08:00">2021-04-30</time>
+              <time title="Created: 2021-04-30 00:32:13 / Modified: 06:39:49" itemprop="dateCreated datePublished" datetime="2021-04-30T00:32:13+08:00">2021-04-30</time>
             </span>
 
           
@@ -220,21 +220,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="后端基础学习"><a href="#后端基础学习" class="headerlink" title="后端基础学习"></a>后端基础学习</h2><h3 id="Restful-API"><a href="#Restful-API" class="headerlink" title="Restful API"></a>Restful API</h3><p>一种架构风格，全称:Resource Representational State Transfer 表现层状态转移<br>当通过 RESTful API 提出请求时，它会将资源状态表述传递给请求者。该信息或表述通过 HTTP 以下列某种格式传输：JSON（Javascript 对象表示法）、HTML、XLT 或纯文本。JSON 是最常用的格式，尽管它的名字英文原意为”JavaScript 物件表示法”，但它适用于各种语言，并且人和机器都能读。 </p>
-<h3 id="工程结构"><a href="#工程结构" class="headerlink" title="工程结构"></a>工程结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">com</span><br><span class="line">  +- example</span><br><span class="line">    +- myproject</span><br><span class="line">      +- Application.java</span><br><span class="line">      |</span><br><span class="line">      +- domain</span><br><span class="line">      |  +- Customer.java</span><br><span class="line">      |  +- CustomerRepository.java</span><br><span class="line">      |</span><br><span class="line">      +- service</span><br><span class="line">      |  +- CustomerService.java</span><br><span class="line">      |</span><br><span class="line">      +- web</span><br><span class="line">      |  +- CustomerController.java</span><br><span class="line">      |</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>root package</code>:<code>com.example.myproject</code>，所有的类和其他package都在root package之下。</li>
-<li>应用主类：<code>Application.java</code>，该类直接位于<code>root package</code>下。通常我们会在应用主类中做一些框架配置扫描等配置，我们放在<code>root package</code>下可以帮助程序减少手工配置来加载到我们希望被<code>Spring</code>加载的内容</li>
-<li><code>com.example.myproject.domain</code>包：用于定义实体映射关系与数据访问相关的接口和实现</li>
-<li><code>com.example.myproject.service</code>包：用于编写业务逻辑相关的接口与实现</li>
-<li><code>com.example.myproject.web</code>：用于编写Web层相关的实现，比如：Spring MVC的<code>Controller</code>等</li>
-</ul>
-<p>上面的结构中，<code>root package</code>与应用主类的位置是整个结构的关键。由于应用主类在<code>root package</code>中，所以按照上面的规则定义的所有其他类都处于<code>root package</code>下的其他子包之后。默认情况下，<code>Spring Boot</code>的应用主类会自动扫描<code>root package</code>以及所有子包下的所有类来进行初始化。</p>
-<h4 id="如果非要放在root-package之外"><a href="#如果非要放在root-package之外" class="headerlink" title="如果非要放在root package之外"></a>如果非要放在<code>root package</code>之外</h4><ol>
-<li>可用<code>@ComponentScan</code>注解指定具体的加载包<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@ComponentScan(basePackages=&quot;com.example&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bootstrap</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Bootstrap.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>使用<code>@Bean</code>注解来初始化<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bootstrap</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Bootstrap.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CustomerController <span class="title">customerController</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CustomerController();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-
+          <h2 id="后端基础学习"><a href="#后端基础学习" class="headerlink" title="后端基础学习"></a>后端基础学习</h2><h3 id="Restful-API"><a href="#Restful-API" class="headerlink" title="Restful API"></a>Restful API</h3><p>一种架构风格，全称:Resource Representational State Transfer 表现层状态转移<br>当通过 RESTful API 提出请求时，它会将资源状态表述传递给请求者。该信息或表述通过 HTTP 以下列某种格式传输：JSON（Javascript 对象表示法）、HTML、XLT 或纯文本。JSON 是最常用的格式，尽管它的名字英文原意为”JavaScript 物件表示法”，但它适用于各种语言，并且人和机器都能读。<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/29/backend1/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
