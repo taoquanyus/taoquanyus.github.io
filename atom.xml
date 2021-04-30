@@ -6,7 +6,7 @@
   <link href="http://taoquanyus.cn/atom.xml" rel="self"/>
   
   <link href="http://taoquanyus.cn/"/>
-  <updated>2021-04-30T20:55:05.270Z</updated>
+  <updated>2021-04-30T21:06:05.324Z</updated>
   <id>http://taoquanyus.cn/</id>
   
   <author>
@@ -18,30 +18,13 @@
   
   <entry>
     <title>IEEE 802.11 协议</title>
-    <link href="http://taoquanyus.cn/2021/04/30/IEEE802-11/"/>
-    <id>http://taoquanyus.cn/2021/04/30/IEEE802-11/</id>
-    <published>2021-04-30T13:54:57.000Z</published>
-    <updated>2021-04-30T20:55:05.270Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;今天做了无线网络的lab，了解了一点802.11协议&lt;br&gt;</summary>
-    
-    
-    
-    
-    <category term="无线网络，计算机网络" scheme="http://taoquanyus.cn/tags/%E6%97%A0%E7%BA%BF%E7%BD%91%E7%BB%9C%EF%BC%8C%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>IEEE 802.11 协议</title>
     <link href="http://taoquanyus.cn/2021/04/30/IEEE802_11/"/>
     <id>http://taoquanyus.cn/2021/04/30/IEEE802_11/</id>
     <published>2021-04-30T13:54:57.000Z</published>
-    <updated>2021-04-30T20:50:15.696Z</updated>
+    <updated>2021-04-30T21:06:05.324Z</updated>
     
     
-    <summary type="html">&lt;p&gt;今天做了无线网络的lab，了解了一点802.11协议，在此记录一下&lt;br&gt;</summary>
+    <summary type="html">&lt;p&gt;今天做了无线网络的lab，了解了一点802.11协议&lt;br&gt;</summary>
     
     
     
