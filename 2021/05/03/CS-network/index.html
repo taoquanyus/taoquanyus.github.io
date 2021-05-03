@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"taoquanyus.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="计算机网络 网络分层 物理层没什么好讲的，用不到以后也不会考 数据链路层三个主要问题：封装成帧，透明传输，差错检测 网络层网络层不提供服务质量的承诺，不保证分组交付的时限所传送的分组可能出错，丢失，重复和失序。进程之间通信的可靠性由运输层负责。 ip (Internet Protocol)网络层最关键的协议 ip 头部 ipv6的优势 更大的地址空间（采用 128 位地址） 灵活的首部格式  改进">
+  <meta name="description" content="计算机网络">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Internetworking">
 <meta property="og:url" content="http://taoquanyus.cn/2021/05/03/CS-network/index.html">
 <meta property="og:site_name" content="Bettilarity">
-<meta property="og:description" content="计算机网络 网络分层 物理层没什么好讲的，用不到以后也不会考 数据链路层三个主要问题：封装成帧，透明传输，差错检测 网络层网络层不提供服务质量的承诺，不保证分组交付的时限所传送的分组可能出错，丢失，重复和失序。进程之间通信的可靠性由运输层负责。 ip (Internet Protocol)网络层最关键的协议 ip 头部 ipv6的优势 更大的地址空间（采用 128 位地址） 灵活的首部格式  改进">
+<meta property="og:description" content="计算机网络">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://taoquanyus.cn/image/CS_network2.png">
 <meta property="og:image" content="http://taoquanyus.cn/image/CS_network1.jpeg">
@@ -36,7 +36,7 @@
 <meta property="og:image" content="http://taoquanyus.cn/image/tcp_bye.png">
 <meta property="og:image" content="http://taoquanyus.cn/image/UDP_header.png">
 <meta property="article:published_time" content="2021-05-03T12:13:27.000Z">
-<meta property="article:modified_time" content="2021-05-03T19:47:46.368Z">
+<meta property="article:modified_time" content="2021-05-03T19:53:53.613Z">
 <meta property="article:author" content="泉雨">
 <meta property="article:tag" content="计算机网络，计算机基础">
 <meta name="twitter:card" content="summary">
@@ -224,7 +224,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-05-04 03:47:46" itemprop="dateModified" datetime="2021-05-04T03:47:46+08:00">2021-05-04</time>
+                <time title="Modified: 2021-05-04 03:53:53" itemprop="dateModified" datetime="2021-05-04T03:53:53+08:00">2021-05-04</time>
               </span>
 
           
@@ -238,21 +238,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><p><img style="margin: auto;" src="/image/CS_network2.png" alt="pic1" width="1388" height="531" /></p>
-<h2 id="网络分层"><a href="#网络分层" class="headerlink" title="网络分层"></a>网络分层</h2><p><img style="margin: auto;" src="/image/CS_network1.jpeg" alt="pic1" width="560" height="794" /></p>
+        <h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><span id="more"></span>
+<p><img style="margin: auto;" src="/image/CS_network2.png" alt="pic1" width="1120" height="1587" /></p>
+<h2 id="网络分层"><a href="#网络分层" class="headerlink" title="网络分层"></a>网络分层</h2><p><img style="margin: auto;" src="/image/CS_network1.jpeg" alt="pic1" width="1388" height="531" /></p>
 <h3 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h3><p>没什么好讲的，用不到以后也不会考</p>
 <h3 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h3><p>三个主要问题：封装成帧，透明传输，差错检测</p>
 <h3 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h3><p>网络层不提供服务质量的承诺，不保证分组交付的时限所传送的分组可能出错，丢失，重复和失序。进程之间通信的可靠性由运输层负责。</p>
 <h4 id="ip-Internet-Protocol"><a href="#ip-Internet-Protocol" class="headerlink" title="ip (Internet Protocol)"></a>ip (Internet Protocol)</h4><p><strong>网络层最关键的协议</strong></p>
-<h5 id="ip-头部"><a href="#ip-头部" class="headerlink" title="ip 头部"></a>ip 头部</h5><p><img style="margin: auto;" src="/image/ip_header.png" alt="ip header" width="301" height="165"/></p>
+<h5 id="ip-头部"><a href="#ip-头部" class="headerlink" title="ip 头部"></a>ip 头部</h5><p><img style="margin: auto;" src="/image/ip_header.png" alt="ip header" width="400" height="220"/></p>
 <h5 id="ipv6的优势"><a href="#ipv6的优势" class="headerlink" title="ipv6的优势"></a>ipv6的优势</h5><ul>
 <li>更大的地址空间（采用 128 位地址）</li>
 <li>灵活的首部格式 </li>
 <li>改进的选项 </li>
 <li>支持即插即用 </li>
 <li>支持资源的预分配 </li>
-<li>IPv6 的首部改为 8 字节对齐。<h4 id="ARP-Address-Resolution-Protocol"><a href="#ARP-Address-Resolution-Protocol" class="headerlink" title="ARP (Address Resolution Protocol)"></a>ARP (Address Resolution Protocol)</h4><strong>地址解析协议</strong><br><img style="margin: auto;" src="/image/ARP_header.png" alt="ARP header" width="259" height="194"/></li>
+<li>IPv6 的首部改为 8 字节对齐。</li>
 </ul>
+<h4 id="ARP-Address-Resolution-Protocol"><a href="#ARP-Address-Resolution-Protocol" class="headerlink" title="ARP (Address Resolution Protocol)"></a>ARP (Address Resolution Protocol)</h4><p><strong>地址解析协议</strong><br><img style="margin: auto;" src="/image/ARP_header.png" alt="ARP header" width="512" height="388"/></p>
 <p>地址解析协议 ARP 把 IP 地址解析为硬件地址。ARP 的高速缓存可以大大减少网络上的通信量。因为这样可以使主机下次再与同样地址的主机通信时，可以直接从高速缓存中找到所需要的硬件地址而不需要再去广播方式发送 ARP 请求分组</p>
 <h4 id="ICMP-Internet-Control-Message-Protocol"><a href="#ICMP-Internet-Control-Message-Protocol" class="headerlink" title="ICMP (Internet Control Message Protocol )"></a>ICMP (Internet Control Message Protocol )</h4><p><strong>网际控制报文协议</strong></p>
 <p>ICMP 报文作为 IP 数据报的数据，加上首部后组成 IP 数据报发送出去。使用 ICMP 数据报并不是为了实现可靠传输。ICMP 允许主机或路由器报告差错情况和提供有关异常情况的报告。ICMP 报文的种类有两种 ICMP 差错报告报文和 ICMP 询问报文</p>
@@ -266,7 +268,7 @@
 <li><code>syn</code></li>
 <li><code>fin</code></li>
 </ul>
-<h5 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h5><p><img style="margin: auto;" src="/image/tcp_hello.png" alt="three handshake" width="560" height="260"></p>
+<h5 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h5><p><img style="margin: auto;" src="/image/tcp_hello.png" alt="three handshake" width="1115" height="527"></p>
 <p>三次握手最主要的目的就是双方确认自己与对方的发送与接收是正常的。</p>
 <ul>
 <li>第一次握手：Client 什么都不能确认；Server 确认了对方发送正常，自己接收正常</li>
@@ -274,7 +276,7 @@
 <li>第三次握手：Client 确认了：自己发送、接收正常，对方发送、接收正常；Server 确认了：自己发送、接收正常，对方发送、接收正常</li>
 </ul>
 <h6 id="第二次握手已经传回ACK了，为什么还要传回SYN？"><a href="#第二次握手已经传回ACK了，为什么还要传回SYN？" class="headerlink" title="第二次握手已经传回ACK了，为什么还要传回SYN？"></a>第二次握手已经传回ACK了，为什么还要传回SYN？</h6><p>接收端传回发送端所发送的ACK是为了告诉客户端，我接收到的信息确实就是你所发送的信号了，这表明从客户端到服务端的通信是正常的。而回传SYN则是为了建立并确认从服务端到客户端的通信。</p>
-<h5 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h5><p><img style="margin: auto;" src="/image/tcp_bye.png" alt="four handwave" width="530" height="340"></p>
+<h5 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h5><p><img style="margin: auto;" src="/image/tcp_bye.png" alt="four handwave" width="1066" height="684"></p>
 <h6 id="为什么要四次挥手"><a href="#为什么要四次挥手" class="headerlink" title="为什么要四次挥手"></a>为什么要四次挥手</h6><p>任何一方都可以在数据传送结束后发出连接释放的通知，待对方确认后进入半关闭状态。当另一方也没有数据再发送的时候，则发出连接释放通知，对方确认后就完全关闭了TCP连接。</p>
 <h6 id="TCP-如何保证可靠传输"><a href="#TCP-如何保证可靠传输" class="headerlink" title="TCP 如何保证可靠传输"></a>TCP 如何保证可靠传输</h6><ol>
 <li>应用数据被分割成<code>TCP</code>认为最适合发送的数据块。</li>
