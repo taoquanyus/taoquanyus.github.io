@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://taoquanyus.cn/image/UDP_header.png">
 <meta property="og:image" content="http://taoquanyus.cn/image/CS_network2.png">
 <meta property="article:published_time" content="2021-05-03T12:13:27.000Z">
-<meta property="article:modified_time" content="2021-05-04T20:28:50.359Z">
+<meta property="article:modified_time" content="2021-05-04T21:29:03.125Z">
 <meta property="article:author" content="泉雨">
 <meta property="article:tag" content="计算机网络，计算机基础">
 <meta name="twitter:card" content="summary">
@@ -225,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-05-05 04:28:50" itemprop="dateModified" datetime="2021-05-05T04:28:50+08:00">2021-05-05</time>
+                <time title="Modified: 2021-05-05 05:29:03" itemprop="dateModified" datetime="2021-05-05T05:29:03+08:00">2021-05-05</time>
               </span>
 
           
@@ -282,7 +282,7 @@
 <li>第三次握手：Client 确认了：自己发送、接收正常，对方发送、接收正常；Server 确认了：自己发送、接收正常，对方发送、接收正常</li>
 </ul>
 <h6 id="第二次握手已经传回ACK了，为什么还要传回SYN？"><a href="#第二次握手已经传回ACK了，为什么还要传回SYN？" class="headerlink" title="第二次握手已经传回ACK了，为什么还要传回SYN？"></a>第二次握手已经传回ACK了，为什么还要传回SYN？</h6><p>接收端传回发送端所发送的ACK是为了告诉客户端，我接收到的信息确实就是你所发送的信号了，这表明从客户端到服务端的通信是正常的。而回传SYN则是为了建立并确认从服务端到客户端的通信。</p>
-<h5 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h5><p><img style="margin: auto;" src="/image/tcp_bye.png" alt="four handwave" width="1066" height="600"></p>
+<h5 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h5><p><img style="margin: auto;" src="/image/tcp_bye.png" alt="four handwave" width="938" height="543"></p>
 <h6 id="为什么要四次挥手"><a href="#为什么要四次挥手" class="headerlink" title="为什么要四次挥手"></a>为什么要四次挥手</h6><p>任何一方都可以在数据传送结束后发出连接释放的通知，待对方确认后进入半关闭状态。当另一方也没有数据再发送的时候，则发出连接释放通知，对方确认后就完全关闭了TCP连接。</p>
 <h6 id="TCP-如何保证可靠传输"><a href="#TCP-如何保证可靠传输" class="headerlink" title="TCP 如何保证可靠传输"></a>TCP 如何保证可靠传输</h6><ol>
 <li>应用数据被分割成<code>TCP</code>认为最适合发送的数据块。</li>
