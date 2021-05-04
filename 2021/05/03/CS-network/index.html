@@ -22,21 +22,22 @@
 
   <meta name="description" content="计算机网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Internetworking">
+<meta property="og:title" content="Internet Working">
 <meta property="og:url" content="http://taoquanyus.cn/2021/05/03/CS-network/index.html">
 <meta property="og:site_name" content="Bettilarity">
 <meta property="og:description" content="计算机网络">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://taoquanyus.cn/image/CS_network1.jpeg">
+<meta property="og:image" content="http://taoquanyus.cn/image/Encapsulated.png">
 <meta property="og:image" content="http://taoquanyus.cn/image/ip_header.png">
-<meta property="og:image" content="http://taoquanyus.cn/image/ARP_header.png">
+<meta property="og:image" content="http://taoquanyus.cn/image/ARP_header.jpeg">
 <meta property="og:image" content="http://taoquanyus.cn/image/TCP_Header.png">
 <meta property="og:image" content="http://taoquanyus.cn/image/tcp_hello.png">
 <meta property="og:image" content="http://taoquanyus.cn/image/tcp_bye.png">
 <meta property="og:image" content="http://taoquanyus.cn/image/UDP_header.png">
 <meta property="og:image" content="http://taoquanyus.cn/image/CS_network2.png">
 <meta property="article:published_time" content="2021-05-03T12:13:27.000Z">
-<meta property="article:modified_time" content="2021-05-03T19:57:30.020Z">
+<meta property="article:modified_time" content="2021-05-04T19:21:16.150Z">
 <meta property="article:author" content="泉雨">
 <meta property="article:tag" content="计算机网络，计算机基础">
 <meta name="twitter:card" content="summary">
@@ -55,7 +56,7 @@
   };
 </script>
 
-  <title>Internetworking | Bettilarity</title>
+  <title>Internet Working | Bettilarity</title>
   
 
 
@@ -207,7 +208,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Internetworking
+          Internet Working
         </h1>
 
         <div class="post-meta">
@@ -224,7 +225,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-05-04 03:57:30" itemprop="dateModified" datetime="2021-05-04T03:57:30+08:00">2021-05-04</time>
+                <time title="Modified: 2021-05-05 03:21:16" itemprop="dateModified" datetime="2021-05-05T03:21:16+08:00">2021-05-05</time>
               </span>
 
           
@@ -242,9 +243,23 @@
 <h2 id="网络分层"><a href="#网络分层" class="headerlink" title="网络分层"></a>网络分层</h2><p><img style="margin: auto;" src="/image/CS_network1.jpeg" alt="pic1" width="700" height="266" /></p>
 <h3 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h3><p>没什么好讲的，用不到以后也不会考</p>
 <h3 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h3><p>三个主要问题：封装成帧，透明传输，差错检测</p>
+<ul>
+<li>封装成帧<br>在进行数据链路层传输的时候存在一个问题，我们需要对饮数据链路层的协议对应将有效的数据封装成一个帧，封装成帧就是在一段数据的前后分别添加首部和尾部，这样就构成一个帧。这个时候我们就需要考虑，我们如何来识别一个帧，所以这里提出了一个帧定界的概念，使用两个控制字符，一个控制字符SOH放在一帧的最前面，表示帧的首部开始。另一个控制字符EOT标识帧的结束。 </li>
+</ul>
+<p><img style="margin : auto;" src="/image/Encapsulated.png" alt="encapsulated" width="901" height="202"/></p>
+<p>即在一段数据的前后分别添加首部和尾部，然后就构成了一个帧。首部和尾部就是起到帧定界的作用。</p>
+<ul>
+<li><p>透明传输<br>因为在帧的有效数据当中，可能出现和帧定界的控制字符一样的字符，为了防止将这些字符当中帧定界的字符，错误的处理帧，所以我们采方法使得数据当中可能出现的控制字符“SOH”和“EOT”在接收端不被解释为控制字符。</p>
+<ul>
+<li>方法是：发送端的数据链路层在数据中出现控制字符“SOH”或“EOT”的前面插入一个转义字符”ESC”。而在接收端的数据链路层在将数据送往网络层之前删除这个插入的转义字符。我们把这种方法叫做字节填充法。当然如果转义字符”ESC“也出现在数据当中，那么解决的方法仍然是在转义字符的前面插入一个转义字符，所以，当接受到连续的两个转义字符的时候，就去删除其中前面的一个。 </li>
+</ul>
+</li>
+<li><p>差错检测<br>数据链路层点对点传输的第三个问题就是差错检测。就是我们所说的比特在传出过程当中可能会产生差错，1可能会变成0，0可能会变成1.这就是比特差错。而这种差错对于我们来说是不希望发生这种状况的，所以为了保证数据传输的可靠性，在计算机网络传输数据时，必须采用差错检测措施。目前广泛运用的是循环冗余检验<code>CRC</code>。<br><code>CRC</code>的基本思想就是将传输的数据当作一个位数很长的数，将这个数除以另外的一个数。得到的余数作为校验数据附加到原数据后面。</p>
+</li>
+</ul>
 <h3 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h3><p>网络层不提供服务质量的承诺，不保证分组交付的时限所传送的分组可能出错，丢失，重复和失序。进程之间通信的可靠性由运输层负责。</p>
 <h4 id="ip-Internet-Protocol"><a href="#ip-Internet-Protocol" class="headerlink" title="ip (Internet Protocol)"></a>ip (Internet Protocol)</h4><p><strong>网络层最关键的协议</strong></p>
-<h5 id="ip-头部"><a href="#ip-头部" class="headerlink" title="ip 头部"></a>ip 头部</h5><p><img style="margin: auto;" src="/image/ip_header.png" alt="ip header" width="400" height="220"/></p>
+<h5 id="ip-头部"><a href="#ip-头部" class="headerlink" title="ip 头部"></a>ip 头部</h5><p><img style="margin: auto;" src="/image/ip_header.png" alt="ip header" width="640" height="301"/></p>
 <h5 id="ipv6的优势"><a href="#ipv6的优势" class="headerlink" title="ipv6的优势"></a>ipv6的优势</h5><ul>
 <li>更大的地址空间（采用 128 位地址）</li>
 <li>灵活的首部格式 </li>
@@ -253,7 +268,7 @@
 <li>支持资源的预分配 </li>
 <li>IPv6 的首部改为 8 字节对齐。</li>
 </ul>
-<h4 id="ARP-Address-Resolution-Protocol"><a href="#ARP-Address-Resolution-Protocol" class="headerlink" title="ARP (Address Resolution Protocol)"></a>ARP (Address Resolution Protocol)</h4><p><strong>地址解析协议</strong><br><img style="margin: auto;" src="/image/ARP_header.png" alt="ARP header" width="512" height="388"/></p>
+<h4 id="ARP-Address-Resolution-Protocol"><a href="#ARP-Address-Resolution-Protocol" class="headerlink" title="ARP (Address Resolution Protocol)"></a>ARP (Address Resolution Protocol)</h4><p><strong>地址解析协议</strong><br><img style="margin: auto;" src="/image/ARP_header.jpeg" alt="ARP header" width="512" height="388"/></p>
 <p>地址解析协议 ARP 把 IP 地址解析为硬件地址。ARP 的高速缓存可以大大减少网络上的通信量。因为这样可以使主机下次再与同样地址的主机通信时，可以直接从高速缓存中找到所需要的硬件地址而不需要再去广播方式发送 ARP 请求分组</p>
 <h4 id="ICMP-Internet-Control-Message-Protocol"><a href="#ICMP-Internet-Control-Message-Protocol" class="headerlink" title="ICMP (Internet Control Message Protocol )"></a>ICMP (Internet Control Message Protocol )</h4><p><strong>网际控制报文协议</strong></p>
 <p>ICMP 报文作为 IP 数据报的数据，加上首部后组成 IP 数据报发送出去。使用 ICMP 数据报并不是为了实现可靠传输。ICMP 允许主机或路由器报告差错情况和提供有关异常情况的报告。ICMP 报文的种类有两种 ICMP 差错报告报文和 ICMP 询问报文</p>
@@ -306,7 +321,7 @@
 <p><code>UDP</code> 在传送数据之前不需要先建立连接，远地主机在收到 <code>UDP</code> 报文后，不需要给出任何确认。虽然 <code>UDP</code> 不提供可靠交付，但在某些情况下 UDP 确是一种最有效的工作方式（一般用于即时通信），比如： QQ 语音、 QQ 视频 、直播等等。<br><code>TCP</code> 提供面向连接的服务。在传送数据之前必须先建立连接，数据传送结束后要释放连接。 <code>TCP</code> 不提供广播或多播服务。由于 <code>TCP</code> 要提供可靠的，面向连接的传输服务（<code>TCP</code>的可靠体现在<code>TCP</code>在传递数据之前，会有三次握手来建立连接，而且在数据传递时，有确认、窗口、重传、拥塞控制机制，在数据传完后，还会断开连接用来节约系统资源），这一难以避免增加了许多开销，如确认，流量控制，计时器以及连接管理等。这不仅使协议数据单元的首部增大很多，还要占用许多处理机资源。<code>TCP</code> 一般用于文件传输、发送和接收邮件、远程登录等场景。</p>
 <h3 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h3><h4 id="DNS-Domain-Name-System"><a href="#DNS-Domain-Name-System" class="headerlink" title="DNS (Domain Name System)"></a>DNS (Domain Name System)</h4><h4 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h4><h4 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h4><p><strong>WWW</strong>:万维网：每个有用的事物，由一个全局“统一资源标识符”<code>URI</code>标识；这些资源通过<code>HTTP</code>传送给用户。<br>访问一个网站大致的过程</p>
 <h4 id="电子邮件"><a href="#电子邮件" class="headerlink" title="电子邮件"></a>电子邮件</h4><p>电子邮件系统有三个重要组成构件：用户代理、邮件服务器、邮件协议<br>邮件发送协议：<code>SMTP</code><br>邮件读取协议：<code>POP3</code>和<code>IMAP</code></p>
-<h3 id="appendix"><a href="#appendix" class="headerlink" title="appendix"></a>appendix</h3><p><img style="margin: auto;" src="/image/CS_network2.png" alt="pic1" width="1000" height="1400" /></p>
+<h3 id="appendix"><a href="#appendix" class="headerlink" title="appendix"></a>appendix</h3><h4 id="完整的网络框架"><a href="#完整的网络框架" class="headerlink" title="完整的网络框架"></a>完整的网络框架</h4><p><img style="margin: auto;" src="/image/CS_network2.png" alt="pic1" width="1000" height="1400" /></p>
 
     </div>
 
@@ -388,7 +403,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="nav-number">1.</span> <span class="nav-text">计算机网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82"><span class="nav-number">2.</span> <span class="nav-text">网络分层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%A9%E7%90%86%E5%B1%82"><span class="nav-number">2.1.</span> <span class="nav-text">物理层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="nav-number">2.2.</span> <span class="nav-text">数据链路层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="nav-number">2.3.</span> <span class="nav-text">网络层</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ip-Internet-Protocol"><span class="nav-number">2.3.1.</span> <span class="nav-text">ip (Internet Protocol)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ip-%E5%A4%B4%E9%83%A8"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">ip 头部</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ipv6%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">ipv6的优势</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ARP-Address-Resolution-Protocol"><span class="nav-number">2.3.2.</span> <span class="nav-text">ARP (Address Resolution Protocol)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ICMP-Internet-Control-Message-Protocol"><span class="nav-number">2.3.3.</span> <span class="nav-text">ICMP (Internet Control Message Protocol )</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82"><span class="nav-number">2.4.</span> <span class="nav-text">传输层</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP-Transmission-Control-Protocol"><span class="nav-number">2.4.1.</span> <span class="nav-text">TCP (Transmission Control Protocol)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="nav-number">2.4.1.1.</span> <span class="nav-text">三次握手</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%B7%B2%E7%BB%8F%E4%BC%A0%E5%9B%9EACK%E4%BA%86%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E8%A6%81%E4%BC%A0%E5%9B%9ESYN%EF%BC%9F"><span class="nav-number">2.4.1.1.1.</span> <span class="nav-text">第二次握手已经传回ACK了，为什么还要传回SYN？</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="nav-number">2.4.1.2.</span> <span class="nav-text">四次挥手</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="nav-number">2.4.1.2.1.</span> <span class="nav-text">为什么要四次挥手</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#TCP-%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93"><span class="nav-number">2.4.1.2.2.</span> <span class="nav-text">TCP 如何保证可靠传输</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9C%A8%E4%B8%8D%E5%8F%AF%E9%9D%A0%E7%9A%84%E7%BD%91%E7%BB%9C%E4%B8%8A%E5%AE%9E%E7%8E%B0%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%8C%E5%81%9C%E6%AD%A2%E7%AD%89%E5%BE%85%E5%8D%8F%E8%AE%AE%E5%92%8C-ARQ-%E5%8D%8F%E8%AE%AE"><span class="nav-number">2.4.1.3.</span> <span class="nav-text">在不可靠的网络上实现可靠传输的工作原理，停止等待协议和 ARQ 协议</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%EF%BC%8C%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%EF%BC%8C%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E5%92%8C%E8%BF%9E%E6%8E%A5%E7%AE%A1%E7%90%86"><span class="nav-number">2.4.1.4.</span> <span class="nav-text">滑动窗口，流量控制，拥塞控制和连接管理</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UDP-User-Datagram-Protocol"><span class="nav-number">2.4.2.</span> <span class="nav-text">UDP (User Datagram Protocol)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">TCP和UDP的区别和应用场景</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82"><span class="nav-number">2.5.</span> <span class="nav-text">应用层</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DNS-Domain-Name-System"><span class="nav-number">2.5.1.</span> <span class="nav-text">DNS (Domain Name System)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FTP"><span class="nav-number">2.5.2.</span> <span class="nav-text">FTP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP"><span class="nav-number">2.5.3.</span> <span class="nav-text">HTTP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6"><span class="nav-number">2.5.4.</span> <span class="nav-text">电子邮件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#appendix"><span class="nav-number">2.6.</span> <span class="nav-text">appendix</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="nav-number">1.</span> <span class="nav-text">计算机网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82"><span class="nav-number">2.</span> <span class="nav-text">网络分层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%A9%E7%90%86%E5%B1%82"><span class="nav-number">2.1.</span> <span class="nav-text">物理层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="nav-number">2.2.</span> <span class="nav-text">数据链路层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="nav-number">2.3.</span> <span class="nav-text">网络层</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ip-Internet-Protocol"><span class="nav-number">2.3.1.</span> <span class="nav-text">ip (Internet Protocol)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ip-%E5%A4%B4%E9%83%A8"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">ip 头部</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ipv6%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">ipv6的优势</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ARP-Address-Resolution-Protocol"><span class="nav-number">2.3.2.</span> <span class="nav-text">ARP (Address Resolution Protocol)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ICMP-Internet-Control-Message-Protocol"><span class="nav-number">2.3.3.</span> <span class="nav-text">ICMP (Internet Control Message Protocol )</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82"><span class="nav-number">2.4.</span> <span class="nav-text">传输层</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP-Transmission-Control-Protocol"><span class="nav-number">2.4.1.</span> <span class="nav-text">TCP (Transmission Control Protocol)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="nav-number">2.4.1.1.</span> <span class="nav-text">三次握手</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E6%AC%A1%E6%8F%A1%E6%89%8B%E5%B7%B2%E7%BB%8F%E4%BC%A0%E5%9B%9EACK%E4%BA%86%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E8%A6%81%E4%BC%A0%E5%9B%9ESYN%EF%BC%9F"><span class="nav-number">2.4.1.1.1.</span> <span class="nav-text">第二次握手已经传回ACK了，为什么还要传回SYN？</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="nav-number">2.4.1.2.</span> <span class="nav-text">四次挥手</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="nav-number">2.4.1.2.1.</span> <span class="nav-text">为什么要四次挥手</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#TCP-%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93"><span class="nav-number">2.4.1.2.2.</span> <span class="nav-text">TCP 如何保证可靠传输</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9C%A8%E4%B8%8D%E5%8F%AF%E9%9D%A0%E7%9A%84%E7%BD%91%E7%BB%9C%E4%B8%8A%E5%AE%9E%E7%8E%B0%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%8C%E5%81%9C%E6%AD%A2%E7%AD%89%E5%BE%85%E5%8D%8F%E8%AE%AE%E5%92%8C-ARQ-%E5%8D%8F%E8%AE%AE"><span class="nav-number">2.4.1.3.</span> <span class="nav-text">在不可靠的网络上实现可靠传输的工作原理，停止等待协议和 ARQ 协议</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%EF%BC%8C%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%EF%BC%8C%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E5%92%8C%E8%BF%9E%E6%8E%A5%E7%AE%A1%E7%90%86"><span class="nav-number">2.4.1.4.</span> <span class="nav-text">滑动窗口，流量控制，拥塞控制和连接管理</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UDP-User-Datagram-Protocol"><span class="nav-number">2.4.2.</span> <span class="nav-text">UDP (User Datagram Protocol)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#TCP%E5%92%8CUDP%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">TCP和UDP的区别和应用场景</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82"><span class="nav-number">2.5.</span> <span class="nav-text">应用层</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DNS-Domain-Name-System"><span class="nav-number">2.5.1.</span> <span class="nav-text">DNS (Domain Name System)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FTP"><span class="nav-number">2.5.2.</span> <span class="nav-text">FTP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP"><span class="nav-number">2.5.3.</span> <span class="nav-text">HTTP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6"><span class="nav-number">2.5.4.</span> <span class="nav-text">电子邮件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#appendix"><span class="nav-number">2.6.</span> <span class="nav-text">appendix</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%8C%E6%95%B4%E7%9A%84%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6"><span class="nav-number">2.6.1.</span> <span class="nav-text">完整的网络框架</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
