@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://taoquanyus.cn/image/UDP_header.png">
 <meta property="og:image" content="http://taoquanyus.cn/image/CS_network2.png">
 <meta property="article:published_time" content="2021-05-03T12:13:27.000Z">
-<meta property="article:modified_time" content="2021-05-05T07:56:25.702Z">
+<meta property="article:modified_time" content="2021-05-05T11:59:45.271Z">
 <meta property="article:author" content="泉雨">
 <meta property="article:tag" content="计算机网络">
 <meta property="article:tag" content="计算机基础">
@@ -226,7 +226,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-05-05 15:56:25" itemprop="dateModified" datetime="2021-05-05T15:56:25+08:00">2021-05-05</time>
+                <time title="Modified: 2021-05-05 19:59:45" itemprop="dateModified" datetime="2021-05-05T19:59:45+08:00">2021-05-05</time>
               </span>
 
           
@@ -247,9 +247,8 @@
 <h4 id="封装成帧"><a href="#封装成帧" class="headerlink" title="封装成帧"></a>封装成帧</h4><p>在进行数据链路层传输的时候存在一个问题，我们需要对饮数据链路层的协议对应将有效的数据封装成一个帧，封装成帧就是在一段数据的前后分别添加首部和尾部，这样就构成一个帧。这个时候我们就需要考虑，我们如何来识别一个帧，所以这里提出了一个帧定界的概念，使用两个控制字符，一个控制字符SOH放在一帧的最前面，表示帧的首部开始。另一个控制字符EOT标识帧的结束。 </p>
 <p><img style="margin : auto;" src="/image/Encapsulated.png" alt="encapsulated" width="901" height="202"/></p>
 <p>即在一段数据的前后分别添加首部和尾部，然后就构成了一个帧。首部和尾部就是起到帧定界的作用。</p>
-<h4 id="透明传输"><a href="#透明传输" class="headerlink" title="透明传输"></a>透明传输</h4><p>因为在帧的有效数据当中，可能出现和帧定界的控制字符一样的字符，为了防止将这些字符当中帧定界的字符，错误的处理帧，所以我们采方法使得数据当中可能出现的控制字符“SOH”和“EOT”在接收端不被解释为控制字符。</p>
-<pre><code>* 方法是：发送端的数据链路层在数据中出现控制字符“SOH”或“EOT”的前面插入一个转义字符”ESC”。而在接收端的数据链路层在将数据送往网络层之前删除这个插入的转义字符。我们把这种方法叫做字节填充法。当然如果转义字符”ESC“也出现在数据当中，那么解决的方法仍然是在转义字符的前面插入一个转义字符，所以，当接受到连续的两个转义字符的时候，就去删除其中前面的一个。 
-</code></pre><h4 id="差错检测"><a href="#差错检测" class="headerlink" title="差错检测"></a>差错检测</h4><p>数据链路层点对点传输的第三个问题就是差错检测。就是我们所说的比特在传出过程当中可能会产生差错，1可能会变成0，0可能会变成1.这就是比特差错。而这种差错对于我们来说是不希望发生这种状况的，所以为了保证数据传输的可靠性，在计算机网络传输数据时，必须采用差错检测措施。目前广泛运用的是循环冗余检验<code>CRC</code>。<br><code>CRC</code>的基本思想就是将传输的数据当作一个位数很长的数，将这个数除以另外的一个数。得到的余数作为校验数据附加到原数据后面。</p>
+<h4 id="透明传输"><a href="#透明传输" class="headerlink" title="透明传输"></a>透明传输</h4><p>因为在帧的有效数据当中，可能出现和帧定界的控制字符一样的字符，为了防止将这些字符当中帧定界的字符，错误的处理帧，所以我们采方法使得数据当中可能出现的控制字符“SOH”和“EOT”在接收端不被解释为控制字符。<br>    方法：发送端的数据链路层在数据中出现控制字符“SOH”或“EOT”的前面插入一个转义字符”ESC”。而在接收端的数据链路层在将数据送往网络层之前删除这个插入的转义字符。我们把这种方法叫做字节填充法。当然如果转义字符”ESC“也出现在数据当中，那么解决的方法仍然是在转义字符的前面插入一个转义字符，所以，当接受到连续的两个转义字符的时候，就去删除其中前面的一个。 </p>
+<h4 id="差错检测"><a href="#差错检测" class="headerlink" title="差错检测"></a>差错检测</h4><p>数据链路层点对点传输的第三个问题就是差错检测。就是我们所说的比特在传出过程当中可能会产生差错，1可能会变成0，0可能会变成1.这就是比特差错。而这种差错对于我们来说是不希望发生这种状况的，所以为了保证数据传输的可靠性，在计算机网络传输数据时，必须采用差错检测措施。目前广泛运用的是循环冗余检验<code>CRC</code>。<br><code>CRC</code>的基本思想就是将传输的数据当作一个位数很长的数，将这个数除以另外的一个数。得到的余数作为校验数据附加到原数据后面。</p>
 <h3 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h3><p>网络层不提供服务质量的承诺，不保证分组交付的时限所传送的分组可能出错，丢失，重复和失序。进程之间通信的可靠性由运输层负责。</p>
 <h4 id="ip-Internet-Protocol"><a href="#ip-Internet-Protocol" class="headerlink" title="ip (Internet Protocol)"></a>ip (Internet Protocol)</h4><p><strong>网络层最关键的协议</strong></p>
 <h5 id="ip-头部"><a href="#ip-头部" class="headerlink" title="ip 头部"></a>ip 头部</h5><p><img style="margin: auto;" src="/image/ip_header.png" alt="ip header" width="640" height="301"/></p>

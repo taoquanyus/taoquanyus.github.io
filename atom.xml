@@ -6,7 +6,7 @@
   <link href="http://taoquanyus.cn/atom.xml" rel="self"/>
   
   <link href="http://taoquanyus.cn/"/>
-  <updated>2021-05-05T07:56:25.702Z</updated>
+  <updated>2021-05-05T11:59:45.271Z</updated>
   <id>http://taoquanyus.cn/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://taoquanyus.cn/2021/05/03/CS-network/"/>
     <id>http://taoquanyus.cn/2021/05/03/CS-network/</id>
     <published>2021-05-03T12:13:27.000Z</published>
-    <updated>2021-05-05T07:56:25.702Z</updated>
+    <updated>2021-05-05T11:59:45.271Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;计算机网络&quot;&gt;&lt;a href=&quot;#计算机网络&quot; class=&quot;headerlink&quot; title=&quot;计算机网络&quot;&gt;&lt;/a&gt;计算机网络&lt;/h2&gt;</summary>
@@ -57,7 +57,7 @@
     <link href="http://taoquanyus.cn/2021/04/29/backend1/"/>
     <id>http://taoquanyus.cn/2021/04/29/backend1/</id>
     <published>2021-04-29T16:32:13.000Z</published>
-    <updated>2021-04-29T22:39:49.196Z</updated>
+    <updated>2021-05-05T12:30:35.075Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;后端基础学习&quot;&gt;&lt;a href=&quot;#后端基础学习&quot; class=&quot;headerlink&quot; title=&quot;后端基础学习&quot;&gt;&lt;/a&gt;后端基础学习&lt;/h2&gt;&lt;h3 id=&quot;Restful-API&quot;&gt;&lt;a href=&quot;#Restful-API&quot; class=&quot;headerlink&quot; title=&quot;Restful API&quot;&gt;&lt;/a&gt;Restful API&lt;/h3&gt;&lt;p&gt;一种架构风格，全称:Resource Representational State Transfer 表现层状态转移&lt;br&gt;当通过 RESTful API 提出请求时，它会将资源状态表述传递给请求者。该信息或表述通过 HTTP 以下列某种格式传输：JSON（Javascript 对象表示法）、HTML、XLT 或纯文本。JSON 是最常用的格式，尽管它的名字英文原意为”JavaScript 物件表示法”，但它适用于各种语言，并且人和机器都能读。&lt;br&gt;</summary>
