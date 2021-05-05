@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon-apple-touch.jpeg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon-32x32.jpeg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon-16x16.jpeg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"taoquanyus.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="HTTPHTTP (超文本传输协议)是应用层最重要的协议，默认端口是TCP80。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP 详解">
+<meta property="og:url" content="http://taoquanyus.cn/2021/05/05/http/index.html">
+<meta property="og:site_name" content="Bettilarity">
+<meta property="og:description" content="HTTPHTTP (超文本传输协议)是应用层最重要的协议，默认端口是TCP80。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://taoquanyus.cn/image/pipelining.png">
+<meta property="og:image" content="http://taoquanyus.cn/image/Multiplexing.png">
+<meta property="og:image" content="http://taoquanyus.cn/image/SSL.gif">
+<meta property="article:published_time" content="2021-05-05T12:49:57.000Z">
+<meta property="article:modified_time" content="2021-05-05T20:25:59.186Z">
+<meta property="article:author" content="泉雨">
+<meta property="article:tag" content="计算机网络">
+<meta property="article:tag" content="后端">
+<meta property="article:tag" content="HTTP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://taoquanyus.cn/image/pipelining.png">
+
+<link rel="canonical" href="http://taoquanyus.cn/2021/05/05/http/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>HTTP 详解 | Bettilarity</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Bettilarity" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Bettilarity</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">11</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://taoquanyus.cn/2021/05/05/http/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="泉雨">
+      <meta itemprop="description" content="Love is patient, Love is kind.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bettilarity">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          HTTP 详解
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-05-05 20:49:57" itemprop="dateCreated datePublished" datetime="2021-05-05T20:49:57+08:00">2021-05-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-05-06 04:25:59" itemprop="dateModified" datetime="2021-05-06T04:25:59+08:00">2021-05-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><p>HTTP (超文本传输协议)是应用层最重要的协议，默认端口是TCP80。<br><span id="more"></span></p>
+<h2 id="基本特性"><a href="#基本特性" class="headerlink" title="基本特性"></a>基本特性</h2><p>HTTP分为请求报文和响应报文。</p>
+<h3 id="无连接"><a href="#无连接" class="headerlink" title="无连接"></a>无连接</h3><p>HTTP客户端，即浏览器发出请求后，客户端等待响应。服务器处理该请求并发送回响应，然后客户端断开连接。客户端和服务器仅在当次请求中互相了解，至于上一次是否有连接或者连接的信息是无从得知的。</p>
+<h3 id="独立于媒体"><a href="#独立于媒体" class="headerlink" title="独立于媒体"></a>独立于媒体</h3><p>这意味着，只要客户端和服务器都知道如何处理数据内容，任何类型的数据都可以通过HTTP发送。客户端和服务器都需要使用适当的 MIME 类型 指定内容类型。</p>
+<h3 id="无状态"><a href="#无状态" class="headerlink" title="无状态"></a>无状态</h3><p>如上所述，HTTP 是无连接的，这是 HTTP 是无状态协议的直接结果。服务器和客户端仅在当前请求期间彼此知道，之后他们俩彼此忘记。由于协议的这种性质，客户端和浏览器都无法在整个网页的不同请求之间保留信息。</p>
+<h2 id="HTTP-Request"><a href="#HTTP-Request" class="headerlink" title="HTTP Request"></a>HTTP Request</h2><p>一个HTTP请求报文由<code>请求行</code>，<code>请求首部</code>，<code>请求体</code>组成。<br>在传递响应后，Web 服务器将关闭连接。这种连接称为无状态连接，因为它仅在数据交换期间存在。</p>
+<h3 id="请求行"><a href="#请求行" class="headerlink" title="请求行"></a>请求行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Method Request-URI HTTP-Version CRLF </span><br></pre></td></tr></table></figure>
+<p><code>Method</code>表示请求方法；<br><code>Request-URI</code>是一个统一资源标识符;<br><code>HTTP-Version</code>表示请求的<code>HTTP</code>协议版本;<br><code>CRLF</code> 表示回车和换行（除了作为结尾的CRLF外，不允许出现单独的<code>CR</code>或<code>LF</code>字符）。<br>请求方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET ： 请求获取Request-URI所标识的资源</span><br><span class="line">POST ：在Request-URI所标识的资源后附加新的数据</span><br><span class="line">HEAD ：请求获取由Request-URI所标识的资源的响应消息报头</span><br><span class="line">PUT ： 请求服务器存储一个资源，并用Request-URI作为其标识</span><br><span class="line">DELETE ：请求服务器删除Request-URI所标识的资源</span><br><span class="line">TRACE  ：请求服务器回送收到的请求信息，主要用于测试或诊断</span><br><span class="line">CONNECT：保留将来使用</span><br><span class="line">OPTIONS ：请求查询服务器的性能，或者查询与资源相关的选项和需求</span><br></pre></td></tr></table></figure></p>
+<h3 id="请求首部"><a href="#请求首部" class="headerlink" title="请求首部"></a>请求首部</h3><p>HTTP请求首部包括：<code>请求首部字段</code>、<code>通用首部字段</code>、<code>实体首部字段</code>，每一个报头域都是由<code>名字</code> + <code>:</code> + <code>空格</code> + <code>值</code>组成，消息报头域的名字是大小写无关的。</p>
+<h3 id="请求体"><a href="#请求体" class="headerlink" title="请求体"></a>请求体</h3><p>请求的内容</p>
+<h2 id="HTTP-Response"><a href="#HTTP-Response" class="headerlink" title="HTTP Response"></a>HTTP Response</h2><p>HTTP响应报文由<code>状态行</code>，<code>响应首部</code>，<code>响应体</code>组成。</p>
+<h3 id="状态行"><a href="#状态行" class="headerlink" title="状态行"></a>状态行</h3><p>状态码用于告知请求方当次请求的状态是成功还是失败：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1XX</td>
+<td>Informational(信息性状态码)</td>
+</tr>
+<tr>
+<td>2XX</td>
+<td>Success(成功状态码)</td>
+</tr>
+<tr>
+<td>3XX</td>
+<td>Redirection(重定向)</td>
+</tr>
+<tr>
+<td>4XX</td>
+<td>Client Error(客户端错误状态码)</td>
+</tr>
+<tr>
+<td>5XX</td>
+<td>Server Error(服务器错误状态码)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="响应首部"><a href="#响应首部" class="headerlink" title="响应首部"></a>响应首部</h3><p>HTTP响应首部包括：<code>响应首部字段</code>、<code>通用首部字段</code>、<code>实体首部字段</code>，每一个报头域都是由<code>名字</code> + <code>:</code> + <code>空格</code> + <code>值</code>组成，消息报头域的名字是大小写无关的。</p>
+<h3 id="响应体"><a href="#响应体" class="headerlink" title="响应体"></a>响应体</h3><p>响应的正文</p>
+<h3 id="HTTP请求首部和响应首部的所有字段"><a href="#HTTP请求首部和响应首部的所有字段" class="headerlink" title="HTTP请求首部和响应首部的所有字段"></a>HTTP请求首部和响应首部的所有字段</h3><p>请求首部和响应首部分别作为h请求报文和响应报文的重要组成部分，包括<code>请求首部字段</code>、<code>响应首部字段</code>、<code>通用首部字段</code>、<code>实体首部字段</code>。其中<code>通用首部字段</code>和<code>实体首部字段</code>请求和响应报文共有的。<br><strong>通用首部字段：</strong><br>在普通报头中，有少数报头域用于所有的请求和响应消息，但并不用于被传输的实体，只用于传输的消息。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cache-Control</td>
+<td>控制缓存行为</td>
+</tr>
+<tr>
+<td>Connection</td>
+<td>逐跳首部、连接的管理</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>创建报文的日期时间</td>
+</tr>
+<tr>
+<td>Pragma</td>
+<td>报文指令</td>
+</tr>
+<tr>
+<td>Transfer-Encoding</td>
+<td>指定报文传输主体的编码方式</td>
+</tr>
+<tr>
+<td>Upgrade</td>
+<td>升级为其他协议</td>
+</tr>
+<tr>
+<td>Via</td>
+<td>代理服务器的相关信息</td>
+</tr>
+<tr>
+<td>Warning</td>
+<td>错误通知</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>请求首部字段：</strong><br>允许客户端向服务器端传递请求的附加信息以及客户端自身的信息。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Accept：text/html application/xml</td>
+<td>告诉服务器客户端浏览器这边可以出里什么数据</td>
+</tr>
+<tr>
+<td>Accept-Charset</td>
+<td>优先的字符集</td>
+</tr>
+<tr>
+<td>Accept-Encoding</td>
+<td>优先的内容编码</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>Web认证信息</td>
+</tr>
+<tr>
+<td>Except</td>
+<td>期待服务器的特定行为</td>
+</tr>
+<tr>
+<td>Host</td>
+<td>请求资源所在的服务器</td>
+</tr>
+<tr>
+<td>if-Match</td>
+<td>比较实体标记（ETag）</td>
+</tr>
+<tr>
+<td>if-Modified-Since</td>
+<td>比较资源的更新时间</td>
+</tr>
+<tr>
+<td>Range</td>
+<td>实体的字节范围请求</td>
+</tr>
+<tr>
+<td>Refer</td>
+<td>实体的字节范围请求</td>
+</tr>
+<tr>
+<td>TE</td>
+<td>传输编码的优先级</td>
+</tr>
+<tr>
+<td>User-Agent</td>
+<td>HTTP客户端程序的信息</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>响应报头</strong><br>响应报头允许服务器传递不能放在状态行中的附加响应信息，以及关于服务器的信息和对Request-URI所标识的资源进行下一步访问的信息。常见的响应报头包括：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Accept-Ranges</td>
+<td>是否接受字节范围请求</td>
+</tr>
+<tr>
+<td>Age</td>
+<td>推算资源创建经过的时间</td>
+</tr>
+<tr>
+<td>ETag</td>
+<td>资源的匹配信息</td>
+</tr>
+<tr>
+<td>Location</td>
+<td>令客户端重定向至指定UPI</td>
+</tr>
+<tr>
+<td>Proxy-Authenticate</td>
+<td>代理服务器对客户端的认证信息</td>
+</tr>
+<tr>
+<td>WWW-Authenticate</td>
+<td>服务器对客户端的认证信息</td>
+</tr>
+<tr>
+<td>Server</td>
+<td>HTTP服务器的安装信息</td>
+</tr>
+<tr>
+<td>Vary</td>
+<td>代理服务器的管理信息</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>实体首部字段</strong><br>请求和响应消息都可以传送一个实体。一个实体由实体首部域和实体正文组成，但并不是说实体首部域和实体正文要在一起发送，可以只发送实体报头域。实体首部字段定义了关于实体正文和请求所标识的资源的元信息。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Allow</td>
+<td>资源可支持的HTTP方法</td>
+</tr>
+<tr>
+<td>Content-Encoding</td>
+<td>实体主体适用的编码方式</td>
+</tr>
+<tr>
+<td>Content-Language</td>
+<td>实体主体的自然语言</td>
+</tr>
+<tr>
+<td>Content-Length</td>
+<td>实体主体的大小</td>
+</tr>
+<tr>
+<td>Content-Location</td>
+<td>替代对应资源的URI</td>
+</tr>
+<tr>
+<td>Content-MD5</td>
+<td>实体主体的报文摘要</td>
+</tr>
+<tr>
+<td>Content-Range</td>
+<td>实体主体的位置范围</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>实体主体的媒体类型</td>
+</tr>
+<tr>
+<td>EXpires</td>
+<td>实体主体过期的日期时间</td>
+</tr>
+<tr>
+<td>Last-Modified</td>
+<td>资源的最后修改日期时间</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="HTTP的多个版本"><a href="#HTTP的多个版本" class="headerlink" title="HTTP的多个版本"></a>HTTP的多个版本</h3><h4 id="HTTP-0-9"><a href="#HTTP-0-9" class="headerlink" title="HTTP 0.9"></a>HTTP 0.9</h4><p>第一个版本的HTTP协议，已过时。它的组成极其简单，只允许客户端发送GET这一种请求，且不支持请求头。由于没有协议头，造成了HTTP 0.9协议只支持一种内容，即纯文本。不过网页仍然支持用HTML语言格式化，同时无法插入图片。</p>
+<h4 id="HTTP-1-0"><a href="#HTTP-1-0" class="headerlink" title="HTTP 1.0"></a>HTTP 1.0</h4><p>HTTP协议的第二个版本，相对于HTTP 0.9 增加了如下主要特性：</p>
+<ul>
+<li>请求与响应支持头域</li>
+<li>响应对象以一个响应状态行开始</li>
+<li>响应对象不只限于超文本</li>
+<li>开始支持客户端通过POST方法向Web服务器提交数据，支持GET、HEAD、POST方法</li>
+<li>（短连接）每一个请求建立一个TCP连接，请求完成后立马断开连接。这将会导致2个问题：连接无法复用，head of line blocking。连接无法复用会导致每次请求都经历三次握手和慢启动。三次握手在高延迟的场景下影响较明显，慢启动则对文件类请求影响较大。head of line blocking会导致带宽无法被充分利用，以及后续健康请求被阻塞。</li>
+</ul>
+<h4 id="HTTP-1-1"><a href="#HTTP-1-1" class="headerlink" title="HTTP 1.1"></a>HTTP 1.1</h4><p>HTTP协议的第三个版本，是目前使用最广泛的协议版本<br>HTTP 1.1引入了许多关键性能优化：<code>keepalive</code>连接，<code>chunked编码传输</code>，<code>字节范围请求</code>，<code>请求流水线</code>等</p>
+<h5 id="Persistent-Connection（keepalive连接）"><a href="#Persistent-Connection（keepalive连接）" class="headerlink" title="Persistent Connection（keepalive连接）"></a>Persistent Connection（keepalive连接）</h5><p>允许HTTP设备在事务处理结束之后将TCP连接保持在打开的状态，以便未来的HTTP请求重用现在的连接，直到客户端或服务器端决定将其关闭为止。在HTTP1.0中使用长连接需要添加请求头 Connection: Keep-Alive，而在HTTP 1.1 所有的连接默认都是长连接，除非特殊声明不支持（ HTTP请求报文首部加上Connection: close ）。服务器端按照FIFO原则来处理不同的Request。</p>
+<h5 id="chunked编码传输"><a href="#chunked编码传输" class="headerlink" title="chunked编码传输"></a>chunked编码传输</h5><p>该编码将实体分块传送并逐块标明长度，直到长度为0块表示传输结束，这在实体长度未知时特别有用(比如由数据库动态产生的数据)</p>
+<h5 id="字节范围请求"><a href="#字节范围请求" class="headerlink" title="字节范围请求"></a>字节范围请求</h5><p>HTTP1.1支持传送内容的一部分。比方说，当客户端已经有内容的一部分，为了节省带宽，可以只向服务器请求一部分。该功能通过在请求消息中引入了range头域来实现，它允许只请求资源的某个部分。在响应消息中Content-Range头域声明了返回的这部分对象的偏移值和长度。如果服务器相应地返回了对象所请求范围的内容，则响应码206（Partial Content）</p>
+<h5 id="Pipelining"><a href="#Pipelining" class="headerlink" title="Pipelining"></a>Pipelining</h5><p><img style="margin: auto" src="/image/pipelining.png" alt="Pipelining" width="950" height="500"/></p>
+<h4 id="HTTP-2-0"><a href="#HTTP-2-0" class="headerlink" title="HTTP 2.0"></a>HTTP 2.0</h4><p>HTTP 2.0是下一代HTTP协议，目前应用还非常少。</p>
+<h5 id="多路复用-二进制分帧"><a href="#多路复用-二进制分帧" class="headerlink" title="多路复用 (二进制分帧)"></a>多路复用 (二进制分帧)</h5><p>将所有传输的信息分割为更小的消息和帧，并对它们采用二进制格式的编码 ，其中HTTP1.x的首部信息会被封装到Headers帧，而我们的request body则封装到Data帧里面。<br><img style="margin: auto" src="/image/Multiplexing.png" alt="Multiplexing" width="1000" height="475"></p>
+<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p><strong>Hypertext Transfer Protocol Secure</strong><br>简单讲HTTPS就是HTTP的安全版，即HTTP下加入SSL层，HTTPS的安全基础是SSL，因此加密的详细内容就需要SSL。</p>
+<h3 id="HTTP和HTTPS不同点"><a href="#HTTP和HTTPS不同点" class="headerlink" title="HTTP和HTTPS不同点"></a>HTTP和HTTPS不同点</h3><ol>
+<li>https协议需要到ca申请证书，一般免费证书较少，因而需要一定费用。</li>
+<li>http是超文本传输协议，信息是明文传输，https则是具有安全性的SSL加密传输协议。</li>
+<li>http和https使用的是完全不同的连接方式，用的端口也不一样，前者是80，后者是443</li>
+<li>http的连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，比http协议安全。<h3 id="SSL（Secure-Socket-Layer）的握手过程"><a href="#SSL（Secure-Socket-Layer）的握手过程" class="headerlink" title="SSL（Secure Socket Layer）的握手过程"></a>SSL（Secure Socket Layer）的握手过程</h3></li>
+</ol>
+<p><img style="margin: auto" src="/image/SSL.gif" alt="SSL" width="484" height="418"/></p>
+<h4 id="TLS和SSL的区别"><a href="#TLS和SSL的区别" class="headerlink" title="TLS和SSL的区别"></a>TLS和SSL的区别</h4><p>两者虽然不是一个东西，但是区别极小，可以理解为版本更迭<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TLS 1.0 &#x3D; SSL 3.1</span><br><span class="line">TLS 1.1 &#x3D; SSL 3.2</span><br><span class="line">TLS 1.2 &#x3D; SSL 3.3</span><br></pre></td></tr></table></figure></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag"># 计算机网络</a>
+              <a href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag"># 后端</a>
+              <a href="/tags/HTTP/" rel="tag"># HTTP</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/03/CS-network/" rel="prev" title="Internet Working">
+      <i class="fa fa-chevron-left"></i> Internet Working
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP"><span class="nav-number">1.</span> <span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%89%B9%E6%80%A7"><span class="nav-number">1.1.</span> <span class="nav-text">基本特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E8%BF%9E%E6%8E%A5"><span class="nav-number">1.1.1.</span> <span class="nav-text">无连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8B%AC%E7%AB%8B%E4%BA%8E%E5%AA%92%E4%BD%93"><span class="nav-number">1.1.2.</span> <span class="nav-text">独立于媒体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%8A%B6%E6%80%81"><span class="nav-number">1.1.3.</span> <span class="nav-text">无状态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Request"><span class="nav-number">1.2.</span> <span class="nav-text">HTTP Request</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E8%A1%8C"><span class="nav-number">1.2.1.</span> <span class="nav-text">请求行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E9%A6%96%E9%83%A8"><span class="nav-number">1.2.2.</span> <span class="nav-text">请求首部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E4%BD%93"><span class="nav-number">1.2.3.</span> <span class="nav-text">请求体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-Response"><span class="nav-number">1.3.</span> <span class="nav-text">HTTP Response</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E8%A1%8C"><span class="nav-number">1.3.1.</span> <span class="nav-text">状态行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E9%A6%96%E9%83%A8"><span class="nav-number">1.3.2.</span> <span class="nav-text">响应首部</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%8D%E5%BA%94%E4%BD%93"><span class="nav-number">1.3.3.</span> <span class="nav-text">响应体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E8%AF%B7%E6%B1%82%E9%A6%96%E9%83%A8%E5%92%8C%E5%93%8D%E5%BA%94%E9%A6%96%E9%83%A8%E7%9A%84%E6%89%80%E6%9C%89%E5%AD%97%E6%AE%B5"><span class="nav-number">1.3.4.</span> <span class="nav-text">HTTP请求首部和响应首部的所有字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E7%9A%84%E5%A4%9A%E4%B8%AA%E7%89%88%E6%9C%AC"><span class="nav-number">1.3.5.</span> <span class="nav-text">HTTP的多个版本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP-0-9"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">HTTP 0.9</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP-1-0"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">HTTP 1.0</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP-1-1"><span class="nav-number">1.3.5.3.</span> <span class="nav-text">HTTP 1.1</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Persistent-Connection%EF%BC%88keepalive%E8%BF%9E%E6%8E%A5%EF%BC%89"><span class="nav-number">1.3.5.3.1.</span> <span class="nav-text">Persistent Connection（keepalive连接）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#chunked%E7%BC%96%E7%A0%81%E4%BC%A0%E8%BE%93"><span class="nav-number">1.3.5.3.2.</span> <span class="nav-text">chunked编码传输</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AD%97%E8%8A%82%E8%8C%83%E5%9B%B4%E8%AF%B7%E6%B1%82"><span class="nav-number">1.3.5.3.3.</span> <span class="nav-text">字节范围请求</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Pipelining"><span class="nav-number">1.3.5.3.4.</span> <span class="nav-text">Pipelining</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP-2-0"><span class="nav-number">1.3.5.4.</span> <span class="nav-text">HTTP 2.0</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8-%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%88%86%E5%B8%A7"><span class="nav-number">1.3.5.4.1.</span> <span class="nav-text">多路复用 (二进制分帧)</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS"><span class="nav-number">1.4.</span> <span class="nav-text">HTTPS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E5%92%8CHTTPS%E4%B8%8D%E5%90%8C%E7%82%B9"><span class="nav-number">1.4.1.</span> <span class="nav-text">HTTP和HTTPS不同点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSL%EF%BC%88Secure-Socket-Layer%EF%BC%89%E7%9A%84%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B"><span class="nav-number">1.4.2.</span> <span class="nav-text">SSL（Secure Socket Layer）的握手过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TLS%E5%92%8CSSL%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">TLS和SSL的区别</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="泉雨"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">泉雨</p>
+  <div class="site-description" itemprop="description">Love is patient, Love is kind.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/taoquanyus" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;taoquanyus" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:quanyu@kth.se" title="E-Mail → mailto:quanyu@kth.se" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  <!--
+  &copy; 2021-04 – 
+  <span itemprop="copyrightYear">2021</span>
+  -->
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">泉雨</span>
+</div>
+  <!-- <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>-->
+<!-- 记录访问量-->
+<!--
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+  
+
+    </div>
+  <body>
+  <!-- require APlayer -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+  <!-- require MetingJS -->
+  <script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script>
+  </body>
+  <!--如果将本体放在body里面，导致页面加载出现问题，请尝试放到body体后面-->
+  <!--7974975472 tencent-->
+  <!--6730387559 netease-->
+  <div class="aplayer" 
+    data-id="7974975472" 
+    data-server="tencent" 
+    data-type="playlist" 
+    data-fixed="true"	
+    data-order="random"
+    data-volume="0.65"
+    data-autoplay="true"   
+    date-preload="auto"
+    data-theme="#cc543a">
+  </div>
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":200,"height":400},"mobile":{"show":false}});</script></body>
+</html>

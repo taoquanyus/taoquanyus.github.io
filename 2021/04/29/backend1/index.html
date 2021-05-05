@@ -28,7 +28,7 @@
 <meta property="og:description" content="后端基础学习Restful API一种架构风格，全称:Resource Representational State Transfer 表现层状态转移当通过 RESTful API 提出请求时，它会将资源状态表述传递给请求者。该信息或表述通过 HTTP 以下列某种格式传输：JSON（Javascript 对象表示法）、HTML、XLT 或纯文本。JSON 是最常用的格式，尽管它的名字英文原意为”J">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-04-29T16:32:13.000Z">
-<meta property="article:modified_time" content="2021-05-05T12:30:35.075Z">
+<meta property="article:modified_time" content="2021-05-05T12:57:04.585Z">
 <meta property="article:author" content="泉雨">
 <meta property="article:tag" content="后端">
 <meta property="article:tag" content="Spring Boot">
@@ -128,7 +128,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">10</span></a>
+    <a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">11</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -216,7 +216,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-05-05 20:30:35" itemprop="dateModified" datetime="2021-05-05T20:30:35+08:00">2021-05-05</time>
+                <time title="Modified: 2021-05-05 20:57:04" itemprop="dateModified" datetime="2021-05-05T20:57:04+08:00">2021-05-05</time>
               </span>
 
           
@@ -243,7 +243,7 @@
 <h4 id="如果非要放在root-package之外"><a href="#如果非要放在root-package之外" class="headerlink" title="如果非要放在root package之外"></a>如果非要放在<code>root package</code>之外</h4><ol>
 <li>可用<code>@ComponentScan</code>注解指定具体的加载包<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@ComponentScan(basePackages=&quot;com.example&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bootstrap</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Bootstrap.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li>使用<code>@Bean</code>注解来初始化<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bootstrap</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Bootstrap.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CustomerController <span class="title">customerController</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CustomerController();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="Application-Properties-配置"><a href="#Application-Properties-配置" class="headerlink" title="Application Properties 配置"></a>Application Properties 配置</h4></li>
+<h4 id="Application-Properties-配置"><a href="#Application-Properties-配置" class="headerlink" title="Application Properties 配置"></a>Application Properties 配置</h4>工程的常见属性配置</li>
 </ol>
 <ul>
 <li><code>server.port=8080</code> 配置端口号</li>
@@ -352,12 +352,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
