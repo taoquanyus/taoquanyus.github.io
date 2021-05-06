@@ -20,18 +20,18 @@
     var CONFIG = {"hostname":"taoquanyus.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="HTTPHTTP (超文本传输协议)是应用层最重要的协议，默认端口是TCP80。">
+  <meta name="description" content="HTTPHTTP (超文本传输协议)是应用层最重要的协议，默认端口是TCP 80。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="HTTP 详解">
 <meta property="og:url" content="http://taoquanyus.cn/2021/05/05/http/index.html">
 <meta property="og:site_name" content="Bettilarity">
-<meta property="og:description" content="HTTPHTTP (超文本传输协议)是应用层最重要的协议，默认端口是TCP80。">
+<meta property="og:description" content="HTTPHTTP (超文本传输协议)是应用层最重要的协议，默认端口是TCP 80。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://taoquanyus.cn/image/pipelining.png">
 <meta property="og:image" content="http://taoquanyus.cn/image/multiplexing.png">
 <meta property="og:image" content="http://taoquanyus.cn/image/SSL.gif">
 <meta property="article:published_time" content="2021-05-05T12:49:57.000Z">
-<meta property="article:modified_time" content="2021-05-05T20:30:18.396Z">
+<meta property="article:modified_time" content="2021-05-06T13:46:17.492Z">
 <meta property="article:author" content="泉雨">
 <meta property="article:tag" content="计算机网络">
 <meta property="article:tag" content="后端">
@@ -221,7 +221,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-05-06 04:30:18" itemprop="dateModified" datetime="2021-05-06T04:30:18+08:00">2021-05-06</time>
+                <time title="Modified: 2021-05-06 21:46:17" itemprop="dateModified" datetime="2021-05-06T21:46:17+08:00">2021-05-06</time>
               </span>
 
           
@@ -235,7 +235,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><p>HTTP (超文本传输协议)是应用层最重要的协议，默认端口是TCP80。<br><span id="more"></span></p>
+        <h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><p>HTTP (超文本传输协议)是应用层最重要的协议，默认端口是TCP 80。<br><span id="more"></span></p>
 <h2 id="基本特性"><a href="#基本特性" class="headerlink" title="基本特性"></a>基本特性</h2><p>HTTP分为请求报文和响应报文。</p>
 <h3 id="无连接"><a href="#无连接" class="headerlink" title="无连接"></a>无连接</h3><p>HTTP客户端，即浏览器发出请求后，客户端等待响应。服务器处理该请求并发送回响应，然后客户端断开连接。客户端和服务器仅在当次请求中互相了解，至于上一次是否有连接或者连接的信息是无从得知的。</p>
 <h3 id="独立于媒体"><a href="#独立于媒体" class="headerlink" title="独立于媒体"></a>独立于媒体</h3><p>这意味着，只要客户端和服务器都知道如何处理数据内容，任何类型的数据都可以通过HTTP发送。客户端和服务器都需要使用适当的 MIME 类型 指定内容类型。</p>
@@ -498,9 +498,9 @@
 <h5 id="Persistent-Connection（keepalive连接）"><a href="#Persistent-Connection（keepalive连接）" class="headerlink" title="Persistent Connection（keepalive连接）"></a>Persistent Connection（keepalive连接）</h5><p>允许HTTP设备在事务处理结束之后将TCP连接保持在打开的状态，以便未来的HTTP请求重用现在的连接，直到客户端或服务器端决定将其关闭为止。在HTTP1.0中使用长连接需要添加请求头 Connection: Keep-Alive，而在HTTP 1.1 所有的连接默认都是长连接，除非特殊声明不支持（ HTTP请求报文首部加上Connection: close ）。服务器端按照FIFO原则来处理不同的Request。</p>
 <h5 id="chunked编码传输"><a href="#chunked编码传输" class="headerlink" title="chunked编码传输"></a>chunked编码传输</h5><p>该编码将实体分块传送并逐块标明长度，直到长度为0块表示传输结束，这在实体长度未知时特别有用(比如由数据库动态产生的数据)</p>
 <h5 id="字节范围请求"><a href="#字节范围请求" class="headerlink" title="字节范围请求"></a>字节范围请求</h5><p>HTTP1.1支持传送内容的一部分。比方说，当客户端已经有内容的一部分，为了节省带宽，可以只向服务器请求一部分。该功能通过在请求消息中引入了range头域来实现，它允许只请求资源的某个部分。在响应消息中Content-Range头域声明了返回的这部分对象的偏移值和长度。如果服务器相应地返回了对象所请求范围的内容，则响应码206（Partial Content）</p>
-<h5 id="Pipelining"><a href="#Pipelining" class="headerlink" title="Pipelining"></a>Pipelining</h5><p><img style="margin: auto" src="/image/pipelining.png" alt="Pipelining" width="800" height="500"/></p>
+<h5 id="Pipelining"><a href="#Pipelining" class="headerlink" title="Pipelining"></a>Pipelining</h5><p><img style="margin: auto" src="/image/pipelining.png" alt="Pipelining" width="640" height="400"/></p>
 <h4 id="HTTP-2-0"><a href="#HTTP-2-0" class="headerlink" title="HTTP 2.0"></a>HTTP 2.0</h4><p>HTTP 2.0是下一代HTTP协议，目前应用还非常少。</p>
-<h5 id="多路复用-二进制分帧"><a href="#多路复用-二进制分帧" class="headerlink" title="多路复用 (二进制分帧)"></a>多路复用 (二进制分帧)</h5><p>将所有传输的信息分割为更小的消息和帧，并对它们采用二进制格式的编码 ，其中HTTP1.x的首部信息会被封装到Headers帧，而我们的request body则封装到Data帧里面。<br><img style="margin: auto" src="/image/multiplexing.png" alt="Multiplexing" width="1000" height="475"></p>
+<h5 id="多路复用-二进制分帧"><a href="#多路复用-二进制分帧" class="headerlink" title="多路复用 (二进制分帧)"></a>多路复用 (二进制分帧)</h5><p>将所有传输的信息分割为更小的消息和帧，并对它们采用二进制格式的编码 ，其中HTTP1.x的首部信息会被封装到Headers帧，而我们的request body则封装到Data帧里面。<br><img style="margin: auto" src="/image/multiplexing.png" alt="Multiplexing" width="640" height="375"></p>
 <h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p><strong>Hypertext Transfer Protocol Secure</strong><br>简单讲HTTPS就是HTTP的安全版，即HTTP下加入SSL层，HTTPS的安全基础是SSL，因此加密的详细内容就需要SSL。</p>
 <h3 id="HTTP和HTTPS不同点"><a href="#HTTP和HTTPS不同点" class="headerlink" title="HTTP和HTTPS不同点"></a>HTTP和HTTPS不同点</h3><ol>
 <li>https协议需要到ca申请证书，一般免费证书较少，因而需要一定费用。</li>
