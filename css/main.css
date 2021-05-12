@@ -1172,7 +1172,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #592846;
+  background: #ff53ff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2355,6 +2355,15 @@ hr {
   height: 2px;
   position: relative;
 }
+.use-motion .logo-line-before i {
+  left: -100%;
+}
+.use-motion .logo-line-after i {
+  right: -100%;
+}
+.site-subtitle {
+  display: none;
+}
 .site-nav {
   flex-grow: 1;
 }
@@ -2504,8 +2513,8 @@ hr {
 }
 body {
   background: url("/images/christmas-colour.png");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-repeat: repeat;
+  background-attachment: scroll;
   background-position: 50% 50%;
   background-size: cover;
 }
