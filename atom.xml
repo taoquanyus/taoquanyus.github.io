@@ -6,7 +6,7 @@
   <link href="http://taoquanyus.cn/atom.xml" rel="self"/>
   
   <link href="http://taoquanyus.cn/"/>
-  <updated>2021-05-06T19:40:29.784Z</updated>
+  <updated>2021-05-12T00:48:46.803Z</updated>
   <id>http://taoquanyus.cn/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>后端练习生（二）</title>
+    <link href="http://taoquanyus.cn/2021/05/11/backend2/"/>
+    <id>http://taoquanyus.cn/2021/05/11/backend2/</id>
+    <published>2021-05-11T08:28:51.000Z</published>
+    <updated>2021-05-12T00:48:46.803Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;后端基础学习（二）&quot;&gt;&lt;a href=&quot;#后端基础学习（二）&quot; class=&quot;headerlink&quot; title=&quot;后端基础学习（二）&quot;&gt;&lt;/a&gt;后端基础学习（二）&lt;/h2&gt;&lt;p&gt;&amp;emsp;&amp;emsp;SpringBoot的学习主要是设计模式的练习和参数注入的熟练度提升，本身没有多大的难度，主要是比较杂，需要持续投入时间。&lt;br&gt;</summary>
+    
+    
+    
+    
+    <category term="后端" scheme="http://taoquanyus.cn/tags/%E5%90%8E%E7%AB%AF/"/>
+    
+    <category term="Spring Boot" scheme="http://taoquanyus.cn/tags/Spring-Boot/"/>
+    
+  </entry>
   
   <entry>
     <title>真正的释怀是种什么感觉</title>
@@ -102,10 +121,10 @@
     <link href="http://taoquanyus.cn/2021/04/29/backend1/"/>
     <id>http://taoquanyus.cn/2021/04/29/backend1/</id>
     <published>2021-04-29T16:32:13.000Z</published>
-    <updated>2021-05-06T19:42:58.907Z</updated>
+    <updated>2021-05-11T14:30:37.545Z</updated>
     
     
-    <summary type="html">&lt;h2 id=&quot;后端基础学习&quot;&gt;&lt;a href=&quot;#后端基础学习&quot; class=&quot;headerlink&quot; title=&quot;后端基础学习&quot;&gt;&lt;/a&gt;后端基础学习&lt;/h2&gt;&lt;h3 id=&quot;Restful-API&quot;&gt;&lt;a href=&quot;#Restful-API&quot; class=&quot;headerlink&quot; title=&quot;Restful API&quot;&gt;&lt;/a&gt;Restful API&lt;/h3&gt;&lt;p&gt;一种架构风格，全称:Resource Representational State Transfer 表现层状态转移&lt;br&gt;当通过 RESTful API 提出请求时，它会将资源状态表述传递给请求者。该信息或表述通过 HTTP 以下列某种格式传输：JSON（Javascript 对象表示法）、HTML、XLT 或纯文本。JSON 是最常用的格式，尽管它的名字英文原意为”JavaScript 物件表示法”，但它适用于各种语言，并且人和机器都能读。&lt;br&gt;</summary>
+    <summary type="html">&lt;h2 id=&quot;后端基础学习（一）&quot;&gt;&lt;a href=&quot;#后端基础学习（一）&quot; class=&quot;headerlink&quot; title=&quot;后端基础学习（一）&quot;&gt;&lt;/a&gt;后端基础学习（一）&lt;/h2&gt;&lt;h3 id=&quot;Restful-API&quot;&gt;&lt;a href=&quot;#Restful-API&quot; class=&quot;headerlink&quot; title=&quot;Restful API&quot;&gt;&lt;/a&gt;Restful API&lt;/h3&gt;&lt;p&gt;一种架构风格，全称:Resource Representational State Transfer 表现层状态转移&lt;br&gt;当通过 RESTful API 提出请求时，它会将资源状态表述传递给请求者。该信息或表述通过 HTTP 以下列某种格式传输：JSON（Javascript 对象表示法）、HTML、XLT 或纯文本。JSON 是最常用的格式，尽管它的名字英文原意为”JavaScript 物件表示法”，但它适用于各种语言，并且人和机器都能读。&lt;br&gt;</summary>
     
     
     

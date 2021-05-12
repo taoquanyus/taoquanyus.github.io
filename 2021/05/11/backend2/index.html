@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon-apple-touch.jpeg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon-32x32.jpeg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon-16x16.jpeg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"taoquanyus.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="后端基础学习（二）&amp;emsp;&amp;emsp;SpringBoot的学习主要是设计模式的练习和参数注入的熟练度提升，本身没有多大的难度，主要是比较杂，需要持续投入时间。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="后端练习生（二）">
+<meta property="og:url" content="http://taoquanyus.cn/2021/05/11/backend2/index.html">
+<meta property="og:site_name" content="Bettilarity">
+<meta property="og:description" content="后端基础学习（二）&amp;emsp;&amp;emsp;SpringBoot的学习主要是设计模式的练习和参数注入的熟练度提升，本身没有多大的难度，主要是比较杂，需要持续投入时间。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-11T08:28:51.000Z">
+<meta property="article:modified_time" content="2021-05-12T00:48:46.803Z">
+<meta property="article:author" content="泉雨">
+<meta property="article:tag" content="后端">
+<meta property="article:tag" content="Spring Boot">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://taoquanyus.cn/2021/05/11/backend2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>后端练习生（二） | Bettilarity</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Bettilarity" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Bettilarity</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">13</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://taoquanyus.cn/2021/05/11/backend2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="泉雨">
+      <meta itemprop="description" content="Love is patient, Love is kind.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bettilarity">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          后端练习生（二）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-05-11 16:28:51" itemprop="dateCreated datePublished" datetime="2021-05-11T16:28:51+08:00">2021-05-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-05-12 08:48:46" itemprop="dateModified" datetime="2021-05-12T08:48:46+08:00">2021-05-12</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="后端基础学习（二）"><a href="#后端基础学习（二）" class="headerlink" title="后端基础学习（二）"></a>后端基础学习（二）</h2><p>&emsp;&emsp;SpringBoot的学习主要是设计模式的练习和参数注入的熟练度提升，本身没有多大的难度，主要是比较杂，需要持续投入时间。<br><span id="more"></span><br>&emsp;&emsp;相比于看教程，最高效的方法是快速搭建一个项目，用到啥学啥，在此记录一下基本的框架。</p>
+<h3 id="SpringBoot-工程结构"><a href="#SpringBoot-工程结构" class="headerlink" title="SpringBoot 工程结构"></a>SpringBoot 工程结构</h3><p>我采用的是如下的工程结构，和其它的一些结构可能不尽相同。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">java</span><br><span class="line">    +-com</span><br><span class="line">        +- nowcoder</span><br><span class="line">            +- community</span><br><span class="line">                +- Application.java</span><br><span class="line">                |</span><br><span class="line">                +- config</span><br><span class="line">                |  +- AlphaConfig.java</span><br><span class="line">                +- controller</span><br><span class="line">                |  +- AlphaController.java</span><br><span class="line">                |  +- HomeController.java</span><br><span class="line">                +- dao</span><br><span class="line">                |  +- AlphaDao.java</span><br><span class="line">                |  +- UserMapper.java</span><br><span class="line">                |  +- AlphaDaoMyBatisImpl.java</span><br><span class="line">                +- entity</span><br><span class="line">                |  +- DiscussPost.java</span><br><span class="line">                |  +- Page.java</span><br><span class="line">                |  +- User.java</span><br><span class="line">                +- service</span><br><span class="line">                |  +- AlphaService.java</span><br><span class="line">                |  +- DiscusspPostService.java</span><br><span class="line">                |  +- UserService.java</span><br><span class="line">resource</span><br><span class="line">|   +- Application properties</span><br><span class="line">|   +- mapper</span><br><span class="line">    |   +- discusspost-mapper.xml</span><br><span class="line">    |   +- user-mapper.xml</span><br><span class="line">|   +- templates</span><br><span class="line">    |   +- demo</span><br><span class="line">    |   +- mail</span><br><span class="line">    |   +- site</span><br><span class="line">    |   +- index.html</span><br><span class="line">|   +- static</span><br><span class="line">    |   +- html</span><br><span class="line">    |   +- css</span><br><span class="line">    |   +- img</span><br><span class="line">    |   +- js</span><br></pre></td></tr></table></figure><br>最关键的是<code>controller</code>, <code>service</code>和<code>dao</code></p>
+<ul>
+<li>Controller：业务控制层；<br>&emsp;&emsp;就是控制业务层<code>Service</code>的，它的作用主要是架起了外界与业务层沟通的桥梁，移动端，前端在调用接口访问相关业务时，都会通过<code>Controller</code>，由<code>Controller</code>去调相关的业务层代码并把数据返回给移动端和前端；</li>
+<li>Service：业务层/服务层；<br>&emsp;&emsp;业务层，所有的内部的业务逻辑都会放在这里处理，比如用户的增删改查，或者发送个验证码或邮件，或者做一个抽奖活动等等等等，都会在<code>Service中</code>进行，当然，业务离肯定是离不开数据的支持，因此<code>Dao</code>层是必不可少的；</li>
+<li>Dao：数据库持久化层；<br>&emsp;&emsp;数据持久化层，就是和数据库打交道的，而实现持久化层的框架又有很多，而常用的有两种：JPA和MyBatis，JPA是SpringBoot官方的，前身就是著名的三大框架之一的Hibernate，好处是不用手写SQL（当然它也支持手写，如果必要的话），国外用的比较多，而MyBatis则在国内比较流行，原因是它的灵活性非常高，但是需要手写SQL语句。<ul>
+<li>项目复杂程度一般，追求稳定，迭代速率低的可以用JPA；</li>
+<li>项目较复杂，需求变更频繁，迭代速度快的可以用MyBatis；</li>
+</ul>
+</li>
+</ul>
+<p><strong>为什么必须要写<code>Service</code>层，我直接用<code>Controller</code>层操作<code>Dao</code>层，省去<code>Service</code>层，岂不是更简单？</strong><br>&emsp;&emsp;<code>Controller</code>的作用，只是一个桥梁，中间者。是不允许直接操作数据库的！另外，<code>Service</code>对以后的分布式部署有极大的作用，它就像一个服务员，哪桌客人需要点菜了，就喊一声服务员！对应的，外界需要完成什么样的业务，就通过<code>Controller</code>去调用不同的<code>Service</code>，需要记住的是，<code>Controller</code>只是一个中间者或者转发者，不应该在<code>Controller</code>里暴露<code>Service</code>的业务逻辑，而应该直接转发<code>Service</code>的业务处理结果！<br>&emsp;&emsp;一般的，一个<code>Controller</code>对应一个<code>Service</code>，一个<code>Service</code>对应一个<code>Dao</code>，一个<code>Dao</code>对应一个数据库表，当然根据项目或业务复杂程度，一个<code>Controller</code>可以调用多个<code>Service</code>，而一个<code>Service</code>也可以调用多个<code>Dao</code>，但是<code>Controller</code>层不允许互调，<code>Service</code>层也不允许互调，意思就是A<code>Controller</code>不能直接调用B<code>Controller</code>，A<code>Service</code>也不能直接去调用B<code>Service</code>，遵循高内聚低耦合原则。</p>
+<h3 id="Controller-业务控制层"><a href="#Controller-业务控制层" class="headerlink" title="Controller 业务控制层"></a>Controller 业务控制层</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span><span class="comment">//这里要写上controller注解</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/alpha&quot;)</span><span class="comment">//这里表示访问的路径</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AlphaController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> AlphaService alphaService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/data&quot;)</span><span class="comment">//这里代表的是自路径，/alpha/data</span></span><br><span class="line">    <span class="meta">@ResponseBody</span><span class="comment">//表示返回的是经过渲染的主题，如果没有@ResponseBody注解，则返回的是html</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getData</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> alphaService.find();<span class="comment">//这里就是`controller`控制`service`，再由`service`传给</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// /student/123 GET请求</span></span><br><span class="line">    <span class="meta">@RequestMapping(path = &quot;/student/&#123;id&#125;&quot;, method = RequestMethod.GET)</span></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getStudent</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> <span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        System.out.println(id);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;a student&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 响应HTML数据</span></span><br><span class="line">    <span class="meta">@RequestMapping(path = &quot;/teacher&quot;, method = RequestMethod.GET)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">getTeacher</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ModelAndView mav = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">        mav.addObject(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;姚澜&quot;</span>);</span><br><span class="line">        mav.addObject(<span class="string">&quot;age&quot;</span>, <span class="number">23</span>);</span><br><span class="line">        mav.setViewName(<span class="string">&quot;/demo/view&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> mav;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(path = &quot;/school&quot;, method = RequestMethod.GET)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getSchool</span><span class="params">(Model model)</span> </span>&#123;</span><br><span class="line">        model.addAttribute(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;哈尔滨工业大学&quot;</span>);</span><br><span class="line">        model.addAttribute(<span class="string">&quot;age&quot;</span>, <span class="number">100</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;/demo/view&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 响应JSON数据(异步请求)</span></span><br><span class="line">    <span class="comment">// Java对象 -&gt; JSON字符串 -&gt; JS对象</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(path = &quot;/emps&quot;, method = RequestMethod.GET)</span></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="keyword">public</span> List&lt;Map&lt;String, Object&gt;&gt; getEmps() &#123;</span><br><span class="line">        List&lt;Map&lt;String, Object&gt;&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        Map&lt;String, Object&gt; emp = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        emp.put(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;泉宇&quot;</span>);</span><br><span class="line">        emp.put(<span class="string">&quot;age&quot;</span>, <span class="number">23</span>);</span><br><span class="line">        emp.put(<span class="string">&quot;salary&quot;</span>, <span class="number">35000.00</span>);</span><br><span class="line">        list.add(emp);</span><br><span class="line"></span><br><span class="line">        emp = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        emp.put(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;姚澜&quot;</span>);</span><br><span class="line">        emp.put(<span class="string">&quot;age&quot;</span>, <span class="number">23</span>);</span><br><span class="line">        emp.put(<span class="string">&quot;salary&quot;</span>, <span class="number">40000.00</span>);</span><br><span class="line">        list.add(emp);</span><br><span class="line">        <span class="keyword">return</span> list;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag"># 后端</a>
+              <a href="/tags/Spring-Boot/" rel="tag"># Spring Boot</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/06/%E5%BD%93%E6%88%91%E7%9C%9F%E6%AD%A3%E5%BC%80%E5%A7%8B%E7%88%B1%E6%88%91%E8%87%AA%E5%B7%B1/" rel="prev" title="真正的释怀是种什么感觉">
+      <i class="fa fa-chevron-left"></i> 真正的释怀是种什么感觉
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">后端基础学习（二）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringBoot-%E5%B7%A5%E7%A8%8B%E7%BB%93%E6%9E%84"><span class="nav-number">1.1.</span> <span class="nav-text">SpringBoot 工程结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Controller-%E4%B8%9A%E5%8A%A1%E6%8E%A7%E5%88%B6%E5%B1%82"><span class="nav-number">1.2.</span> <span class="nav-text">Controller 业务控制层</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="泉雨"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">泉雨</p>
+  <div class="site-description" itemprop="description">Love is patient, Love is kind.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/taoquanyus" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;taoquanyus" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:quanyu@kth.se" title="E-Mail → mailto:quanyu@kth.se" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  <!--
+  &copy; 2021-04 – 
+  <span itemprop="copyrightYear">2021</span>
+  -->
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">泉雨</span>
+</div>
+  <!-- <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>-->
+<!-- 记录访问量-->
+<!--
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+  <script size="300" alpha="0.6" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+  
+
+    </div>
+  <body>
+  <!-- require APlayer -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+  <!-- require MetingJS -->
+  <script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script>
+  </body>
+  <!--如果将本体放在body里面，导致页面加载出现问题，请尝试放到body体后面-->
+  <!--7974975472 tencent-->
+  <!--6730387559 netease-->
+  <div class="aplayer" 
+    data-id="7974975472" 
+    data-server="tencent" 
+    data-type="playlist" 
+    data-fixed="true"	
+    data-order="random"
+    data-volume="0.65"
+    data-autoplay="true"   
+    date-preload="auto"
+    data-theme="#cc543a">
+  </div>
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"left","width":200,"height":400},"mobile":{"show":false}});</script></body>
+</html>

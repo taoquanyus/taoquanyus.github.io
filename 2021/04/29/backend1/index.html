@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"taoquanyus.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="后端基础学习Restful API一种架构风格，全称:Resource Representational State Transfer 表现层状态转移当通过 RESTful API 提出请求时，它会将资源状态表述传递给请求者。该信息或表述通过 HTTP 以下列某种格式传输：JSON（Javascript 对象表示法）、HTML、XLT 或纯文本。JSON 是最常用的格式，尽管它的名字英文原意为”J">
+  <meta name="description" content="后端基础学习（一）Restful API一种架构风格，全称:Resource Representational State Transfer 表现层状态转移当通过 RESTful API 提出请求时，它会将资源状态表述传递给请求者。该信息或表述通过 HTTP 以下列某种格式传输：JSON（Javascript 对象表示法）、HTML、XLT 或纯文本。JSON 是最常用的格式，尽管它的名字英文原意">
 <meta property="og:type" content="article">
 <meta property="og:title" content="后端练习生（一）">
 <meta property="og:url" content="http://taoquanyus.cn/2021/04/29/backend1/index.html">
 <meta property="og:site_name" content="Bettilarity">
-<meta property="og:description" content="后端基础学习Restful API一种架构风格，全称:Resource Representational State Transfer 表现层状态转移当通过 RESTful API 提出请求时，它会将资源状态表述传递给请求者。该信息或表述通过 HTTP 以下列某种格式传输：JSON（Javascript 对象表示法）、HTML、XLT 或纯文本。JSON 是最常用的格式，尽管它的名字英文原意为”J">
+<meta property="og:description" content="后端基础学习（一）Restful API一种架构风格，全称:Resource Representational State Transfer 表现层状态转移当通过 RESTful API 提出请求时，它会将资源状态表述传递给请求者。该信息或表述通过 HTTP 以下列某种格式传输：JSON（Javascript 对象表示法）、HTML、XLT 或纯文本。JSON 是最常用的格式，尽管它的名字英文原意">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-04-29T16:32:13.000Z">
-<meta property="article:modified_time" content="2021-05-06T19:42:58.907Z">
+<meta property="article:modified_time" content="2021-05-11T14:30:37.545Z">
 <meta property="article:author" content="泉雨">
 <meta property="article:tag" content="后端">
 <meta property="article:tag" content="Spring Boot">
@@ -128,7 +128,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">12</span></a>
+    <a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">13</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -216,7 +216,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-05-07 03:42:58" itemprop="dateModified" datetime="2021-05-07T03:42:58+08:00">2021-05-07</time>
+                <time title="Modified: 2021-05-11 22:30:37" itemprop="dateModified" datetime="2021-05-11T22:30:37+08:00">2021-05-11</time>
               </span>
 
           
@@ -230,7 +230,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="后端基础学习"><a href="#后端基础学习" class="headerlink" title="后端基础学习"></a>后端基础学习</h2><h3 id="Restful-API"><a href="#Restful-API" class="headerlink" title="Restful API"></a>Restful API</h3><p>一种架构风格，全称:Resource Representational State Transfer 表现层状态转移<br>当通过 RESTful API 提出请求时，它会将资源状态表述传递给请求者。该信息或表述通过 HTTP 以下列某种格式传输：JSON（Javascript 对象表示法）、HTML、XLT 或纯文本。JSON 是最常用的格式，尽管它的名字英文原意为”JavaScript 物件表示法”，但它适用于各种语言，并且人和机器都能读。<br><span id="more"></span></p>
+        <h2 id="后端基础学习（一）"><a href="#后端基础学习（一）" class="headerlink" title="后端基础学习（一）"></a>后端基础学习（一）</h2><h3 id="Restful-API"><a href="#Restful-API" class="headerlink" title="Restful API"></a>Restful API</h3><p>一种架构风格，全称:Resource Representational State Transfer 表现层状态转移<br>当通过 RESTful API 提出请求时，它会将资源状态表述传递给请求者。该信息或表述通过 HTTP 以下列某种格式传输：JSON（Javascript 对象表示法）、HTML、XLT 或纯文本。JSON 是最常用的格式，尽管它的名字英文原意为”JavaScript 物件表示法”，但它适用于各种语言，并且人和机器都能读。<br><span id="more"></span></p>
 <h3 id="工程结构"><a href="#工程结构" class="headerlink" title="工程结构"></a>工程结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">java</span><br><span class="line">    +-com</span><br><span class="line">        +- example</span><br><span class="line">            +- myproject</span><br><span class="line">            +- Application.java</span><br><span class="line">            |</span><br><span class="line">            +- domain</span><br><span class="line">            |  +- Customer.java</span><br><span class="line">            |  +- CustomerRepository.java</span><br><span class="line">            |</span><br><span class="line">            +- service</span><br><span class="line">            |  +- CustomerService.java</span><br><span class="line">            |</span><br><span class="line">            +- web</span><br><span class="line">            |  +- CustomerController.java</span><br><span class="line">            |</span><br><span class="line">resource</span><br><span class="line">|   +- Application properties</span><br><span class="line">|   +- templates</span><br><span class="line">|   +- static</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
 <ul>
 <li><code>root package</code>:<code>com.example.myproject</code>，所有的类和其他package都在root package之下。</li>
@@ -337,7 +337,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">后端基础学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Restful-API"><span class="nav-number">1.1.</span> <span class="nav-text">Restful API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E7%A8%8B%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.</span> <span class="nav-text">工程结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E9%9D%9E%E8%A6%81%E6%94%BE%E5%9C%A8root-package%E4%B9%8B%E5%A4%96"><span class="nav-number">1.2.1.</span> <span class="nav-text">如果非要放在root package之外</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Application-Properties-%E9%85%8D%E7%BD%AE"><span class="nav-number">1.2.2.</span> <span class="nav-text">Application Properties 配置</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">后端基础学习（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Restful-API"><span class="nav-number">1.1.</span> <span class="nav-text">Restful API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E7%A8%8B%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.</span> <span class="nav-text">工程结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E9%9D%9E%E8%A6%81%E6%94%BE%E5%9C%A8root-package%E4%B9%8B%E5%A4%96"><span class="nav-number">1.2.1.</span> <span class="nav-text">如果非要放在root package之外</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Application-Properties-%E9%85%8D%E7%BD%AE"><span class="nav-number">1.2.2.</span> <span class="nav-text">Application Properties 配置</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -353,7 +353,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
