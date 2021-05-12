@@ -28,7 +28,7 @@
 <meta property="og:description" content="后端基础学习（一）Restful API一种架构风格，全称:Resource Representational State Transfer 表现层状态转移当通过 RESTful API 提出请求时，它会将资源状态表述传递给请求者。该信息或表述通过 HTTP 以下列某种格式传输：JSON（Javascript 对象表示法）、HTML、XLT 或纯文本。JSON 是最常用的格式，尽管它的名字英文原意">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-04-29T16:32:13.000Z">
-<meta property="article:modified_time" content="2021-05-11T14:30:37.545Z">
+<meta property="article:modified_time" content="2021-05-12T13:19:20.597Z">
 <meta property="article:author" content="泉雨">
 <meta property="article:tag" content="后端">
 <meta property="article:tag" content="Spring Boot">
@@ -216,7 +216,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-05-11 22:30:37" itemprop="dateModified" datetime="2021-05-11T22:30:37+08:00">2021-05-11</time>
+                <time title="Modified: 2021-05-12 21:19:20" itemprop="dateModified" datetime="2021-05-12T21:19:20+08:00">2021-05-12</time>
               </span>
 
           
@@ -245,13 +245,29 @@
 <li>使用<code>@Bean</code>注解来初始化<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Bootstrap</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        SpringApplication.run(Bootstrap.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CustomerController <span class="title">customerController</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> CustomerController();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h4 id="Application-Properties-配置"><a href="#Application-Properties-配置" class="headerlink" title="Application Properties 配置"></a>Application Properties 配置</h4><p>工程的常见属性配置</p>
-<ul>
-<li><code>server.port=8080</code> 配置端口号</li>
-<li><code>server.servlet.context-path=/community</code> 配置上下文环境</li>
-<li><code>spring.thymeleaf.cache=false</code> 配置thymeleaf模版缓存</li>
+<h3 id="SpringBoot项目中主要的注解"><a href="#SpringBoot项目中主要的注解" class="headerlink" title="SpringBoot项目中主要的注解"></a>SpringBoot项目中主要的注解</h3><ul>
+<li><code>@Conponent</code><br><code>@Component</code>：是Spring中用于描述Bean类的一个注解。用于告诉Spring这个类的实例由Spring创建，当此对象由Spring创建和管理时，默认会将对象存储到池(Bean池)中。</li>
+<li><code>@SpringBootTest</code>：该注解用于告诉Spring框架，此测试类交给Spring管理。</li>
+<li><code>@Autowired</code>：该注解描述属性时，用于告诉Spring框架要为此属性注入一个值。其基本规则是：<ol>
+<li>首先，要检测容器中是否有与属性或方法参数类型匹配的对象，假如有并且只有一个则直接注入。</li>
+<li>其次，假如检测到有多个，还会按照<code>@Autowired</code>描述的属性或方法参数名查找是否有名字匹配的对象，有则直接注入，没有则抛出异常。</li>
+<li>最后，假如我们有明确要求，必须要注入类型为指定类型，名字为指定名字的对象还可以使用<code>@Qualifier</code>注解对其属性或参数进行描述(此注解必须配合<code>@Autowired</code>注解使用)。</li>
+</ol>
+</li>
+<li><code>@Qualifier</code>：该注解就是对其属性或参数进行描述。</li>
+<li><code>@Lazy</code>：该注解用于描述类，其目的是告诉Spring框架此类支持延迟加载，通常会配合单例作用域使用。</li>
+<li><code>@Scope(&quot;singleton/prototype&quot;)</code>：该注解是Spring中用于定义Bean对象作用域的一个注解，其常用的值有：<ul>
+<li>singleton：整个内存有一份Bean实例,此实例何时创建与类的延迟加载特性配置有关，此实例创建以后，生命周期会由Spring框架管理。</li>
+<li>prototype：每次获取都会创建新实例，此实例会在需要时创建与lazy特性无关，这个实例创建以后，不会交给Spring管理，Spring可以对其初始化，但不负责销毁。</li>
 </ul>
-<p>更多的配置信息可以直接访问Spring官网的<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html#common-application-properties-templating">Reference</a></p>
+</li>
+<li><code>PostConstruce</code>：该注解用于描述bean对象生命周期方法中的初始化方法，此方法会在对象的构造方法之后执行(是对象创建以后的初始化)</li>
+<li><code>@PreDestroy</code>：用于描述Bean对象生命周期方法中的销毁方法，此方法会在对象销毁之前执行(当作用域为prototype时，此方法不会执行)。</li>
+<li><code>@Mapper</code>：该注解是由MyBatis框架中定义的一个描述数据层接口的的注解(所有的注解只起到一个描述性的作用),用于告诉Spring框架此接口的实现由mybatis创建，并将其实现类对象存储到spring容器。</li>
+<li><code>Param</code>：该注解用于将括号内的参数进行引用</li>
+<li><code>@Controller</code>：该注解用于标记在一个类上，使用它标记的类就是一个SpringMVC Controller对象。分发处理器将会扫描使用了该注解的类的方法，并检测该方法是否使用了</li>
+<li><code>RequestMapping</code>：该注解用来处理请求地址映射的注解，可用于类或方法上。用于类上，表示类中的所有响应请求的方法都是以该地址作为父路径。</li>
+</ul>
 
     </div>
 
@@ -337,7 +353,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">后端基础学习（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Restful-API"><span class="nav-number">1.1.</span> <span class="nav-text">Restful API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E7%A8%8B%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.</span> <span class="nav-text">工程结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E9%9D%9E%E8%A6%81%E6%94%BE%E5%9C%A8root-package%E4%B9%8B%E5%A4%96"><span class="nav-number">1.2.1.</span> <span class="nav-text">如果非要放在root package之外</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Application-Properties-%E9%85%8D%E7%BD%AE"><span class="nav-number">1.2.2.</span> <span class="nav-text">Application Properties 配置</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">后端基础学习（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Restful-API"><span class="nav-number">1.1.</span> <span class="nav-text">Restful API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E7%A8%8B%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.</span> <span class="nav-text">工程结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E9%9D%9E%E8%A6%81%E6%94%BE%E5%9C%A8root-package%E4%B9%8B%E5%A4%96"><span class="nav-number">1.2.1.</span> <span class="nav-text">如果非要放在root package之外</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringBoot%E9%A1%B9%E7%9B%AE%E4%B8%AD%E4%B8%BB%E8%A6%81%E7%9A%84%E6%B3%A8%E8%A7%A3"><span class="nav-number">1.3.</span> <span class="nav-text">SpringBoot项目中主要的注解</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
