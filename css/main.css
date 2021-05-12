@@ -1172,7 +1172,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffff36;
+  background: #f9ffd6;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2363,6 +2363,32 @@ hr {
 }
 .site-subtitle {
   display: none;
+}
+.site-brand-container {
+  background: url("/images/christmas-colour.png");
+  background-size: cover;
+}
+@media (max-width: 991px) {
+  .site-brand-container {
+    box-shadow: 0 0 16px rgba(0,0,0,0.5);
+  }
+}
+.site-meta {
+  padding: 20px 0;
+}
+.brand {
+  padding: 0;
+}
+.site-subtitle {
+  margin: 10px 10px 0;
+}
+.custom-logo-image {
+  margin-top: 20px;
+}
+@media (max-width: 991px) {
+  .custom-logo-image {
+    display: none;
+  }
 }
 .site-nav {
   flex-grow: 1;
