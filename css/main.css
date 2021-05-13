@@ -1172,7 +1172,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ff4a3d;
+  background: #4555db;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2275,6 +2275,7 @@ hr {
   }
 }
 .content {
+  background: #fff;
   padding-top: 80px;
 }
 @media (max-width: 767px) {
@@ -2430,6 +2431,7 @@ hr {
   display: none;
 }
 .posts-expand .post-block:not(:first-child) {
+  background: #fff;
   margin-top: 120px;
 }
 .posts-expand .post-title,
