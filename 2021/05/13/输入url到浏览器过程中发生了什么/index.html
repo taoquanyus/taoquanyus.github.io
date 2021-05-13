@@ -20,17 +20,22 @@
     var CONFIG = {"hostname":"taoquanyus.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Love is patient, Love is kind.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Bettilarity">
-<meta property="og:url" content="http://taoquanyus.cn/tags/Socket/index.html">
+  <meta name="description" content="how explore works after inputting URL一道面试的经典问题，但其实也有很多地方值得探究。 DNS解析DNS 服务器分为四类  根域名服务器 (root Server) 顶级域名服务器 (TLD Server) 权威域名服务器 (Authoritative Server) 本地域名服务器 (Local Server)  如某客户机想要获知域名为y.abc.com的主">
+<meta property="og:type" content="article">
+<meta property="og:title" content="输入url到浏览器返回网页过程中发生了什么">
+<meta property="og:url" content="http://taoquanyus.cn/2021/05/13/%E8%BE%93%E5%85%A5url%E5%88%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/index.html">
 <meta property="og:site_name" content="Bettilarity">
-<meta property="og:description" content="Love is patient, Love is kind.">
+<meta property="og:description" content="how explore works after inputting URL一道面试的经典问题，但其实也有很多地方值得探究。 DNS解析DNS 服务器分为四类  根域名服务器 (root Server) 顶级域名服务器 (TLD Server) 权威域名服务器 (Authoritative Server) 本地域名服务器 (Local Server)  如某客户机想要获知域名为y.abc.com的主">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-05-13T07:26:51.000Z">
+<meta property="article:modified_time" content="2021-05-13T14:21:20.444Z">
 <meta property="article:author" content="泉雨">
+<meta property="article:tag" content="计算机网络">
+<meta property="article:tag" content="后端">
+<meta property="article:tag" content="面经">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://taoquanyus.cn/tags/Socket/">
+<link rel="canonical" href="http://taoquanyus.cn/2021/05/13/%E8%BE%93%E5%85%A5url%E5%88%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">
 
 
 <script id="page-configurations">
@@ -38,12 +43,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Tag: Socket | Bettilarity</title>
+  <title>输入url到浏览器返回网页过程中发生了什么 | Bettilarity</title>
   
 
 
@@ -175,51 +180,123 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">Socket
-          <small>Tag</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://taoquanyus.cn/2021/05/13/%E8%BE%93%E5%85%A5url%E5%88%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="泉雨">
+      <meta itemprop="description" content="Love is patient, Love is kind.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bettilarity">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          输入url到浏览器返回网页过程中发生了什么
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-05-13 15:26:51 / Modified: 22:21:20" itemprop="dateCreated datePublished" datetime="2021-05-13T15:26:51+08:00">2021-05-13</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+        <h2 id="how-explore-works-after-inputting-URL"><a href="#how-explore-works-after-inputting-URL" class="headerlink" title="how explore works after inputting URL"></a>how explore works after inputting URL</h2><p>一道面试的经典问题，但其实也有很多地方值得探究。</p>
+<h3 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h3><p>DNS 服务器分为四类</p>
+<ul>
+<li>根域名服务器 (root Server)</li>
+<li>顶级域名服务器 (TLD Server)</li>
+<li>权威域名服务器 (Authoritative Server)</li>
+<li>本地域名服务器 (Local Server)</li>
+</ul>
+<p><strong>如某客户机想要获知域名为y.abc.com的主机IP地址，域名的解析过程（共使用8个UDP报文），如下：</strong></p>
+<ol>
+<li>客户机向其<code>local Server</code>发出<code>DNS</code>请求报文</li>
+<li><code>local Server</code>收到请求后，查询本地缓存，如果没有该记录，则以<code>DNS客户</code>的身份向<code>root Server</code>发出解析请求</li>
+<li><code>root Server</code>收到请求后，判断该域名属于<code>.com</code>域，将对应的<code>TLD</code>顶级域名服务器dns.com的IP地址返回给<code>local Server</code></li>
+<li><code>local Server</code>向<code>TLD</code>（顶级域名服务器）发出解析请求报文</li>
+<li><code>TLD</code>dns.com收到请求后，判断该域名属于abc.com域，故将对应的<code>Authoritative Server</code>dns.abc.com的IP地址返回给<code>local server</code></li>
+<li><code>local Server</code>向权威域名服务器dns.abc.com发起解析请求报文。</li>
+<li><code>Authoritative Server</code>dns.abc.com收到请求后，将查询结果返回给<code>local Server</code></li>
+<li><code>local Server</code>将查询结果保存到本地缓存，同时返回给客户机</li>
+</ol>
+<h4 id="常见DNS记录类型："><a href="#常见DNS记录类型：" class="headerlink" title="常见DNS记录类型："></a>常见DNS记录类型：</h4><ul>
+<li>A: 地址记录（Address），返回域名对应的 IP 地址</li>
+<li>NS: 域名解析服务器记录（Name Server），如果要将子域名指定某个域名服务器来解析，需要设置NS记录。</li>
+<li>AAAA: 对应的 IP 地址为 IPV6。</li>
+<li>CNAME: 域名的别名，好处是当域名发生变化时，用户侧的访问方式可以不发生变化。</li>
+</ul>
+<h3 id="HTTP连接"><a href="#HTTP连接" class="headerlink" title="HTTP连接"></a>HTTP连接</h3><p><strong>&emsp;&emsp;我们在浏览器输入 <a target="_blank" rel="noopener" href="http://www.baidu.com">http://www.baidu.com</a> 之后，按下回车键，地址会变为 <a href="https://www.baidu.com，按一下`F12`看一下network，我们会发现状态码是302，那这里到底做了什么呢？">https://www.baidu.com，按一下`F12`看一下network，我们会发现状态码是302，那这里到底做了什么呢？</a></strong></p>
+<p>&emsp;&emsp;由于我们键入的是 http，所以浏览器会首先找到服务器的<code>80</code>端口，进行<code>tcp</code> 连接，然后服务器会返回一个<code>301/302</code>状态码，表示重定向，同时在服务器响应头还会添加<code>HTTP-Strict-Transport-Security</code>, 简称<code>HSTS</code>，里面有 <code>max-age</code>，用户访问时，服务器种下这个头，下次如果使用<code>http</code>访问，只要<code>max-age</code>未过期「客户端检验」，客户端会进行内部跳转，可以看到<code>307</code>Redirect Internel 的响应码。然后就直接变成和<code>443</code>端口建立连接，走<code>https</code>连接。<br>&emsp;&emsp;所以，下次看到状态码如果是<code>307</code>，说明对应的网站的<code>max-age</code>还没到期，浏览器内部进行了跳转，直接和服务器的<code>443</code>端口进行连接了。</p>
+<h4 id="HTTPS的连接全过程"><a href="#HTTPS的连接全过程" class="headerlink" title="HTTPS的连接全过程"></a>HTTPS的连接全过程</h4><p>阮文峰的博客写的介绍得很清楚：<br><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html">SSL/TLS介绍</a><br><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2014/02/ssl_tls.html">协议运行机制</a><br><a target="_blank" rel="noopener" href="https://blog.imallen.wang/2016/11/20/2016-11-20-httpsyuan-li-yu-guo-cheng/">为何需要数字证书</a></p>
+<p>简而言之，<strong>https = tls/ssl + http</strong><br><code>HTTP</code>的传输实际上是两个过程：</p>
+<ol>
+<li>验证过程，使用<code>RSA</code>非对称加密+<code>Hash</code>算法；<ul>
+<li>客户端给出版本协议号、一个客户端生成的随机数<code>Random</code>以及客户端支持的加密方式；</li>
+<li>服务器端确认双方使用的加密方式和加密通信协议版本，并给出数字证书「包含了服务器的公钥」，以及服务器生成的一个随机数<code>Random</code>；</li>
+<li>客户端确认数字证书的有效性，然后生成一个新的随机数，并且这个随机数使用数字证书中的公钥加密，发给服务器，客户端握手结束通知，表示客户端的握手阶段已经结束。这一项同时也是前面发送的所有内容的<code>Hash</code>值，用来供服务器校验。</li>
+<li>服务器使用自己的私钥，进行解密。然后通知客户端握手阶段结束，同时将之前的信息 <code>Hash</code>后发给客户端，让客户端校验。</li>
+</ul>
+</li>
+</ol>
+<p>&emsp;&emsp;至此，验证过程就结束了，客户端会和服务器根据约定的加密方式，使用前面三个随机数，生成“对话密钥”，然后根据这个对话密钥进行对称加密，传输数据。</p>
+<ol>
+<li>传输过程，使用<code>AES</code>对称加密。</li>
+</ol>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-04-23T00:04:16+08:00"
-              content="2021-04-23">
-          04-23
-        </time>
-      </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag"># 计算机网络</a>
+              <a href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag"># 后端</a>
+              <a href="/tags/%E9%9D%A2%E7%BB%8F/" rel="tag"># 面经</a>
+          </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/04/22/Socket-based-Chatroom/" itemprop="url">
-            <span itemprop="name">Socket-based Chatroom</span>
-          </a>
-      </div>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/11/backend2/" rel="prev" title="后端练习生（二）">
+      <i class="fa fa-chevron-left"></i> 后端练习生（二）
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
   </article>
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
@@ -273,6 +350,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#how-explore-works-after-inputting-URL"><span class="nav-number">1.</span> <span class="nav-text">how explore works after inputting URL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS%E8%A7%A3%E6%9E%90"><span class="nav-number">1.1.</span> <span class="nav-text">DNS解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81DNS%E8%AE%B0%E5%BD%95%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">常见DNS记录类型：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E8%BF%9E%E6%8E%A5"><span class="nav-number">1.2.</span> <span class="nav-text">HTTP连接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTPS%E7%9A%84%E8%BF%9E%E6%8E%A5%E5%85%A8%E8%BF%87%E7%A8%8B"><span class="nav-number">1.2.1.</span> <span class="nav-text">HTTPS的连接全过程</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
