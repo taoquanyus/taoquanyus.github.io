@@ -20,22 +20,21 @@
     var CONFIG = {"hostname":"taoquanyus.cn","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="how explorer works after typing URL一道面试的经典问题，但其实也有很多地方值得探究。">
+  <meta name="description" content="Microsoft SDE Intern&amp;emsp;&amp;emsp;原先有暑假回国的计划，本想在4月底集中申请国内公司，但是三月某天有同学告诉我今天是微软的截止日期，抱着试试水的想法，粗略地做了一个简历，投递了SDE岗位。微软像其它的外企一样，没有像国内其它公司细分先后端算法，符合我专业的只有SDE和TES两种选项，前者是软件工程师，后者是技术支持工程师。&amp;emsp;&amp;emsp;到了四月，在瑞典遇到了">
 <meta property="og:type" content="article">
-<meta property="og:title" content="输入url到浏览器返回网页过程中发生了什么">
-<meta property="og:url" content="http://taoquanyus.cn/2021/05/13/%E8%BE%93%E5%85%A5url%E5%88%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/index.html">
+<meta property="og:title" content="微软实习面试总结">
+<meta property="og:url" content="http://taoquanyus.cn/2021/05/22/%E5%BE%AE%E8%BD%AF%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95/index.html">
 <meta property="og:site_name" content="Bettilarity">
-<meta property="og:description" content="how explorer works after typing URL一道面试的经典问题，但其实也有很多地方值得探究。">
+<meta property="og:description" content="Microsoft SDE Intern&amp;emsp;&amp;emsp;原先有暑假回国的计划，本想在4月底集中申请国内公司，但是三月某天有同学告诉我今天是微软的截止日期，抱着试试水的想法，粗略地做了一个简历，投递了SDE岗位。微软像其它的外企一样，没有像国内其它公司细分先后端算法，符合我专业的只有SDE和TES两种选项，前者是软件工程师，后者是技术支持工程师。&amp;emsp;&amp;emsp;到了四月，在瑞典遇到了">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-05-13T07:26:51.000Z">
-<meta property="article:modified_time" content="2021-05-13T14:54:27.843Z">
+<meta property="article:published_time" content="2021-05-22T01:36:47.000Z">
+<meta property="article:modified_time" content="2021-05-22T09:05:24.904Z">
 <meta property="article:author" content="泉雨">
-<meta property="article:tag" content="计算机网络">
-<meta property="article:tag" content="后端">
 <meta property="article:tag" content="面经">
+<meta property="article:tag" content="日记">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://taoquanyus.cn/2021/05/13/%E8%BE%93%E5%85%A5url%E5%88%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">
+<link rel="canonical" href="http://taoquanyus.cn/2021/05/22/%E5%BE%AE%E8%BD%AF%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95/">
 
 
 <script id="page-configurations">
@@ -48,7 +47,7 @@
   };
 </script>
 
-  <title>输入url到浏览器返回网页过程中发生了什么 | Bettilarity</title>
+  <title>微软实习面试总结 | Bettilarity</title>
   
 
 
@@ -187,7 +186,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://taoquanyus.cn/2021/05/13/%E8%BE%93%E5%85%A5url%E5%88%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">
+    <link itemprop="mainEntityOfPage" href="http://taoquanyus.cn/2021/05/22/%E5%BE%AE%E8%BD%AF%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
@@ -200,7 +199,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          输入url到浏览器返回网页过程中发生了什么
+          微软实习面试总结
         </h1>
 
         <div class="post-meta">
@@ -211,7 +210,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2021-05-13 15:26:51 / Modified: 22:54:27" itemprop="dateCreated datePublished" datetime="2021-05-13T15:26:51+08:00">2021-05-13</time>
+              <time title="Created: 2021-05-22 09:36:47 / Modified: 17:05:24" itemprop="dateCreated datePublished" datetime="2021-05-22T09:36:47+08:00">2021-05-22</time>
             </span>
 
           
@@ -225,48 +224,37 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="how-explorer-works-after-typing-URL"><a href="#how-explorer-works-after-typing-URL" class="headerlink" title="how explorer works after typing URL"></a>how explorer works after typing URL</h2><p>一道面试的经典问题，但其实也有很多地方值得探究。<span id="more"></span></p>
-<h3 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h3><p>DNS 服务器分为四类</p>
+        <h2 id="Microsoft-SDE-Intern"><a href="#Microsoft-SDE-Intern" class="headerlink" title="Microsoft SDE Intern"></a>Microsoft SDE Intern</h2><p>&emsp;&emsp;原先有暑假回国的计划，本想在4月底集中申请国内公司，但是三月某天有同学告诉我今天是微软的截止日期，抱着试试水的想法，粗略地做了一个简历，投递了<code>SDE</code>岗位。<br>微软像其它的外企一样，没有像国内其它公司细分先后端算法，符合我专业的只有<code>SDE</code>和<code>TES</code>两种选项，前者是软件工程师，后者是技术支持工程师。<br>&emsp;&emsp;到了四月，在瑞典遇到了有意思的人，在斯德哥尔摩的生活并不像以前那么煎熬。于是决定假期留在瑞典，所以也就没有投递任何国内的公司，微软也就成为我唯一申请的公司。<br>&emsp;&emsp;微软的面试分为<code>笔试</code>,<code>一面</code>，<code>二面</code>，<code>三面</code>，每面45分钟。其中<code>一面</code>,<code>二面</code>为平行面，<code>三面</code>为leader面。因为我通过了一面，所以直接进入了三面。</p>
+<h3 id="机试"><a href="#机试" class="headerlink" title="机试"></a>机试</h3><p>&emsp;&emsp;微软的笔试一共三道算法题，全球统一在<code>codility</code>进行。三道题中一三两道AC，第二道题意有理解得有些问题，把问题想复杂了，不仅没有AC，还花了大量时间。但是通过了30%测试样例，姑且算半道吧。第三道题虽然AC了，但是用的方法不好，性能不够高，也扣了一定的分。<br>&emsp;&emsp;微软的笔试没有想象那么难，可能是对实习的要求不高吧，在我看来三道题应该都是Leetcode中的<code>easy</code>或者<code>medium</code>难度的。</p>
+<h3 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h3><p>&emsp;&emsp;笔试后过了好久，我都以为自己因为机试被刷了。五月中旬收到面试邀请，于是我抱着积累经验的心态，捡起了leetcode重新刷了三四天，把简历上的项目经历看了看，粗略地准备了一下网络八股文，参加了一面。<br>&emsp;&emsp;一面和我想象得不太一样，女面试官，上来让我进行了一段自我介绍，问我回国实习的时间。于是直接让我share screen开IDE做算法题<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-islands/">LC200</a>。以前没做过这道题，好在算法简单，用<code>BFS</code>解了出来，做完之后让我解释一下思路，还反复地问我是不是<code>BFS</code>，当时差点就改口说<code>DFS</code>了，还好足够坚定。完成这道题的时间比较快，面试时间空出了一大段，她问了我关于一些数据结构的问题：</p>
 <ul>
-<li>根域名服务器 (root Server)</li>
-<li>顶级域名服务器 (TLD Server)</li>
-<li>权威域名服务器 (Authoritative Server)</li>
-<li>本地域名服务器 (Local Server)</li>
+<li><em>数组和链表的区别？</em><br>  老八股文了</li>
+<li><em>你用的语言中那些底层是数组，哪些底层是链表？</em><br>  面试时用的是JAVA，她可能不怎么用，跟她解释了一些类后她应该不怎么明白，就跳过了。</li>
+<li><em>如何判断循环链表的长度</em><br>  我说可以利用快慢指针来判断</li>
+<li><em>图平常用得多吗？</em><br>  不怎么了解</li>
+<li><em>那你是怎么做出这道题的</em><br>  这个时候才意识到这道题原来是图，赶忙说了些基本的概念，有向图，无向图，邻接矩阵，邻接表，<code>DFS</code>和<code>BFS</code>之类的。她应该不是特别满意</li>
+<li><em>说一下平衡树？</em><br>  说了一下基本概念，但是她似乎也不怎么满意</li>
+<li><em>解决过的技术难点</em><br>  说了本科毕设的一些苦难和解决方案</li>
 </ul>
-<p><strong>如某客户机想要获知域名为y.abc.com的主机IP地址，域名的解析过程（共使用8个UDP报文），如下：</strong></p>
-<ol>
-<li>客户机向其<code>local Server</code>发出<code>DNS</code>请求报文</li>
-<li><code>local Server</code>收到请求后，查询本地缓存，如果没有该记录，则以<code>DNS客户</code>的身份向<code>root Server</code>发出解析请求</li>
-<li><code>root Server</code>收到请求后，判断该域名属于<code>.com</code>域，将对应的<code>TLD</code>顶级域名服务器dns.com的IP地址返回给<code>local Server</code></li>
-<li><code>local Server</code>向<code>TLD</code>（顶级域名服务器）发出解析请求报文</li>
-<li><code>TLD</code>dns.com收到请求后，判断该域名属于abc.com域，故将对应的<code>Authoritative Server</code>dns.abc.com的IP地址返回给<code>local server</code></li>
-<li><code>local Server</code>向权威域名服务器dns.abc.com发起解析请求报文。</li>
-<li><code>Authoritative Server</code>dns.abc.com收到请求后，将查询结果返回给<code>local Server</code></li>
-<li><code>local Server</code>将查询结果保存到本地缓存，同时返回给客户机</li>
-</ol>
-<h4 id="常见DNS记录类型："><a href="#常见DNS记录类型：" class="headerlink" title="常见DNS记录类型："></a>常见DNS记录类型：</h4><ul>
-<li>A: 地址记录（Address），返回域名对应的 IP 地址</li>
-<li>NS: 域名解析服务器记录（Name Server），如果要将子域名指定某个域名服务器来解析，需要设置NS记录。</li>
-<li>AAAA: 对应的 IP 地址为 IPV6。</li>
-<li>CNAME: 域名的别名，好处是当域名发生变化时，用户侧的访问方式可以不发生变化。</li>
+<p>&emsp;&emsp;问完问题后问我是不是没有数据结构背景，很多基础概念掌握得不牢靠<br>&emsp;&emsp;我说是通信背景，没有系统地学过，只是离散地学习一些基础。</p>
+<p>反问环节</p>
+<ul>
+<li>微软的开会时间和工作时间的占比，沟通的需求多吗？</li>
+<li>在微软工作会不会像一个螺丝钉？</li>
 </ul>
-<h3 id="HTTP连接"><a href="#HTTP连接" class="headerlink" title="HTTP连接"></a>HTTP连接</h3><p><strong>&emsp;&emsp;我们在浏览器输入 <a target="_blank" rel="noopener" href="http://www.baidu.com">http://www.baidu.com</a> 之后，按下回车键，地址会变为 <a href="https://www.baidu.com，按一下`F12`看一下network，我们会发现状态码是302，那这里到底做了什么呢？">https://www.baidu.com，按一下`F12`看一下network，我们会发现状态码是302，那这里到底做了什么呢？</a></strong></p>
-<p>&emsp;&emsp;由于我们键入的是 http，所以浏览器会首先找到服务器的<code>80</code>端口，进行<code>tcp</code> 连接，然后服务器会返回一个<code>301/302</code>状态码，表示重定向，同时在服务器响应头还会添加<code>HTTP-Strict-Transport-Security</code>, 简称<code>HSTS</code>，里面有 <code>max-age</code>，用户访问时，服务器种下这个头，下次如果使用<code>http</code>访问，只要<code>max-age</code>未过期「客户端检验」，客户端会进行内部跳转，可以看到<code>307</code>Redirect Internel 的响应码。然后就直接变成和<code>443</code>端口建立连接，走<code>https</code>连接。<br>&emsp;&emsp;所以，下次看到状态码如果是<code>307</code>，说明对应的网站的<code>max-age</code>还没到期，浏览器内部进行了跳转，直接和服务器的<code>443</code>端口进行连接了。</p>
-<h4 id="HTTPS的连接全过程"><a href="#HTTPS的连接全过程" class="headerlink" title="HTTPS的连接全过程"></a>HTTPS的连接全过程</h4><p>阮文峰的博客写的介绍得很清楚：<br><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html">SSL/TLS介绍</a><br><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2014/02/ssl_tls.html">协议运行机制</a><br><a target="_blank" rel="noopener" href="https://blog.imallen.wang/2016/11/20/2016-11-20-httpsyuan-li-yu-guo-cheng/">为何需要数字证书</a></p>
-<p>简而言之，<strong>https = tls/ssl + http</strong><br><code>HTTP</code>的传输实际上是两个过程：</p>
-<ol>
-<li>验证过程，使用<code>RSA</code>非对称加密+<code>Hash</code>算法；<ul>
-<li>客户端给出版本协议号、一个客户端生成的随机数<code>Random</code>以及客户端支持的加密方式；</li>
-<li>服务器端确认双方使用的加密方式和加密通信协议版本，并给出数字证书「包含了服务器的公钥」，以及服务器生成的一个随机数<code>Random</code>；</li>
-<li>客户端确认数字证书的有效性，然后生成一个新的随机数，并且这个随机数使用数字证书中的公钥加密，发给服务器，客户端握手结束通知，表示客户端的握手阶段已经结束。这一项同时也是前面发送的所有内容的<code>Hash</code>值，用来供服务器校验。</li>
-<li>服务器使用自己的私钥，进行解密。然后通知客户端握手阶段结束，同时将之前的信息 <code>Hash</code>后发给客户端，让客户端校验。</li>
+<h4 id="一面总结："><a href="#一面总结：" class="headerlink" title="一面总结："></a>一面总结：</h4><p>&emsp;&emsp;算是第一次正儿八经的职业面试。一面的时候一直在紧张，不断地抖和咽口水。后来和姚澜聊起了这个问题，姚澜告诉我多面面就好了，最重要的是面试的时候要学会引导面试官问问题。</p>
+<h3 id="leader面"><a href="#leader面" class="headerlink" title="leader面"></a>leader面</h3><p>5.21（昨天）<br>&emsp;&emsp;一面后过两天就收到邮件说成功进入了终面。这次我吃一堑长一智，把数据结构重新又过了一遍（结果他没问……）<br>&emsp;&emsp;面试官是总监级的，声音听起来很年轻，估计三十多岁，后面的时候他告诉我他手下的团队从一开始的20多人到现在的80多人，应该是一个大牛。因为声音听起来很亲切，甚至有点像我一个本科同学，完全没有第一次那么紧张。<br>&emsp;&emsp;他先是问我<code>BNSS</code>的项目经历，我给他简单地介绍了一下，提到了一嘴<code>Kerberos</code>(失言！)。他顿时来了兴趣，问了很多<code>Kerberos</code>的细节，我说这个项目是和另一个同学一起做的，我负责的不是这部分，我只知道一些<code>Kerberos</code>的原理，后来把原理给他解释了一下。他后来问我问什么<code>KDC</code>到多加一道程序，我回答说这就是<code>kerberos</code>最大的特性，目的是为了减少<code>KDC</code>的负荷，他说没错，而且不用总是传输账号密码，这样也增加了安全性。<br>后面问我<code>JAVA Socket</code>的聊天室的项目经历</p>
+<ul>
+<li><em>解释一下<code>TLS</code>握手的过程</em></li>
+<li><em>并问我证书的颁发过程和如何避免中间人攻击</em></li>
 </ul>
-</li>
-</ol>
-<p>&emsp;&emsp;至此，验证过程就结束了，客户端会和服务器根据约定的加密方式，使用前面三个随机数，生成“对话密钥”，然后根据这个对话密钥进行对称加密，传输数据。</p>
-<ol>
-<li>传输过程，使用<code>AES</code>对称加密。</li>
-</ol>
+<p>&emsp;&emsp;最后聊的时间差不多了，让我按照惯例做一道算法题，还问我一面的时候做了哪一道题，做出来没有。我说和图有关的。给我出了一道二位数组中小球下落的题（没见过），先讲了讲思路，然后在<code>collabedit</code>写代码。写代码的时候class的c写成大写了，然后函数名大写了，类名小写了（这仨全部写反了！）被他嘲笑了一番，说这种代码不规范的小错误不应该。好在虽然有些小瑕疵，最后还是顺利完成。</p>
+<p>反问环节</p>
+<ul>
+<li>微软的工作时间（不是实习，而是入职后的时间）<br>  他说有时也是挺忙的，但是早上可以睡懒觉，比较宽容，甚至可以上午11点再过去。</li>
+<li>如果没有实习机会，您对我接下来秋招有什么建议，专注于项目还是基础<br>  建议是公司角度上更加喜欢项目经历。<br>  后来补充了一句说现在可以告诉我他这关是没有什么问题了，并向我介绍了一下他带的团队是微软的广告算法，欢迎我的加入。</li>
+</ul>
+<h4 id="二面总结"><a href="#二面总结" class="headerlink" title="二面总结"></a>二面总结</h4><p>&emsp;&emsp;这次完全没有第一次紧张感了，并且听姚澜的建议适当性地引导面试官问问题，感觉比一面时的状态好多了。希望能够收到最后那个总监说得那样能够收到offer，不管到时回不回国。</p>
 
     </div>
 
@@ -276,9 +264,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag"># 计算机网络</a>
-              <a href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag"># 后端</a>
               <a href="/tags/%E9%9D%A2%E7%BB%8F/" rel="tag"># 面经</a>
+              <a href="/tags/%E6%97%A5%E8%AE%B0/" rel="tag"># 日记</a>
           </div>
 
         
@@ -287,13 +274,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/05/11/backend2/" rel="prev" title="后端练习生（二）">
-      <i class="fa fa-chevron-left"></i> 后端练习生（二）
+    <a href="/2021/05/13/%E8%BE%93%E5%85%A5url%E5%88%B0%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/" rel="prev" title="输入url到浏览器返回网页过程中发生了什么">
+      <i class="fa fa-chevron-left"></i> 输入url到浏览器返回网页过程中发生了什么
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/05/22/%E5%BE%AE%E8%BD%AF%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95/" rel="next" title="微软实习面试总结">
-      微软实习面试总结 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -353,7 +337,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#how-explorer-works-after-typing-URL"><span class="nav-number">1.</span> <span class="nav-text">how explorer works after typing URL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS%E8%A7%A3%E6%9E%90"><span class="nav-number">1.1.</span> <span class="nav-text">DNS解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81DNS%E8%AE%B0%E5%BD%95%E7%B1%BB%E5%9E%8B%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">常见DNS记录类型：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E8%BF%9E%E6%8E%A5"><span class="nav-number">1.2.</span> <span class="nav-text">HTTP连接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTPS%E7%9A%84%E8%BF%9E%E6%8E%A5%E5%85%A8%E8%BF%87%E7%A8%8B"><span class="nav-number">1.2.1.</span> <span class="nav-text">HTTPS的连接全过程</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Microsoft-SDE-Intern"><span class="nav-number">1.</span> <span class="nav-text">Microsoft SDE Intern</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%BA%E8%AF%95"><span class="nav-number">1.1.</span> <span class="nav-text">机试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E9%9D%A2"><span class="nav-number">1.2.</span> <span class="nav-text">一面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E9%9D%A2%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="nav-number">1.2.1.</span> <span class="nav-text">一面总结：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leader%E9%9D%A2"><span class="nav-number">1.3.</span> <span class="nav-text">leader面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8C%E9%9D%A2%E6%80%BB%E7%BB%93"><span class="nav-number">1.3.1.</span> <span class="nav-text">二面总结</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
