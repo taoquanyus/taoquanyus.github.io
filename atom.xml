@@ -6,7 +6,7 @@
   <link href="http://taoquanyus.cn/atom.xml" rel="self"/>
   
   <link href="http://taoquanyus.cn/"/>
-  <updated>2021-05-22T09:11:12.033Z</updated>
+  <updated>2021-05-25T03:47:34.745Z</updated>
   <id>http://taoquanyus.cn/</id>
   
   <author>
@@ -21,10 +21,10 @@
     <link href="http://taoquanyus.cn/2021/05/22/%E5%BE%AE%E8%BD%AF%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95/"/>
     <id>http://taoquanyus.cn/2021/05/22/%E5%BE%AE%E8%BD%AF%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95/</id>
     <published>2021-05-22T01:36:47.000Z</published>
-    <updated>2021-05-22T09:11:12.033Z</updated>
+    <updated>2021-05-25T03:47:34.745Z</updated>
     
     
-    <summary type="html">&lt;h2 id=&quot;Microsoft-SDE-Intern&quot;&gt;&lt;a href=&quot;#Microsoft-SDE-Intern&quot; class=&quot;headerlink&quot; title=&quot;Microsoft SDE Intern&quot;&gt;&lt;/a&gt;Microsoft SDE Intern&lt;/h2&gt;&lt;p&gt;&amp;emsp;&amp;emsp;原先有暑假回国的计划，本想在4月底集中申请国内公司，但是三月某天有同学告诉我今天是微软的截止日期，抱着试试水的想法，粗略地做了一个简历，投递了&lt;code&gt;SDE&lt;/code&gt;岗位。&lt;br&gt;微软像其它的外企一样，没有像国内其它公司细分先后端算法，符合我专业的只有&lt;code&gt;SDE&lt;/code&gt;和&lt;code&gt;TES&lt;/code&gt;两种选项，前者是软件工程师，后者是技术支持工程师。&lt;br&gt;</summary>
+    <summary type="html">&lt;h2 id=&quot;Microsoft-SDE-Intern&quot;&gt;&lt;a href=&quot;#Microsoft-SDE-Intern&quot; class=&quot;headerlink&quot; title=&quot;Microsoft SDE Intern&quot;&gt;&lt;/a&gt;Microsoft SDE Intern&lt;/h2&gt;&lt;p&gt;&amp;emsp;&amp;emsp;原先有暑假回国的计划，本想在4月底集中申请国内公司，但是三月某天有同学告诉我今天是微软的截止日期，抱着试试水的想法，粗略地做了一个简历，投递了&lt;code&gt;SDE&lt;/code&gt;岗位。&lt;br&gt;微软像其它的外企一样，没有像国内其它公司细分先后端算法，符合我专业的只有&lt;code&gt;SDE&lt;/code&gt;和&lt;code&gt;TSE&lt;/code&gt;两种选项，前者是软件工程师，后者是技术支持工程师。&lt;br&gt;</summary>
     
     
     
@@ -249,9 +249,9 @@
     
     
     
-    <category term="计算机网络" scheme="http://taoquanyus.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
     <category term="网络安全" scheme="http://taoquanyus.cn/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/"/>
+    
+    <category term="计算机网络" scheme="http://taoquanyus.cn/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
     
     <category term="运维" scheme="http://taoquanyus.cn/tags/%E8%BF%90%E7%BB%B4/"/>
     
