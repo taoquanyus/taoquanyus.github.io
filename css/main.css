@@ -1172,7 +1172,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #375b9a;
+  background: #a63b8e;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2428,8 +2428,6 @@ hr {
   margin: 5px 0 20px 0;
 }
 .posts-expand .post-block:not(:first-child) {
-  border-radius: $border-radius;
-  box-shadow: $box-shadow;
   margin-top: 5px;
   margin-bottom: 5px;
 }
