@@ -1172,7 +1172,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #0bad09;
+  background: #3ceefb;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2426,6 +2426,17 @@ hr {
 }
 .posts-expand.index .post-meta {
   margin: 5px 0 20px 0;
+}
+.posts-expand .post-eof {
+  display: none;
+/*
+    display: block;
+    margin: 60px auto 50px; //文章间距
+    width: 8%;  //分割线长度
+    height: 1px;
+    background: $grey-light;
+    text-align: center;
+    */
 }
 .posts-expand .post-block:not(:first-child) {
   margin-top: 30px;
