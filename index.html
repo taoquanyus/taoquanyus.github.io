@@ -220,7 +220,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-12-17 06:17:05" itemprop="dateModified" datetime="2021-12-17T06:17:05+08:00">2021-12-17</time>
+                <time title="Modified: 2021-12-22 00:14:34" itemprop="dateModified" datetime="2021-12-22T00:14:34+08:00">2021-12-22</time>
               </span>
 
           
@@ -234,21 +234,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Microsoft-SDE-Intern"><a href="#Microsoft-SDE-Intern" class="headerlink" title="Microsoft SDE Intern"></a>Microsoft SDE Intern</h2><p>&emsp;&emsp;今年7月，我入职了微软苏州的<strong>Bing Ads</strong>团队，在<strong>Data</strong>组当实习生。我们组主要负责两个任务，一个是<strong>Bing</strong>的<code>Bot Detection</code>，一个是集群<code>Job Schduler</code>的管理。</p>
-<h4 id="背景："><a href="#背景：" class="headerlink" title="背景："></a>背景：</h4><p>&emsp;&emsp;Bing搜索引擎每天都会收集<code>TB</code>级的用户信息，这些信息将被用来改善<code>Bing</code>的搜索结果，广告的精准推送等。但是集群资源的数量有限（约16万个<code>token</code>，每个<code>token</code>是2核），而每天大约有6000个<code>jobs</code>需要运行，且需求不断增加。因此，如何合理地分配<code>token</code>给不同的<code>job</code>，是一件需要投入时间的事<br>&emsp;&emsp;当前的做法是设定了一些<code>rules</code>，根据这些<code>rules</code>分配给不同<code>job</code>优先级，当有空闲的<code>token</code>时，根据<code>job</code>的优先级高低送入<code>Cosmos</code>集群执行。在设定的<code>rules</code>中，<code>jobs</code>通过<code>name pattern</code>获取其信息，<code>Ares</code>会从跟节点遍历<code>AU</code>子树（重要的<code>AU</code>一般跑重要的任务，树的高低和<code>priority x</code>对应），然后当前的<code>AU</code>有空闲了，就把<code>job</code>塞进去。这样下去的结果就是重要的<code>job</code>一般都会占满<code>AU</code>，而那些不重要的<code>job</code>，如非我部门的同事想要看一点点数据，因为在<code>rules</code>中这样的行为被定义为不重要，即便是它只占用个位数的<code>token</code>，都有可能需要排队一天以上。这样的<code>Scheduler</code> 能够满足当前工作的大部分需求，但是仍然不够科学。<br>&emsp;&emsp;总而言之，我感觉这很像是供应链的工作。而我的任务就是利用机器学习的模型代替<code>Ares</code>的调度工作。尝试舍弃到<code>rules</code>，通过自己的模型对job的优先级进行预测。这样更具有灵活性，当发现问题时，可以灵活地通过改变训练集中的优先级重新训练一遍模型。<br>&emsp;&emsp;任务听起来比较简单，但是在工业界中的实现远不像在实验室中调参那么单调。流程应为：</p>
-<ol>
-<li>了解业务逻辑，尽可能全面地覆盖各种类型的job，</li>
-<li>根据job的数据进行特征分析，提取期望的特征</li>
-<li>对<code>job</code>进行<code>label</code></li>
-<li>训练，调参</li>
-<li>测试</li>
-<li>A/B Test</li>
-</ol>
-<p>&emsp;&emsp;这里的每一步看起来都很简单，我起初甚至认为高中生都可以完成这些事。但当你真正沉下心去做的时候，才会发现需要考虑的细节实在是太多了。我需要花大量时间了解业务逻辑，思考怎样的job的优先级应当更高。比如占用<code>token</code>数少的<code>job</code>，但是预估的时间可能长，而占多<code>token</code>数多的<code>job</code>，预估时间很短，当然，这个可以通过求E值来抉择，但是如果是一个<code>priority x</code>高的<code>job</code>，但是占用了大量<code>token</code>，和一个<code>priority x</code>低的<code>job</code>，占用了一点点<code>token</code>。这两个<code>job</code>应当谁比谁高？选<code>priority_x</code>高的那个？为什么？我需要弄明白这个<code>job</code> 的<code>priority_x</code>为什么高，不同级别的<code>priority_x</code>究竟意味着什么。当然，这只是众多特征中的一个特征。<br>&emsp;&emsp;最后完成了对约2000个<code>job</code>的数据标定，并检查了几遍，然后进行训练，因为模型简单，而且大部分的特征都是categorical类，因此树状的模型是我的首选。在使用了<code>Random Forest</code>发现泛化的结果非常不错，MAE约为2，数据的均值为100。</p>
-<h5 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h5><p>&emsp;&emsp;完成建模，我又从数据库中提取了500个job交给我的模型预测优先级，结果大量job的优先级并非理想，发现很多的问题没有考虑到，模型的排序还有很多问题。于是只能重新思考业务逻辑，重新label。这样重复的工作做了许多，会觉得没有什么收获，加上和mentor的沟通不是很顺利（我的mentor是principal manager，太忙了…）。这段时间我感觉工作不是很充实，没有什么技术上的进步。不过现在看来我的收获还是挺多的，至少知道了工作沟通不是一件很简单的事，而且未来大部分的工作也许是一样的，也算是提前做好了心理准备。</p>
-<h5 id="A-B-Test"><a href="#A-B-Test" class="headerlink" title="A/B Test"></a>A/B Test</h5><p>&emsp;&emsp;评价<code>Scheduler</code>的指标除了之前的优先级之外，还有集群的空闲率（集群有资源空闲的时候，队列中不应该还有阻塞的job，集群无空闲时，不应该有重要的job排在后面）。因为mentor太忙，组内的同事基本都被租借到其他组做别的项目，没有人能够落实这项任务上线进行测试。因此在实习的最后半个月，在完成了模型之后，我又花了一个多星期写了一个模拟的<code>Cosmos</code>系统（模拟有一个服务器集群，只不过并没有真的内存和时间，使用我当前设计的<code>scheduler</code>，然后从数据库抽出最近两天时间内提交的所有job信息（约一万三千多个），将他们运行，占用模拟的内存和时间，观察每个时间段的集群的使用率和<code>job</code>的延迟时间等系统性能问题）</p>
-<h5 id="Model-Introduction"><a href="#Model-Introduction" class="headerlink" title="Model Introduction"></a>Model Introduction</h5><p>模型的详细介绍和特征的选择见<a target="_blank" rel="noopener" href="https://github.com/taoquanyus/Microsoft_Intern">Github</a><br>模拟的Cosmos系统见<a target="_blank" rel="noopener" href="https://github.com/taoquanyus/Microsoft_Intern/tree/main/Cosmos_mock">Mock_Cosmos</a></p>
-
+          <h2 id="Microsoft-SDE-Intern"><a href="#Microsoft-SDE-Intern" class="headerlink" title="Microsoft SDE Intern"></a>Microsoft SDE Intern</h2><p>&emsp;&emsp;今年7月，我入职了微软苏州的<strong>Bing Ads</strong>团队，在<strong>Data</strong>组当实习生。我们组主要负责两个任务，一个是<strong>Bing</strong>的<code>Bot Detection</code>，一个是集群<code>Job Schduler</code>的管理。<br>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/05/MicroSoft-Intern/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
