@@ -6,7 +6,7 @@
   <link href="http://taoquanyus.cn/atom.xml" rel="self"/>
   
   <link href="http://taoquanyus.cn/"/>
-  <updated>2022-03-04T21:12:41.891Z</updated>
+  <updated>2022-03-04T21:25:09.120Z</updated>
   <id>http://taoquanyus.cn/</id>
   
   <author>
@@ -21,13 +21,10 @@
     <link href="http://taoquanyus.cn/2022/03/03/DQN-Snake/"/>
     <id>http://taoquanyus.cn/2022/03/03/DQN-Snake/</id>
     <published>2022-03-03T15:30:04.000Z</published>
-    <updated>2022-03-04T21:12:41.891Z</updated>
+    <updated>2022-03-04T21:25:09.120Z</updated>
     
     
-      
-      
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot; cla</summary>
-      
+    <summary type="html">&lt;h2 id=&quot;DQN-Snake&quot;&gt;&lt;a href=&quot;#DQN-Snake&quot; class=&quot;headerlink&quot; title=&quot;DQN-Snake&quot;&gt;&lt;/a&gt;DQN-Snake&lt;/h2&gt;&lt;p&gt;本科毕业的那个暑假，因为不确定能拿到签证出国，我留在哈工大实验室做助研。当时老师新接了一个横向的项目，是和国防科技大学合作模拟作战，利用&lt;code&gt;RL&lt;/code&gt;在&lt;code&gt;scrimmge&lt;/code&gt;场景下训练作战策略。在那时我对&lt;code&gt;ML&lt;/code&gt;只是一知半解。后来因为训练的成本太高了（实验室的显卡资源不充足），且签证又突然下来了，这个项目也就不了了之。但是对&lt;code&gt;RL&lt;/code&gt;有了一个粗略的了解，这几天决定用DQN算法，训练计算机玩一个最经典的游戏—贪吃蛇&lt;br&gt;</summary>
     
     
     

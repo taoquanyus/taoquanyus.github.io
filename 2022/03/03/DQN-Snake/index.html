@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://taoquanyus.cn/image/bellman.png">
 <meta property="og:image" content="http://taoquanyus.cn/image/bellman_matrix.png">
 <meta property="article:published_time" content="2022-03-03T15:30:04.000Z">
-<meta property="article:modified_time" content="2022-03-04T21:12:41.891Z">
+<meta property="article:modified_time" content="2022-03-04T21:25:09.120Z">
 <meta property="article:author" content="泉雨">
 <meta property="article:tag" content="机器学习">
 <meta property="article:tag" content="强化学习">
@@ -227,7 +227,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-03-05 05:12:41" itemprop="dateModified" datetime="2022-03-05T05:12:41+08:00">2022-03-05</time>
+                <time title="Modified: 2022-03-05 05:25:09" itemprop="dateModified" datetime="2022-03-05T05:25:09+08:00">2022-03-05</time>
               </span>
 
           
@@ -241,19 +241,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="DQN-Snake"><a href="#DQN-Snake" class="headerlink" title="DQN-Snake"></a>DQN-Snake</h2><p>本科毕业的那个暑假，因为不确定能拿到签证出国，我留在哈工大实验室做助研。当时老师新接了一个横向的项目，是和国防科技大学合作模拟作战，利用<code>RL</code>在<code>scrimmge</code>场景下训练作战策略。在那时我对<code>ML</code>只是一知半解。后来因为训练的成本太高了（实验室的显卡资源不充足），且签证又突然下来了，这个项目也就不了了之。但是对<code>RL</code>有了一个粗略的了解，这几天决定用DQN算法，训练计算机玩一个最经典的游戏—贪吃蛇</p>
+        <h2 id="DQN-Snake"><a href="#DQN-Snake" class="headerlink" title="DQN-Snake"></a>DQN-Snake</h2><p>本科毕业的那个暑假，因为不确定能拿到签证出国，我留在哈工大实验室做助研。当时老师新接了一个横向的项目，是和国防科技大学合作模拟作战，利用<code>RL</code>在<code>scrimmge</code>场景下训练作战策略。在那时我对<code>ML</code>只是一知半解。后来因为训练的成本太高了（实验室的显卡资源不充足），且签证又突然下来了，这个项目也就不了了之。但是对<code>RL</code>有了一个粗略的了解，这几天决定用DQN算法，训练计算机玩一个最经典的游戏—贪吃蛇<br><span id="more"></span></p>
 <h3 id="Reinforcement-Learning-Basic"><a href="#Reinforcement-Learning-Basic" class="headerlink" title="Reinforcement Learning Basic"></a>Reinforcement Learning Basic</h3><p>强化学习的基本元素：</p>
 <ul>
 <li>Bisic Element：<code>Agent</code>, <code>Condition</code>, <code>goal</code></li>
-<li>Main Element: <code>state</code>, <code>Action</code>, <code>Reward</code><br>其主要思想就是计算机控制智能体(Agent)，在特定的情境下(condition),达成某个目标(goal)<br>将这句话翻译成贪吃蛇就是：计算机控制蛇的游戏规则下尽可能地吃更多的果子从而获得尽可能高的分数，在此基础上，问题可以转化为在特定的状态(state)，尽可能地采取更优的策略(Action)，从而使得期望获得的奖励(Reward)更多</li>
+<li>Main Element: <code>state</code>, <code>Action</code>, <code>Reward</code></li>
 </ul>
+<p>其主要思想就是计算机控制智能体(Agent)，在特定的情境下(condition),达成某个目标(goal)<br>将这句话翻译成贪吃蛇就是：计算机控制蛇的游戏规则下尽可能地吃更多的果子从而获得尽可能高的分数，在此基础上，问题可以转化为在特定的状态(state)，尽可能地采取更优的策略(Action)，从而使得期望获得的奖励(Reward)更多</p>
 <h4 id="Markov-process"><a href="#Markov-process" class="headerlink" title="Markov process:"></a>Markov process:</h4><p>我们可以把游戏类比成马尔可夫决策过程（MDP），即下一个状态只和当前状态有关，而和之前的状态都无关<br>因此当前状态可以表示为：<S,A,P,r,$\gamma$><br>S是状态的集合<br>A是动作的集合<br>$\gamma$ 是折扣因子<br>r(s,a)是奖励函数，此时奖励同时取决于状态和动作<br>p($s^{‘}|s,a)$)是状态转移函数，表示在状态$s_n$执行动作a之后到达状态$s_{n+1}$的概率</p>
 <h4 id="Value-Function-amp-Bellman-Equation"><a href="#Value-Function-amp-Bellman-Equation" class="headerlink" title="Value Function &amp; Bellman Equation"></a>Value Function &amp; Bellman Equation</h4><p>在马尔可夫奖励过程中，一个状态的期望回报被称为这个状态的价值（value）。所有状态的价值就组成了价值函数，价值函数的输入为某个状态，输出为这个状态的价值，表示为$V(s)$</p>
-<p><img style="margin : auto;" src="/image/bellman.png" alt="Bellman" width="50" height="15"/></p>
+<p><img style="margin : auto;" src="/image/bellman.png" alt="Bellman" width="300" height="150"/></p>
 <p>其中，即时的期望就等于即时奖励，既$E[R_{t}|S_{t}]=r(s)$<br>故可以得到</p>
 <script type="math/tex; mode=display">
 V(s) = r(s)+\gamma \sum\limits_{s^{'}\in S}p(s'|s)V(s')</script><p>即贝尔曼方程（Bellman Equation），上式的贝尔曼方程对每一个状态都成立。若一个马尔可夫奖励过程一共有n个状态，即$S=\{s_1,s_2,…,s_n\}$，我们将所有状态的价值表示成一个列向量$V=[V(s_1),V(s_2),…,V(s_n)]^T$，同理奖励函数写成一个列向量$R=[r(s1),r(s2),…,r(s_n)]$。我们可将方程写成矩阵的形式：</p>
-<p><img style="margin : auto;" src="/image/bellman_matrix.png" alt="bellman_matrix" width="50" height="15"/></p>
+<p><img style="margin : auto;" src="/image/bellman_matrix.png" alt="bellman_matrix" width="300" height="120"/></p>
 <p>加强学习的目的其实就是为了解这个方程，把每个状态和动作的价值V解出来，即</p>
 <script type="math/tex; mode=display">
 V=(I-\gamma P)^{-1}R</script><p>但是计算的复杂度是$O(n^{3})$，所以对于复杂的系统，使用动态规划，蒙特卡洛法，时序差分法来估计，本文用到的<code>DQN</code>就是基于时序差分法中的<code>Q-Learning</code>启发而来</p>
@@ -598,6 +599,61 @@ window.addEventListener('pjax:success', () => {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
