@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://taoquanyus.cn/image/bellman.png">
 <meta property="og:image" content="http://taoquanyus.cn/image/bellman_matrix.png">
 <meta property="article:published_time" content="2022-03-03T15:30:04.000Z">
-<meta property="article:modified_time" content="2022-03-04T21:30:57.289Z">
+<meta property="article:modified_time" content="2022-03-06T11:49:44.821Z">
 <meta property="article:author" content="泉雨">
 <meta property="article:tag" content="机器学习">
 <meta property="article:tag" content="强化学习">
@@ -227,7 +227,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-03-05 05:30:57" itemprop="dateModified" datetime="2022-03-05T05:30:57+08:00">2022-03-05</time>
+                <time title="Modified: 2022-03-06 19:49:44" itemprop="dateModified" datetime="2022-03-06T19:49:44+08:00">2022-03-06</time>
               </span>
 
           
@@ -250,11 +250,11 @@
 <p>其主要思想就是计算机控制智能体(Agent)，在特定的情境下(condition),达成某个目标(goal)<br>将这句话翻译成贪吃蛇就是：计算机控制蛇的游戏规则下尽可能地吃更多的果子从而获得尽可能高的分数，在此基础上，问题可以转化为在特定的状态(state)，尽可能地采取更优的策略(Action)，从而使得期望获得的奖励(Reward)更多</p>
 <h4 id="Markov-process"><a href="#Markov-process" class="headerlink" title="Markov process:"></a>Markov process:</h4><p>我们可以把游戏类比成马尔可夫决策过程（MDP），即下一个状态只和当前状态有关，而和之前的状态都无关<br>因此当前状态可以表示为：<S,A,P,r,$\gamma$><br>S是状态的集合<br>A是动作的集合<br>$\gamma$ 是折扣因子<br>r(s,a)是奖励函数，此时奖励同时取决于状态和动作<br>p($s^{‘}|s,a)$)是状态转移函数，表示在状态$s_n$执行动作a之后到达状态$s_{n+1}$的概率</p>
 <h4 id="Value-Function-amp-Bellman-Equation"><a href="#Value-Function-amp-Bellman-Equation" class="headerlink" title="Value Function &amp; Bellman Equation"></a>Value Function &amp; Bellman Equation</h4><p>在马尔可夫奖励过程中，一个状态的期望回报被称为这个状态的价值（value）。所有状态的价值就组成了价值函数，价值函数的输入为某个状态，输出为这个状态的价值，表示为$V(s)$</p>
-<p><img style="margin : auto;" src="/image/bellman.png" alt="Bellman" width="600" height="300"/></p>
+<p><img style="margin : auto;" src="/image/bellman.png" alt="Bellman" width="400" height="200"/></p>
 <p>其中，即时的期望就等于即时奖励，既$E[R_{t}|S_{t}]=r(s)$<br>故可以得到</p>
 <script type="math/tex; mode=display">
 V(s) = r(s)+\gamma \sum\limits_{s^{'}\in S}p(s'|s)V(s')</script><p>即贝尔曼方程（Bellman Equation），上式的贝尔曼方程对每一个状态都成立。若一个马尔可夫奖励过程一共有n个状态，即$S=\{s_1,s_2,…,s_n\}$，我们将所有状态的价值表示成一个列向量$V=[V(s_1),V(s_2),…,V(s_n)]^T$，同理奖励函数写成一个列向量$R=[r(s1),r(s2),…,r(s_n)]$。我们可将方程写成矩阵的形式：</p>
-<p><img style="margin : auto;" src="/image/bellman_matrix.png" alt="bellman_matrix" width="600" height="240"/></p>
+<p><img style="margin : auto;" src="/image/bellman_matrix.png" alt="bellman_matrix" width="400" height="160"/></p>
 <p>加强学习的目的其实就是为了解这个方程，把每个状态和动作的价值V解出来，即</p>
 <script type="math/tex; mode=display">
 V=(I-\gamma P)^{-1}R</script><p>但是计算的复杂度是$O(n^{3})$，所以对于复杂的系统，使用动态规划，蒙特卡洛法，时序差分法来估计，本文用到的<code>DQN</code>就是基于时序差分法中的<code>Q-Learning</code>启发而来</p>
