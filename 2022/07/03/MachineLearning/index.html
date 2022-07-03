@@ -28,7 +28,7 @@
 <meta property="og:description" content="Machine Learning前言三四月计划投递算法实习，可春招直接一片红海，各厂连开发HC都没有，更不必说卷到天上算法岗了。最近一个月突然病倒一直住院接受治疗，可HR不断的电话轰炸提醒我无论如何还是要面临秋招的挑战。这两天状态好些重新捡起了Leetcode，发现停了一个多月甚至已有所生疏，更不必说其他的理论知识。我意识到没有办法在秋招前再好高骛远的追求算法或是DS岗了择业方向暂时调整为开发，大">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-03T11:47:04.000Z">
-<meta property="article:modified_time" content="2022-07-03T12:13:14.042Z">
+<meta property="article:modified_time" content="2022-07-03T12:16:46.343Z">
 <meta property="article:author" content="泉雨">
 <meta property="article:tag" content="机器学习">
 <meta property="article:tag" content="算法">
@@ -218,7 +218,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-07-03 19:47:04 / Modified: 20:13:14" itemprop="dateCreated datePublished" datetime="2022-07-03T19:47:04+08:00">2022-07-03</time>
+              <time title="Created: 2022-07-03 19:47:04 / Modified: 20:16:46" itemprop="dateCreated datePublished" datetime="2022-07-03T19:47:04+08:00">2022-07-03</time>
             </span>
 
           
@@ -555,33 +555,51 @@ s.t. \ \ \sum\limits_{i=1}^{n}\lambda_i y_i = 0 \ \ \ \ \lambda_i >=0</script></
 <li>$w$和$b$都得到了，即可构建超平面了$f(x)=sign(w^Tx+b)$</li>
 </ul>
 </li>
-<li><p><strong>Soft Margin问题</strong></p>
-<ul>
+<li><strong>Soft Margin问题</strong><ul>
 <li>前面讨论的都是硬间隔(Hard Margin问题)，但实际情况是，数据经常会有一些坏点，导致样本线性不可分。Soft Margin就是为了解决这个问题，相比硬间隔的苛刻条件，允许个别样本点出现在间隔带里面，至于度量软间隔的程度。可以用$\xi_i$来表示距离间隔带的长度</li>
-<li>增加软间隔后优化目标变成了:<script type="math/tex; mode=display">\min\limits_{w}\frac{1}{2}{||w||}^2+C\sum\limits_{i=1}^{m}\xi_i \\
-s.t. \ \  g_i(w,b)=1-y_i(w^Tx_i+b)-\xi_i\leq0,  \ \xi_i \geq0,\  i=1,2,3,4 \cdots</script>其中 C 是一个大于 0 的常数，可以理解为错误样本的惩罚程度，若 C 为无穷大， $\xi$必然无穷小，如此一来线性 SVM 就又变成了线性可分 SVM；当 C 为有限值的时候，才会允许部分样本不遵循约束条件。</li>
-<li>构造Lagrange函数：<script type="math/tex; mode=display">
-\min\limits_{w,b,\xi}\max\limits_{\lambda,\mu}L(w,b,\xi,\lambda,\mu)=\frac{1}{2}{||w||}^2+C\sum\limits_{i=1}^{m}\xi_i+\sum\limits_{i=1}^{n}\lambda_i[1-\xi_i-y_i(w^Tx_i+b)]-\sum\limits_{i=1}^{n}\mu_i\xi_i\\
-s.t.\ \ \ \lambda_i\geq0\ \ \mu_i\geq 0</script>其中$\lambda_i$和$\mu_i$是拉格朗日乘子, $w,b$ 和$\xi_i$是主问题参数。<br>根据强对偶性，将对偶问题转换为：<script type="math/tex; mode=display">
-  \max\limits_{\lambda,\mu}\min\limits_{w,b,\xi}L(w,b,\xi,\lambda,\mu)</script></li>
-<li>分别对主问题参数 $w,b$ 和$\xi_i$求偏导，并另偏导数为0，得：<script type="math/tex; mode=display">
-w = \sum\limits_{i=1}^{m} \lambda_iy_ix_i \\
-0 = \sum\limits_{i=1}^{m}\lambda_iy_i \\
-C = \lambda_i + \mu_i</script>将这些关系带入上式得Lagrange函数中，可得：<script type="math/tex; mode=display">
-\min\limits_{w,b,\xi}L(w,b,\xi,\lambda,\mu)=\sum\limits_{j=1}^{n}\lambda_i-\frac{1}{2}\sum_{i=1}^{n}\sum_{j=1}^{n}\lambda_i\lambda_jy_iy_j(x_i\cdot x_j)</script>最小化结果只有$\lambda$而没有$\mu$，所以现在只需要最大化$\lambda$就好：<script type="math/tex; mode=display">
-\max\limits_{\lambda}[\sum\limits_{j=1}^{n}\lambda_i-\frac{1}{2}\sum_{i=1}^{n}\sum_{j=1}^{n}\lambda_i\lambda_jy_iy_j(x_i\cdot x_j)]\\
-s.t. \ \ \ \sum_{i=1}^{n}\lambda_iy_i = 0, \ \ \lambda_i \geq0, \ \ C-\lambda_i - \mu_i=0</script>可以发现软间隔和硬间隔其实是一样的，只是多了个约束条件<br>然后同理用SMO算法求解得到拉格朗日乘子$\lambda^*$</li>
-<li>求出超平面：<script type="math/tex; mode=display">
-w=\sum\limits_{i=1}^{m}\lambda_iy_ix_i \\
-b=\frac{1}{|S|}\sum\limits_{s\in S}(y_s-wx_s)</script></li>
-<li>在间隔区内的部分样本点是不是支持向量？<ul>
-<li>我们可以由求参数 w 的那个式子可看出，只要$\lambda_i&gt;0$ 的点都能够影响我们的超平面，因此都是支持向量。</li>
+<li>增加软间隔后优化目标变成了:<script type="math/tex; mode=display">
+\min\limits_{w}\frac{1}{2}{||w||}^2+C\sum\limits_{i=1}^{m}\xi_i \\
+s.t. \ \  g_i(w,b)=1-y_i(w^Tx_i+b)-\xi_i\leq0,  \ \xi_i \geq0,\  i=1,2,3,4 \cdots</script></li>
 </ul>
 </li>
 </ul>
-</li>
-<li><p><strong>Kernel 核函数</strong></p>
-<ul>
+<p>其中 C 是一个大于 0 的常数，可以理解为错误样本的惩罚程度，若 C 为无穷大， $\xi$必然无穷小，如此一来线性 SVM 就又变成了线性可分 SVM；当 C 为有限值的时候，才会允许部分样本不遵循约束条件。</p>
+<pre><code>* 构造Lagrange函数：
+$$
+\min\limits_&#123;w,b,\xi&#125;\max\limits_&#123;\lambda,\mu&#125;L(w,b,\xi,\lambda,\mu)=\frac&#123;1&#125;&#123;2&#125;&#123;||w||&#125;^2+C\sum\limits_&#123;i=1&#125;^&#123;m&#125;\xi_i+\sum\limits_&#123;i=1&#125;^&#123;n&#125;\lambda_i[1-\xi_i-y_i(w^Tx_i+b)]-\sum\limits_&#123;i=1&#125;^&#123;n&#125;\mu_i\xi_i\\
+s.t.\ \ \ \lambda_i\geq0\ \ \mu_i\geq 0
+$$
+其中$\lambda_i$和$\mu_i$是拉格朗日乘子, $w,b$ 和$\xi_i$是主问题参数。
+根据强对偶性，将对偶问题转换为：
+$$
+    \max\limits_&#123;\lambda,\mu&#125;\min\limits_&#123;w,b,\xi&#125;L(w,b,\xi,\lambda,\mu)
+$$
+* 分别对主问题参数 $w,b$ 和$\xi_i$求偏导，并另偏导数为0，得：
+$$
+    w = \sum\limits_&#123;i=1&#125;^&#123;m&#125; \lambda_iy_ix_i \\
+    0 = \sum\limits_&#123;i=1&#125;^&#123;m&#125;\lambda_iy_i \\
+    C = \lambda_i + \mu_i
+$$
+将这些关系带入上式得Lagrange函数中，可得：
+$$
+\min\limits_&#123;w,b,\xi&#125;L(w,b,\xi,\lambda,\mu)=\sum\limits_&#123;j=1&#125;^&#123;n&#125;\lambda_i-\frac&#123;1&#125;&#123;2&#125;\sum_&#123;i=1&#125;^&#123;n&#125;\sum_&#123;j=1&#125;^&#123;n&#125;\lambda_i\lambda_jy_iy_j(x_i\cdot x_j)
+$$
+最小化结果只有$\lambda$而没有$\mu$，所以现在只需要最大化$\lambda$就好：
+$$
+\max\limits_&#123;\lambda&#125;[\sum\limits_&#123;j=1&#125;^&#123;n&#125;\lambda_i-\frac&#123;1&#125;&#123;2&#125;\sum_&#123;i=1&#125;^&#123;n&#125;\sum_&#123;j=1&#125;^&#123;n&#125;\lambda_i\lambda_jy_iy_j(x_i\cdot x_j)]\\
+s.t. \ \ \ \sum_&#123;i=1&#125;^&#123;n&#125;\lambda_iy_i = 0, \ \ \lambda_i \geq0, \ \ C-\lambda_i - \mu_i=0
+$$
+可以发现软间隔和硬间隔其实是一样的，只是多了个约束条件
+然后同理用SMO算法求解得到拉格朗日乘子$\lambda^*$
+* 求出超平面：
+$$
+w=\sum\limits_&#123;i=1&#125;^&#123;m&#125;\lambda_iy_ix_i \\
+b=\frac&#123;1&#125;&#123;|S|&#125;\sum\limits_&#123;s\in S&#125;(y_s-wx_s)
+$$
+* 在间隔区内的部分样本点是不是支持向量？
+    * 我们可以由求参数 w 的那个式子可看出，只要$\lambda_i&gt;0$ 的点都能够影响我们的超平面，因此都是支持向量。
+</code></pre><ul>
+<li><strong>Kernel 核函数</strong><ul>
 <li>当问题线性不可分的时候，可以用核函数把样本映射到高维空间，让样本点在高维空间线性可分</li>
 <li>常见核函数：<ul>
 <li>线性核函数 $k(x_i.x_i)=x_i^T x_j$</li>
