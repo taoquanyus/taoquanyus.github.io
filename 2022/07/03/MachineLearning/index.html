@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icon-apple-touch.jpeg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon-32x32.jpeg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon-16x16.jpeg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"taoquanyus.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Machine Learning三四月计划投递算法实习，可春招直接一片红海，各厂连开发HC都没有，更不必说卷到天上算法岗了。最近一个月突然病倒一直住院接受治疗，可HR不断的电话轰炸提醒我无论如何还是要面临秋招的挑战。这两天状态好些重新捡起了Leetcode，发现停了一个多月甚至已有所生疏，更不必说其他的理论知识。我意识到没有办法在秋招前再好高骛远的追求算法或是DS岗了择业方向暂时调整为开发，大数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="应用机器学习算法总结">
+<meta property="og:url" content="http://taoquanyus.cn/2022/07/03/MachineLearning/index.html">
+<meta property="og:site_name" content="Bettilarity">
+<meta property="og:description" content="Machine Learning三四月计划投递算法实习，可春招直接一片红海，各厂连开发HC都没有，更不必说卷到天上算法岗了。最近一个月突然病倒一直住院接受治疗，可HR不断的电话轰炸提醒我无论如何还是要面临秋招的挑战。这两天状态好些重新捡起了Leetcode，发现停了一个多月甚至已有所生疏，更不必说其他的理论知识。我意识到没有办法在秋招前再好高骛远的追求算法或是DS岗了择业方向暂时调整为开发，大数据">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-07-03T11:47:04.000Z">
+<meta property="article:modified_time" content="2022-07-03T12:05:04.574Z">
+<meta property="article:author" content="泉雨">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://taoquanyus.cn/2022/07/03/MachineLearning/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>应用机器学习算法总结 | Bettilarity</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Bettilarity" type="application/atom+xml">
+</head>
+<!--鼠标点击效果-->
+<body itemscope itemtype="http://schema.org/WebPage">
+  
+    <script async src="/js/cursor/fireworks.js"></script>
+  
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Bettilarity</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about" rel="section"><i class="fa fa-user fa-fw"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">19</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">18</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://taoquanyus.cn/2022/07/03/MachineLearning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="泉雨">
+      <meta itemprop="description" content="Love is patient, Love is kind.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bettilarity">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          应用机器学习算法总结
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2022-07-03 19:47:04 / Modified: 20:05:04" itemprop="dateCreated datePublished" datetime="2022-07-03T19:47:04+08:00">2022-07-03</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Machine-Learning"><a href="#Machine-Learning" class="headerlink" title="Machine Learning"></a>Machine Learning</h2><p>三四月计划投递算法实习，可春招直接一片红海，各厂连开发HC都没有，更不必说卷到天上算法岗了。<br>最近一个月突然病倒一直住院接受治疗，可HR不断的电话轰炸提醒我无论如何还是要面临秋招的挑战。<br>这两天状态好些重新捡起了Leetcode，发现停了一个多月甚至已有所生疏，更不必说其他的理论知识。我意识到没有办法在秋招前再好高骛远的追求算法或是DS岗了<br>择业方向暂时调整为开发，大数据和量化方向，机器学习大概率是用不到了。<br>三四月做的一些机器学习的面试准备将整理于此处，方便日后阅读<br><span id="more"></span></p>
+<h4 id="指标与模型评估"><a href="#指标与模型评估" class="headerlink" title="指标与模型评估"></a>指标与模型评估</h4><ul>
+<li>评价两个特征相似度的指标：<ul>
+<li>协方差: Cov(X,Y)=E[(X-ux)(Y-uy)]</li>
+<li>相关系数：$p=\frac{Cov(X,Y)}{\sigma_x\sigma_y}$</li>
+</ul>
+</li>
+<li>如果在模型中加入一个特征，怎样判断这个特征的好与坏<ul>
+<li>皮尔逊相关系数，互信息系数，距离相关系数</li>
+<li>互信息：$I(X;Y)=H(Y)-H(Y|X)$ (熵与条件熵的差)</li>
+<li>信息增益比：$I(X;Y)/H(X)$ (互信息/特征x的熵)<ul>
+<li>信息增益比倾向于分类特征数较小的特征</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>选择特征的方法：<ul>
+<li>方差选择法</li>
+<li>相关系数法</li>
+<li>互信息法</li>
+<li>卡方检验 $x^2=Sum[((A-E)^2)/E]$</li>
+</ul>
+</li>
+</ul>
+<h4 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h4><ul>
+<li>标准化（Normalization）<ul>
+<li>线性归一化：$X_n=(X-X_{min})/(X_{max}-X_{min})$</li>
+<li>Z-Score: $z=\frac{(x-u)}{\sigma}$</li>
+</ul>
+</li>
+<li>BN的作用<ul>
+<li>就是在深度神经网络训练过程中使得每一层神经网络的输入保持相同分布的</li>
+<li>加快网络的训练和收敛速度<ul>
+<li>如果每层的数据分布都不一样的话，将会导致网络非常难收敛和训练，而如果把每层的数据都在转换在均值为零，方差为1的状态下，这样每层数据的分布都是一样的训练会比较容易收敛</li>
+</ul>
+</li>
+<li>控制梯度爆炸，防止梯度消失<ul>
+<li>梯度消失：在深度神经网络中，如果网络的激活输出很大，其对应的梯度就会很小，导致网络的学习速率就会很慢，假设网络中每层的学习梯度都小于最大值0.25，网络中有n层，因为链式求导的原因，第一层的梯度将会小于0.25的n次方，所以学习速率相对来说会变的很慢，而对于网络的最后一层只需要对自身求导一次，梯度就大，学习速率就会比较快，这就会造成在一个很深的网络中，浅层基本不学习，权值变化小，而后面几层网络一直学习，后面的网络基本可以表征整个网络，这样失去了深度的意义。（使用BN层归一化后，网络的输出就不会很大，梯度就不会很小）</li>
+<li>梯度爆炸：同理，使用BN后权值的更新也不会很大</li>
+</ul>
+</li>
+<li>防止过拟合<ul>
+<li>在网络的训练中，BN的使用使得一个minibatch中所有样本都被关联在了一起，因此网络不会从某一个训练样本中生成确定的结果，即同样一个样本的输出不再仅仅取决于样本的本身，也取决于跟这个样本同属一个batch的其他样本，而每次网络都是随机取batch，这样就会使得整个网络不会朝这一个方向使劲学习。一定程度上避免了过拟合。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h4><ul>
+<li>ID3<ul>
+<li>信息增益</li>
+</ul>
+</li>
+<li>C4.5<ul>
+<li>信息增益比</li>
+</ul>
+</li>
+<li>CART<ul>
+<li>分类问题：基于基尼系数划分特征<ul>
+<li>基尼系数：$Gini(p) = \sum\limits_{k=1}^{K}p_k  (1-p_k)=1-\sum\limits_{k=1}^{K}(p_k)^2$<ul>
+<li>这里$p_k=\frac{|C_k|}{|D|}$，$C_k$是$D$中属于第k类的样本子集，$K$是类的个数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>分类问题：平方误差<ul>
+<li>对于每个特征，遍历每个取值s将数据集分成两份，计算切分后的误差<ul>
+<li>选择误差最小的特征作为树的分裂点，切分节点形成左右分支</li>
+<li>递归以上操作<h4 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h4></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>回归问题<ul>
+<li>MSE，MAE</li>
+</ul>
+</li>
+<li>分类问题<ul>
+<li>Log loss</li>
+<li>Focal Loss</li>
+<li>Hinge Loss</li>
+<li>Exponential Loss</li>
+</ul>
+</li>
+<li>MSE</li>
+<li>Cross Entropy<ul>
+<li>$H(p,q) = H(p)+D_{KL}(p||q)$</li>
+<li>$H(p,q) = -\sum_{i=1}^{n}p(x_i)log(q(x_i))$</li>
+</ul>
+</li>
+<li>为什么分类问题不能使用MSE作为损失函数<ul>
+<li>MSE的意义是计算预测值与目标值的欧式距离，交叉熵则是表征概率分布和预测概率分布差异，与欧氏距离无关</li>
+</ul>
+</li>
+</ul>
+<h4 id="梯度消失和梯度爆炸"><a href="#梯度消失和梯度爆炸" class="headerlink" title="梯度消失和梯度爆炸"></a>梯度消失和梯度爆炸</h4><ul>
+<li>产生梯度不稳定的原因：前面曾的梯度乘上后面梯度的乘积，当存在过多的层时，就会出现梯度不稳定的场景，比如梯度消失和梯度爆炸</li>
+<li>梯度消失的原因：<ul>
+<li>隐藏层的层数过多</li>
+<li>采用了不合适的激活函数</li>
+</ul>
+</li>
+<li>梯度爆炸：<ul>
+<li>层数过多</li>
+<li>权重的初始值过大</li>
+</ul>
+</li>
+<li>解决方案：<ul>
+<li>使用ReLu，Leaky-ReLu代替sigmoid函数</li>
+<li>使用BN</li>
+<li>合适的初始化</li>
+</ul>
+</li>
+</ul>
+<h4 id="权重初始化"><a href="#权重初始化" class="headerlink" title="权重初始化"></a>权重初始化</h4><ul>
+<li>全部设为0</li>
+<li>随机初始化</li>
+<li>Xavier initialization<ul>
+<li>为了使得网络中的信息更好的流动，每一层输出的方差尽可能相等。即尽可能让输入和输出服从相同的分布，这样就能避免后面层的激活函数的输出值趋近于0</li>
+<li>正态分布：$N(0,\frac{2}{(n1+n2})$</li>
+<li>均匀分布：$[-\sqrt{\frac{6}{n1+n2}}, +\sqrt{\frac{6}{n1+n2}}]$</li>
+</ul>
+</li>
+<li>Kaiming initialization<ul>
+<li>本质上就是经过relu激活函数后，方差变为原先的1/2</li>
+<li>正态分布：$N(0,2/n)$</li>
+<li>均匀分布: $[-\sqrt(6/u), \sqrt(6/u)]$</li>
+</ul>
+</li>
+</ul>
+<h4 id="优化算法"><a href="#优化算法" class="headerlink" title="优化算法"></a>优化算法</h4><ul>
+<li>牛顿法<ul>
+<li>本质上就是泰勒展开取前两项然后求导</li>
+<li>*Taylor 展开: $f(x) = f(x_0)+f’(x_0)(x-x_0)+\frac{1}{2}f’’(x_0)(x-x_0)^2+\dots+\frac{1}{n!}f^{(n)}(x_0)(x-x_0)^n$<ul>
+<li>取前三项，忽略二次后的项</li>
+<li>$f(x) = f(x_0)+f’(x_0)(x-x_0)+\frac{1}{2}f’’(x_0)(x-x_0)^2$</li>
+<li>求导 $f’(x) = f’(x_0)+f’’(x_0)(x-x_0)=0$<ul>
+<li>得$x^*=x_0-\frac{f’(x_0)}{f’’(x_0)}$</li>
+</ul>
+</li>
+<li>迭代公式: $x_{t+1}=x_t-\frac{f’(x_t)}{f’’(x_t)}$</li>
+</ul>
+</li>
+<li>推广到矩阵形式：$x_{k+1}=x_k-H_k^{-1}g_k$<ul>
+<li>其中$H$为Hassian矩阵, $H = \nabla^2f(x_0)$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>拉格朗日乘数法<ul>
+<li>KKT条件</li>
+</ul>
+</li>
+<li><p>动量项</p>
+<ul>
+<li>动量项累积了之前迭代时的梯度值，使得本次迭代时沿着之前的惯性方向向前走</li>
+<li>之前的梯度下降法的更新公式为<ul>
+<li>$w_{k+1}=w_k - \alpha \nabla f(w)$<ul>
+<li>$\alpha$ 是学习率</li>
+<li>动量项则是修改了后面的梯度项，积累了之前的梯度</li>
+<li>$w_{k+1} = w_k+\alpha *V_k$<ul>
+<li>$V_{k+1}=-\alpha \nabla f(w)+(1-\alpha)V_{k}$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>RMSProp</p>
+<ul>
+<li>全称Root Mean Square Prop，是AdaGrad的一种改进方法</li>
+<li>更新公式：<ul>
+<li>$s_{dw}(t+1)=\beta s_{dw}(t)+ (1-\beta) dW^2$（注这里不是二阶导，而是一阶导的平方）</li>
+<li>$W=W-\alpha \frac{db}{\sqrt{s_{dw}}+\epsilon}$</li>
+</ul>
+</li>
+<li>$s_{dw}$是损失函数在前t−1轮迭代过程中累积的梯度动量</li>
+<li>RMSProp的特点是对梯度计算了微分平方加权平均数，如果摆动方向过于大的话，我们在更新权重或者偏置的时候除以它之前累积的梯度的平方根，这样就可以使得更新幅度变小</li>
+</ul>
+</li>
+<li>Adam<ul>
+<li>全称Adaptive Moment Estimation，其实就是结合了前面的Momentum和RMSProp算法</li>
+<li>$v_{dw} = \beta_1 v_{dw}+ (1-\beta_1)dw$ </li>
+<li>$s_{dw} = \beta_2 s_{dw}+ (1-\beta_2)dw^2$</li>
+</ul>
+</li>
+<li>由于移动指数在迭代开始初期会导致和开始的值有较大的差异，因此对上式进行修正<ul>
+<li>$v_{dw}^c = \frac{v_{dw}}{1-\beta_1^t}$</li>
+<li>$s_{dw}^c = \frac{s_{dw}}{1-\beta_2^t}$</li>
+<li>注意这里$\beta$上面的t是t次方。</li>
+</ul>
+</li>
+<li>对权重和偏置进行更新<ul>
+<li>$w=w-\alpha \frac{v_{dw}^c}{\sqrt{s_{dw}^c}+\epsilon}$</li>
+</ul>
+</li>
+<li>上式中，$\beta1$对应的是Momentum的$\beta$值，$\beta2$对应的是RMSProp算法中的$\beta$值</li>
+</ul>
+<h4 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h4><ul>
+<li>本质上就是想用线性回归来做分类问题，引入了Sigmoid函数作为拟合函数</li>
+<li>Sigmoid 函数: $f(z)=\frac{1}{1+e^{-z}}$<ul>
+<li>值域为[0,1]，能够把值都映射到[0,1]上</li>
+<li>将物品类别分类为1的概率：$P(Y=1)=\frac{1}{1+e^{-X\beta}}$</li>
+</ul>
+</li>
+<li>损失函数： <ul>
+<li>Log Loss： $J(\beta)=-logL(\beta)=-\sum\limits_{i=1}^{n}[y_i logP(y_i)+(1-y_i)log(1-P(y_i))]$<ul>
+<li>这个是用极大似然估计+log取负号得来的，$L(\beta)$表示观测到的y发生概率的乘积</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="SVM及SMO算法"><a href="#SVM及SMO算法" class="headerlink" title="SVM及SMO算法"></a>SVM及SMO算法</h4><ul>
+<li><strong>SVM Support Vector Machine</strong><ul>
+<li>目的是找到最大间隔超平面$w^T x+b=0$</li>
+<li>点$x(x_1,x_2… x_n)$到超平面的距离为：$d=\frac{|w^T x+b|}{||w||}$</li>
+<li>因此分类的结果如果大于$d$，$y_{predict}=1$,否则 $y_{predict}=-1$<ul>
+<li>经过变化，两个方程合并，可以得到$y(w^T x + b)\geq1$</li>
+</ul>
+</li>
+<li>回到最初的目的，即最大化间隔 $d=\frac{|w^T x+b|}{||w||}$<ul>
+<li>由上式，去掉绝对值 $d=\frac{y(w^T x + b)}{||w||}$</li>
+<li>目标函数$ f(w)=\max\limits_{w,b}2*\frac{y(w^T x + b)}{||w||}$ 前面乘上一个2是为了方便后面推导，不影响目标结果<ul>
+<li>在支持向量上(支持向量是离分割平面最近的样本点, 即满足$y(w^T x + b)=1$)，所以目标函数可表示为:$f(w)=\max\limits_{w} \frac{2}{||w||}=\min\limits_{w}\frac{1}{2}||w||=\min\limits_{w}\frac{1}{2}{||w||}^2$(为了表示方便，去掉$||w||$的根号)<br>*得到SVM的初步优化问题:</li>
+</ul>
+</li>
+<li>$f(w)=\min\limits_{w} \frac{1}{2}{||w||}^2\ \ s.t. \ \ y_i(w^Tx_i+b) \geq 1$</li>
+</ul>
+</li>
+<li>当前的问题是一个不等式优化问题，针对这种情况常用的思想是将不等式约束条件转变为等式约束条件，引入松弛变量<ul>
+<li>不等式约束（引入松弛变量）-&gt; 等式约束（lagrange函数）-&gt; 无约束优化</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Lagrange 函数</strong><ul>
+<li>当前的问题为：$f(w)=\min\limits_{w} \frac{1}{2}{||w||}^2\ \ s.t. \ \ g_i(w)=1-y_i(w^Tx_i+b) \leq 0$<ul>
+<li>引入松弛变量 $a_i^2$得到 $h_i(w,a_i)=g_i(w)+a_i^2=0$ 由此我们将此式转化为等式约束，下一步生成Lagrange函数:</li>
+<li>$L(w,\lambda,a)=f(w)+\sum\limits_{i=1}^{n}\lambda_i[g_i(w)+a_i^2] \ \ \lambda_i \geq 0$</li>
+<li>根据约束优化问题极值的必要条件对其求解，联立方程，拉格朗日方程对$a,w,\lambda$的偏微分=0，得到<strong>KKT条件</strong>：<script type="math/tex; mode=display">
+\begin{cases}
+\frac{\partial L}{\partial w_i}=\frac{\partial f}{\partial w_i}+\sum\limits_{j=1}^n\lambda_j\frac{\partial g_j}{\partial w_i}=0\\
+\lambda_i g_i(w)=0\\
+g_i(w)<=0\\
+\lambda_i>=0
+\end{cases}</script>$\lambda_i$称为KKT乘子</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>KKT条件及理解</strong><ul>
+<li>支持向量$g(w_i)=0$，所以$\lambda_i&gt;0$即可<ul>
+<li>而其它向量$g(w_i)&lt;0, \lambda_i=0$</li>
+</ul>
+</li>
+<li>原问题是$f(w)=\min\limits_w \frac{1}{2}{||w||}^2$, 现在转化为求解问题 $\min\limits_{w,\lambda,a} L()$<ul>
+<li>假设找到了最佳参数的目标函数的最小值为p, 因为$g_i(w)&lt;0$则 $L(w,\lambda) &lt; p$,因此为了找到最优的参数$\lambda$使得$L(w,\lambda)$尽可能接近于p，故问题转换为$\max\limits_{\lambda}(w,\lambda)$ </li>
+<li>因此我们可以将原问题转化为: $\min\limits_w\max\limits_{\lambda}L(w,\lambda) \ \ s.t. \ \lambda_i \geq 0$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>强对偶性</strong></p>
+<ul>
+<li>加入函数$f$有,$\min \max f \geq \max \min f$ 可以理解为凤尾大于鸡头，此为弱对偶关系</li>
+<li>而强对偶关系的意思是指等号成立, $\min \max f = \max \min f$</li>
+<li><strong>如果$f$是凸优化问题，则强对偶关系成立，而前面的KKT条件，就是强对偶关系的充分必要条件</strong></li>
+</ul>
+</li>
+<li><p><strong>SVM 优化</strong></p>
+<ul>
+<li>SVM 优化的主要问题是：$\min\limits_{w}\frac{1}{w} {||w||}^2,\ \  s.t \ \  g_i(w,b)=1 - y_i(w^T x_i + b) \leq 0$</li>
+<li>构造拉格朗日函数：$\min\limits_{w,b}\max\limits_{\lambda}L(w,b,\lambda)=\frac{1}{2}{||w||}^2+\sum\limits_{i=1}^{n}\lambda_i[1-y_i(w^Tx_i+b)]\ \ s.t. \ \ \lambda_i \geq 0$ </li>
+<li><p>利用强对偶性转化：$\max\limits_{\lambda}\min\limits_{w,b}L(w,b,\lambda)$</p>
+<ul>
+<li>对$w,b$求偏导，并使其等于0，得：<ul>
+<li>$\sum\limits_{i=1}^{n}\lambda_i x_i y_i = w$</li>
+<li>$\sum\limits_{i=1}^{n}\lambda_i y_i=0$</li>
+</ul>
+</li>
+<li>将上式结果代回到原方程得：<script type="math/tex; mode=display">
+L(w,b,\lambda)=\sum\limits_{j=1}^{n}\lambda_i-\frac{1}{2}\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{n} \lambda_i \lambda_j y_i y_j (x_i\cdot x_j)\\ 
+s.t. \ \ \sum\limits_{i=1}^{n}\lambda_i y_i = 0 \ \ \ \ \lambda_i >=0</script></li>
+</ul>
+</li>
+<li><p><strong>SMO算法</strong></p>
+<ul>
+<li>可以看出上式问题是一个二次规划问题，问题规模正比于训练样本数，常用<strong>SMO(Sequential Minimal Optimization) </strong>算法求解。<ul>
+<li>SMO核心思想非常简单：每次只优化一个参数，其他参数先固定住，仅求当前这个优化参数的极值。</li>
+<li>但是优化目标有约束条件：$\sum\limits_{i-1}^{n}\lambda_i y_j = 0$<ul>
+<li>因此没有办法一次只变动一个参数，所以选择一次变动两个参数，固定其他约束，于是有以下约束：<ul>
+<li>$\lambda_iy_i+\lambda_jy_j=c \ \ \ s.t. \ \   \lambda_i \geq 0 \ \lambda_j \geq 0$</li>
+<li>其中$c=-\sum\limits_{k \neq i,j}\lambda_ky_k$, 由此可以得出$\lambda_j=\frac{c-\lambda_iy_i}{y_j}$,也就是说我们可以利用$\lambda_i$的表达式来代替$\lambda_j$，这样就相当于把目标问题转化成了仅有一个约束条件的最优化问题，仅有的约束是$\lambda_i\geq0$。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>对于仅有一个约束条件的最优化问题，我们完全可以在 $\lambda_i$上对优化目标求偏导，令导数为零，从而求出变量值 $\lambda_{i_{new}}$ ，然后根据$\lambda_{i_{new}}$求出$\lambda_{j_{new}}$ 。</li>
+<li>通过多次迭代求得最优解$\lambda^*$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>前面求偏导可知，$w=\sum\limits_{i=1}^{m}\lambda_iy_ix_i$</p>
+</li>
+<li>可以求得w</li>
+<li>我们知道所有的$\lambda_i&gt;0$对应的点都是支持向量，我们可以随便找到一个支持向量，然后代入:<ul>
+<li>$y_s(wx_s+b)=1$, 即可求得b</li>
+</ul>
+</li>
+<li>为更具鲁棒性，可以求得支持向量的均值: $b=\frac{1}{|S|}\sum\limits_{s\in S}(y_s-wx_s)$ </li>
+<li>$w$和$b$都得到了，即可构建超平面了$f(x)=sign(w^Tx+b)$</li>
+</ul>
+</li>
+<li><p><strong>Soft Margin问题</strong></p>
+<ul>
+<li>前面讨论的都是硬间隔(Hard Margin问题)，但实际情况是，数据经常会有一些坏点，导致样本线性不可分。Soft Margin就是为了解决这个问题，相比硬间隔的苛刻条件，允许个别样本点出现在间隔带里面，至于度量软间隔的程度。可以用$\xi_i$来表示距离间隔带的长度</li>
+<li>增加软间隔后优化目标变成了:<script type="math/tex; mode=display">\min\limits_{w}\frac{1}{2}{||w||}^2+C\sum\limits_{i=1}^{m}\xi_i \\
+s.t. \ \  g_i(w,b)=1-y_i(w^Tx_i+b)-\xi_i\leq0,  \ \xi_i \geq0,\  i=1,2,3,4 \cdots</script>其中 C 是一个大于 0 的常数，可以理解为错误样本的惩罚程度，若 C 为无穷大， $\xi$必然无穷小，如此一来线性 SVM 就又变成了线性可分 SVM；当 C 为有限值的时候，才会允许部分样本不遵循约束条件。</li>
+<li>构造Lagrange函数：<script type="math/tex; mode=display">
+\min\limits_{w,b,\xi}\max\limits_{\lambda,\mu}L(w,b,\xi,\lambda,\mu)=\frac{1}{2}{||w||}^2+C\sum\limits_{i=1}^{m}\xi_i+\sum\limits_{i=1}^{n}\lambda_i[1-\xi_i-y_i(w^Tx_i+b)]-\sum\limits_{i=1}^{n}\mu_i\xi_i\\
+s.t.\ \ \ \lambda_i\geq0\ \ \mu_i\geq 0</script>其中$\lambda_i$和$\mu_i$是拉格朗日乘子, $w,b$ 和$\xi_i$是主问题参数。<br>根据强对偶性，将对偶问题转换为：<script type="math/tex; mode=display">
+  \max\limits_{\lambda,\mu}\min\limits_{w,b,\xi}L(w,b,\xi,\lambda,\mu)</script></li>
+<li>分别对主问题参数 $w,b$ 和$\xi_i$求偏导，并另偏导数为0，得：<script type="math/tex; mode=display">
+w = \sum\limits_{i=1}^{m} \lambda_iy_ix_i \\
+0 = \sum\limits_{i=1}^{m}\lambda_iy_i \\
+C = \lambda_i + \mu_i</script>将这些关系带入上式得Lagrange函数中，可得：<script type="math/tex; mode=display">
+\min\limits_{w,b,\xi}L(w,b,\xi,\lambda,\mu)=\sum\limits_{j=1}^{n}\lambda_i-\frac{1}{2}\sum_{i=1}^{n}\sum_{j=1}^{n}\lambda_i\lambda_jy_iy_j(x_i\cdot x_j)</script>最小化结果只有$\lambda$而没有$\mu$，所以现在只需要最大化$\lambda$就好：<script type="math/tex; mode=display">
+\max\limits_{\lambda}[\sum\limits_{j=1}^{n}\lambda_i-\frac{1}{2}\sum_{i=1}^{n}\sum_{j=1}^{n}\lambda_i\lambda_jy_iy_j(x_i\cdot x_j)]\\
+s.t. \ \ \ \sum_{i=1}^{n}\lambda_iy_i = 0, \ \ \lambda_i \geq0, \ \ C-\lambda_i - \mu_i=0</script>可以发现软间隔和硬间隔其实是一样的，只是多了个约束条件<br>然后同理用SMO算法求解得到拉格朗日乘子$\lambda^*$</li>
+<li>求出超平面：<script type="math/tex; mode=display">
+w=\sum\limits_{i=1}^{m}\lambda_iy_ix_i \\
+b=\frac{1}{|S|}\sum\limits_{s\in S}(y_s-wx_s)</script></li>
+<li>在间隔区内的部分样本点是不是支持向量？<ul>
+<li>我们可以由求参数 w 的那个式子可看出，只要$\lambda_i&gt;0$ 的点都能够影响我们的超平面，因此都是支持向量。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Kernel 核函数</strong></p>
+<ul>
+<li>当问题线性不可分的时候，可以用核函数把样本映射到高维空间，让样本点在高维空间线性可分</li>
+<li>常见核函数：<ul>
+<li>线性核函数 $k(x_i.x_i)=x_i^T x_j$</li>
+<li>多项式核函数 $k(x_i,x_j)=(x_i^T x_j)^d$</li>
+<li>高斯核函数 $k(x_i,x_i)=exp(-\frac{||x_i-x_j||}{2\delta^2})$</li>
+</ul>
+</li>
+<li>核函数的选择技巧：一般选择线性核函数，效果如果不好可以上高斯核函数</li>
+</ul>
+</li>
+<li>SVM 的优缺点：<ul>
+<li>优点<ul>
+<li>可解释性强，不依靠统计方法，从而简化了通常的分类和回归问题</li>
+<li>能找出对任务至关重要的关键样本（支持向量）</li>
+<li>最终决策函数只由少数的支持向量所确定，计算的复杂性取决于支持向量的数目，而不是样本空间的维数，这在某种意义上避免了“维数灾难”</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>训练时间长。当采用 SMO 算法时，由于每次都需要挑选一对参数，因此时间复杂度为$O(N^2)$ ，其中 $N$ 为训练样本的数量</li>
+<li>当采用核技巧时，如果需要存储核矩阵，则空间复杂度为 $O(N^2)$</li>
+<li>模型预测时，预测时间与支持向量的个数成正比。当支持向量的数量较大时，预测计算复杂度较高。</li>
+<li>因此支持向量机目前只适合小批量样本的任务，无法适应百万甚至上亿样本的任务。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="聚类算法"><a href="#聚类算法" class="headerlink" title="聚类算法"></a>聚类算法</h4><h4 id="Pytorch实现案例"><a href="#Pytorch实现案例" class="headerlink" title="Pytorch实现案例"></a>Pytorch实现案例</h4><ul>
+<li>实现mlp网络结构<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 建立一个四层感知机网络</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MLP</span>(<span class="params">torch.nn.Module</span>):</span>   <span class="comment"># 继承 torch 的 Module</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">super</span>(MLP,self).__init__()    <span class="comment">#</span></span><br><span class="line">        <span class="comment"># 初始化三层神经网络 两个全连接的隐藏层，一个输出层</span></span><br><span class="line">        self.fc1 = torch.nn.Linear(<span class="number">784</span>,<span class="number">512</span>)  <span class="comment"># 第一个隐含层  </span></span><br><span class="line">        self.fc2 = torch.nn.Linear(<span class="number">512</span>,<span class="number">128</span>)  <span class="comment"># 第二个隐含层</span></span><br><span class="line">        self.fc3 = torch.nn.Linear(<span class="number">128</span>,<span class="number">10</span>)   <span class="comment"># 输出层</span></span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self,din</span>):</span></span><br><span class="line">        dout = F.relu(self.fc1(din))  </span><br><span class="line">        dout = F.relu(self.fc2(dout))</span><br><span class="line">        dout = F.softmax(self.fc3(dout), dim=<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> dout</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">self, X</span>):</span></span><br><span class="line">        loss_func = torch.nn.CrossEntropyLoss()</span><br><span class="line">        optimizer = torch.optim.SGD(params = model.parameters(),lr=<span class="number">0.001</span>)</span><br><span class="line">        <span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(n_epochs):</span><br><span class="line">            optimizer.zero_grad()</span><br><span class="line">            output = model(data)</span><br><span class="line">            loss = loss_func(output,target)</span><br><span class="line">            loss.backward()</span><br><span class="line">            optimizer.step()</span><br><span class="line">            train_loss += loss.item()*data.size(<span class="number">0</span>)</span><br></pre></td></tr></table></figure></li>
+<li>实现LR</li>
+</ul>
+<h4 id="强化学习"><a href="#强化学习" class="headerlink" title="强化学习"></a>强化学习</h4><ul>
+<li>先说一下DQN网络<ul>
+<li>本质上来说就是用神经网络来估计Q</li>
+<li>原本Q-Learning的更新规则是这样的：<ul>
+<li>$Q(s,a)=Q(s,a)+\alpha[r+\gamma maxQ(s’,a’)-Q(s,a)]$</li>
+<li>$就是尽量使 [r+\gamma maxQ(s’,a’)-Q(s,a)] 逼近于0$</li>
+</ul>
+</li>
+<li>于是Q网络可以转换成为<ul>
+<li>$w*=argmin_w{r+\gamma maxQ(s’,a’)-Q(s,a)}$</li>
+</ul>
+</li>
+<li>经验回放，可以把以前的数据$(s(t),a(t),s(t+1),rt)$取出来然后批量训练</li>
+</ul>
+</li>
+<li>说一下dueling DQN<ul>
+<li>引入了优势函数变量=动作价值函数-状态价值函数</li>
+<li>即 Q(s,a)=V(s)+A(s,a)</li>
+<li>分别建立两个网络，然后把V和A加起来</li>
+<li>为什么Dueling DQN会更好？<ul>
+<li>因为每一次更新，V函数都会被更新到，这也会影响其它动作的Q值，而传统的DQN只会更新某个动作的Q值，其它动作的Q值就不会被更新</li>
+<li>可以学到不同动作的差异性，在动作空间较大的环境下非常有效</li>
+</ul>
+</li>
+<li>网络结构的实现<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VAnet</span>(<span class="params">torch.nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, state_dim, hidden_dim, action_dim</span>):</span></span><br><span class="line">        <span class="built_in">super</span>(VAnet, self).__init__()</span><br><span class="line">        self.fc1 = torch.nn.Linear(state_dim, hidden_dim) <span class="comment"># 共享网络部分</span></span><br><span class="line">        self.fc_A = torch.nn.Linear(hidden_dim, action_dim)</span><br><span class="line">        self.fc_V = torch.nn.Linear(hidden_dim, <span class="number">1</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        A = self.fc_A(F.relu(self.fc1(x)))</span><br><span class="line">        V = self.fc_V(F.relu(self.fc1(x)))</span><br><span class="line">        Q = V + A - A.mean(<span class="number">1</span>).view(-<span class="number">1</span>, <span class="number">1</span>) <span class="comment"># Q值由V值和A值计算得到</span></span><br><span class="line">        <span class="keyword">return</span> Q</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li>贝尔曼方程<script type="math/tex; mode=display">V(s)=r(s)+\gamma \sum\limits_{s'\in S}p(s'|s)V(s')</script></li>
+<li>在线策略和离线策略 (on-policy和off-policy)<ul>
+<li>在线策略：行为策略和目标策略是一个策略：Sarsa<ul>
+<li>Sarsa的评估策略和行动策略都是 $\epsilon-greedy$</li>
+<li>Q-learning 的评估策略是贪婪的，而行动策略是$\epsilon-greedy$</li>
+</ul>
+</li>
+<li>离线策略：行为策略和目标策略不是一个策略：Q-Learning<ul>
+<li>离线策略能够更好的利用历史数据，因此具有更小的样本复杂度</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>model-based 和model-free<ul>
+<li>model-free是agent和environment进行实时的交互，单纯通过样本来学习</li>
+<li>model-based则是先学一个model<h4 id="PSO算法"><a href="#PSO算法" class="headerlink" title="PSO算法"></a>PSO算法</h4></li>
+</ul>
+</li>
+<li>粒子群算法 particle swarm optimization</li>
+<li>速度更新 <script type="math/tex">v = w[惯性因子]*v[记忆项]+c1*rand()*(pbest-x)[自身认知项]+c2*rand()*(gbest-x)[群体认知项]</script> <ul>
+<li>其中w是惯性因子，一般动态的w会比静态的w有更好的的寻优结果</li>
+<li>$w=(w_{ini}-w_{end})(G_k-g)/G_k + w_{end}$<ul>
+<li>$G_{k}$：最大迭代次数</li>
+<li>$ g$：当前迭代次数</li>
+<li>$w_{ini}, w_{end}：w$的范围</li>
+</ul>
+</li>
+<li>$c1,c2$是学习因子<ul>
+<li>如果$c1$为0，说明粒子没有自身的认知能力，变成一个社会学模型，收敛速度快，更容易陷入局部最优</li>
+<li>如果$c2$为0，说明粒子没有社会信息，整个群体相当于多个粒子进行盲目的搜索，收敛速度慢</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>位置更新 $x=x+v$<h4 id="Embedding-Learning-集成机器学习"><a href="#Embedding-Learning-集成机器学习" class="headerlink" title="Embedding Learning 集成机器学习"></a>Embedding Learning 集成机器学习</h4>集成学习就是组合多个若监督模型以期得到一个更好更全面的强监督模型，其潜在思想就是某一个弱分类器得到了错误的预测，其他的弱分类器也能将错误纠正过来。</li>
+<li>数据集过大：划分成多个小数据集，学习多个模型进行组合</li>
+<li>数据集过小：利用Bootstrap方法进行抽样，得到多个数据集，分别训练多个模型再进行组合<h5 id="集成学习分类"><a href="#集成学习分类" class="headerlink" title="集成学习分类"></a>集成学习分类</h5></li>
+<li>Bagging<ul>
+<li>Bagging是bootstrap aggregating的简写<ul>
+<li>bootstrap：bootstrap也称为自助法，它是一种有放回的抽样方法，目的为了得到统计量的分布以及置信区间</li>
+</ul>
+</li>
+<li>Bagging 利用bootstrap方法从整体数据集中采取有放回抽样得到N个数据集，在每个数据集上学习出一个模型，最后的预测结果利用N个模型的输出得到，具体地：分类问题采用N个模型预测投票的方式，回归问题采用N个模型预测平均的方式。</li>
+<li>如随机森林，就是用Bagging的思想，有两个采样的过程，对输入数据的<strong>行（数据的数量）</strong>与<strong>列（数据的特征）</strong>都进行采样</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>Boosting</p>
+<ul>
+<li>Boosting可以直接理解为additive training</li>
+<li><p>Boosting是一种可以用来<strong>减小监督学习中偏差</strong>的机器学习算法。主要也是学习一系列弱分类器，并将其组合为一个强分类器。Boosting中有代表性的是</p>
+<ul>
+<li><p><strong>AdaBoost</strong>（Adaptive boosting）<a target="_blank" rel="noopener" href="https://blog.csdn.net/guyuealian/article/details/70995333">Ref</a></p>
+<ul>
+<li>AdaBoost 的自适应在于：前一个基本分类器被错误分类的样本的权值会增大，而正确分类的样本的权值会减小，并再次用来训练下一个基本分类器。同时，在每一轮迭代中，加入一个新的弱分类器，直到达到某个预定的足够小的错误率或达到预先指定的最大迭代次数才确定最终的强分类器。</li>
+<li><p>算法流程：<br> 1.首先基于训练数据的权值分布，对每一个训练样本最开始都基于相同的权值$w_i=\frac{1}{N}$<br> 2.选择一个当前误差率最低的弱分类器$H_t$，并计算在当前数据分布之下，弱分类器的误差：</p>
+<script type="math/tex; mode=display">e_t = P(H_t(x_i)\neq y_i)=\sum\limits_{i=1}^{N}w_{ti}I(H_t(x_i)\neq y_i)</script><p> 这个式子可以理解为错误的预测的权值之和。<br> 3.计算该分类器在最终分类器所占的比重：</p>
+<script type="math/tex; mode=display">\alpha_t=\frac{1}{2}ln(\frac{1-e_t}{e_t})</script><p> 4.更新训练的权值分布$D_{t+1}$</p>
+<script type="math/tex; mode=display">D_{t+1}=\frac{D_t(i)exp(-\alpha_ty_iH_t(x_i))}{Z_t}</script><p> 其中$Z_t$为归一化常数$Z_t=2\sqrt{e_t(1-e_t)}$<br> 具体到每个样本的更新：</p>
+<ul>
+<li>错误样本(将被分配更高的权重)：$D_{t+1}(i)=\frac{D_t(i)}{2e_t}$</li>
+<li><p>正确样本(将被分配更低的权重):   $D_{t+1}(i)=\frac{D_t(i)}{2(1-e_t)}$</p>
+<p>5.不断迭代（2）-（4）得到T个分类器的权重。<br>6.最终，按照分类器的权重$a_t$组合分类器，得到集成函数：</p>
+<script type="math/tex; mode=display">f(x)=\sum\limits_{t=1}^T \alpha_tH_t(x)</script><p>再通过符号函数，得到一个强分类器：</p>
+<script type="math/tex; mode=display">H_{final}=sign(f(x))=sign(\sum\limits_{t=1}^T \alpha_tH_t(x))</script></li>
+</ul>
+</li>
+<li><p>Adaboosting的优点：</p>
+<ul>
+<li>不用对特征进行筛选，也不存在过拟合的现象。</li>
+<li>不需要预先知道弱分类器的错误率上限，可以根据弱分类器的反馈，自适应地调整假定的错误率，执行的效率高。</li>
+</ul>
+</li>
+<li>Adaboosting的缺点：<ul>
+<li>会使得难于分类样本的权值呈指数增长，训练将会过于偏向这类困难的样本，导致<strong>易受噪声干扰</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>GBDT（Gradient Boost Decision Tree) 和 XGBoost</strong> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/83901304">Ref</a><ul>
+<li>也是一种Boosting的方法，与AdaBoost不同，GBDT每一次的计算是为了减少上一次的残差，GBDT在残差减少（负梯度）的方向上建立一个新的模型</li>
+<li>XGBoost 是gbdt的一种工程算法实现，和GBDT只有少量的区别，可以把两者一起看待，然后记住少量区别就够了</li>
+<li>GBDT原理<ul>
+<li>首先Boosting算法都可以看作是K课树组成的加法模型<script type="math/tex; mode=display">\hat{y}=\sum\limits_{k=1}^{K}f_k(x_i)</script></li>
+<li>目标函数：<script type="math/tex; mode=display">Obj^{(t)} = \sum\limits_{i=1}^{n}l(y_i,\hat{y}_i^t)+\sum\limits_{i=1}^t\Omega(f_i)
+=\sum\limits_{i=1}^{n}l(y_i,\hat{y}_i^{t-1}+f_t(x_i))+\Omega(f_t)+constant</script>此时$f_t(x_i)$是我们要加入的新模型</li>
+<li>引入泰勒展开：<script type="math/tex; mode=display">f(x+\Delta x)\approx f(x)+f'(x)\Delta x+\frac{1}{2}f''(x)\Delta x^2</script>把$\hat{y}_i^{t-1}$看成是上式的$x$，$f_t(x_i)$看作是$\Delta x$, 因此目标函数可以写成：<script type="math/tex; mode=display">Obj^{(t)}\approx \sum\limits_{i=1}^{n}[l(y_i,\hat{y}_i^{t-1})+g_if_t(x_i)+\frac{1}{2}h_if_t^2(x_i)]+\Omega(f_t)+constant</script>其中$g_i$是损失函数的一阶导，$h_i$是损失函数的二阶导<br>只关注$f_t(x_i)$有关项，目标函数可以写成:<script type="math/tex; mode=display">Obj^{(t)}\approx \sum\limits_{i=1}^{n}[g_if_t(x_i)+\frac{1}{2}h_if_t^2(x_i)]+\Omega(f_t)+constant</script>所以只需要求得每一步的一阶导数和二阶导数的值，然后最优化目标函数，就可以得到每一步的$f(x)$</li>
+</ul>
+</li>
+<li>如何找到叶子的最优分裂点<ul>
+<li>贪心算法<ul>
+<li>参考cart，对每个值进行升序排序，对每个值都作为当前的分裂点，然后计算分裂收益</li>
+</ul>
+</li>
+<li>近似算法<ul>
+<li>贪心算法可以得到最优解，但是数据量太大时则无法读入内存进行计算，因此可以考虑使用近似算法</li>
+<li>近似算法的思想是对特征进行分桶，即找到l个划分点，把相邻分位点之间的样本分在一个桶中。在遍历该特征的时候，只需要遍历各个分位点，从而计算最优划分。算法实现中该流程还可以分为两种<ul>
+<li><strong>全局近似</strong>是在新生成一棵树之前就对各个特征计算分位点并划分样本，之后在每次分裂过程中都采用近似划分，</li>
+<li><strong>局部近似</strong>就是在具体的某一次分裂节点的过程中采用近似算法。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>XGBoost 处理稀疏值<ul>
+<li>当样本的第i个特征值缺失时，无法利用该特征进行划分时，XGBoost的想法是将该样本分别划分到左节点和右节点，然后计算其增益，那边大就划分到哪边</li>
+</ul>
+</li>
+<li>XGBoost 的优点<ul>
+<li>使用许多策略去防止过拟合，如：正则化项、Shrinkage and Column Subsampling等</li>
+<li>支持并行化，这是XGBoost的闪光点，虽然树与树之间是串行关系，但是同层级节点可并行。具体的对于某个节点，节点内选择最佳分裂点，候选分裂点计算增益用多线程并行。训练速度快。</li>
+<li>对稀疏条件的处理</li>
+<li>交叉验证，early stop</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>GBDT, XGBoost, LightGBM 的区别<ol>
+<li>XGBoost使用基于<strong>预排序</strong>的决策树算法，每遍历一个特征就需要计算一次特征的增益，时间复杂度为O(datafeature)而LightGBM使用<strong>基于直方图</strong>的决策树算法，直方图的优化算法只需要计算K次，时间复杂度为O(Kfeature)</li>
+<li>XGBoost使用按层生长(level-wise)的决策树生长策略，LightGBM则采用带有深度限制的按叶子节点(leaf-wise)算法。在分裂次数相同的情况下，leaf-wise可以降低更多的误差，得到更好的精度。leaf-wise的缺点在于会产生较深的决策树，产生过拟合。</li>
+<li>支持类别特征，不需要进行独热编码处理</li>
+<li>优化了特征并行和数据并行算法，除此之外还添加了投票并行方案</li>
+<li>采用基于梯度的单边采样来保持数据分布，减少模型因数据分布发生变化而造成的模型精度下降</li>
+<li>特征捆绑转化为图着色问题，减少特征数量</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Bagging 和Boosting对比<ul>
+<li><strong>Bagging</strong>中每个训练集互不相关，也就是每个基分类器互不相关，而<strong>Boosting</strong>中训练集要在上一轮的结果上进行调整，也使得其不能并行计算</li>
+<li><strong>Bagging</strong>中预测函数是均匀平等的，但在<strong>Boosting</strong>中预测函数是加权的</li>
+<li><strong>Bagging</strong>已经保证降低了方差，但是偏差无法保证，所以每个模型需要负责一些以降低偏差（比如每一颗决策树都很深）；<strong>Boosting</strong>采用的策略是在每一次学习中都减少上一轮的偏差，因而在保证了偏差的基础上就要将每一个基分类器简化使得方差更小</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Stacking<ul>
+<li><strong>Stacking</strong>方法是指训练一个模型用于组合其他各个模型。首先我们先训练多个不同的模型，然后把之前训练的各个模型的输出为输入来训练一个模型，以得到一个最终的输出。理论上，<strong>Stacking</strong>可以表示上面提到的两种Ensemble方法，只要我们采用合适的模型组合策略即可。但在实际中，我们通常使用logistic回归作为组合策略。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Stacking和Blending的区别<ul>
+<li>Blending比较简单，用不相交的数据集训练多个不同的基模型，并将其输出取加权平均</li>
+<li>Stacking是将数据集划分为两个不相交的集合，在第一个集合的数据集中训练多个模型,在第二个数据集中测试这些模型,将预测结果作为输入,将正确的标签作为输出,再训练一个高层的模型<ul>
+<li>Stacking 理解起来有许多谬误，网上的说法偏差太多。这个链接目前是我自认为最清晰的<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26890738">https://zhuanlan.zhihu.com/p/26890738</a></li>
+</ul>
+</li>
+<li>stacking是k-fold交叉验证，元模型的训练数据等同于基于模型的训练数据，该方法为每个样本都生成了元特征，每生成元特征的模型不一样（k是多少，每个模型的数量就是多少）；测试集生成元特征时，需要用到k（k fold不是模型）个加权平均；<br>blending是holdout方法，直接将训练集切割成两个部分，仅10%用于元模型的训练；</li>
+<li>Blending相比Stacking的优点<ul>
+<li>比stacking简单（因为不用进行k次的交叉验证来获得stacker feature）</li>
+<li>避开了一个信息泄露问题：generlizers和stacker使用了不一样的数据集</li>
+<li>在团队建模过程中，不需要给队友分享自己的随机种子</li>
+</ul>
+</li>
+<li>Blending相比Stacking的缺点<ul>
+<li>数据使用的不充分，可能会带来过拟合</li>
+<li>stacking使用多次的CV会比较稳健</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h4><h4 id="VC维"><a href="#VC维" class="headerlink" title="VC维"></a>VC维</h4><h4 id="RNN-循环神经网络"><a href="#RNN-循环神经网络" class="headerlink" title="RNN 循环神经网络"></a>RNN 循环神经网络</h4><ul>
+<li>网络组成部分和理论推导在这里不赘述了，主要阐述问题和局限性</li>
+<li>梯度消失和梯度爆炸<ul>
+<li>RNN不能很好的处理长序列，因为RNN很容易在训练过程中发生梯度消失和梯度爆炸，导致训练梯度不能在较长序列中一直传递下去，从而使RNN无法捕捉到长距离的影响</li>
+<li>梯度爆炸：比较好处理，直接设置一个阈值即可</li>
+<li>梯度消失：<ul>
+<li>合理的初始化权重</li>
+<li>使用Relu代替Sigmoid和tanh作为激活函数</li>
+<li>使用其他结构的RNNs，比如LSTM和GRU</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h4><ul>
+<li>一种优化的RNN模型，但是复杂了很多</li>
+<li>引入了长短期记忆，使用了三种门控，分别为$z^f$（遗忘门控），$z^i$（选择门控），$z^o$（输出门控），这三个门控都是拼接向量乘以权重矩阵之后，再通过一个$sigmoid$激活函数转换成0到1之间的数值</li>
+<li>LSTM 主要有三个阶段：<ul>
+<li><strong>忘记阶段：</strong> 具体来说是通过计算得到的$z^f$（f表示forget）来作为忘记门控，来控制上一个状态的$c^{t-1}$哪些需要留哪些需要忘。</li>
+<li><strong>选择记忆阶段：</strong> 这个阶段将这个阶段的输入有选择性地进行“记忆”。主要是会对输入$x^t$进行选择记忆。哪些重要则着重记录下来，哪些不重要则少记一些，当前的输入内容由前面计算得到的$z$表示。而选择的门控信号则是由$z^i$来进行控制</li>
+<li><strong>输出阶段：</strong> 输出阶段。这个阶段将决定哪些将会被当成当前状态的输出。主要是通过$z^o$来进行控制的。并且还对上一阶段得到的$c^o$进行放缩($tanh$ 函数)</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/03/03/DQN-Snake/" rel="prev" title="基于改进版DQN实现智能贪吃蛇">
+      <i class="fa fa-chevron-left"></i> 基于改进版DQN实现智能贪吃蛇
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Machine-Learning"><span class="nav-number">1.</span> <span class="nav-text">Machine Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%87%E6%A0%87%E4%B8%8E%E6%A8%A1%E5%9E%8B%E8%AF%84%E4%BC%B0"><span class="nav-number">1.0.1.</span> <span class="nav-text">指标与模型评估</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B"><span class="nav-number">1.0.2.</span> <span class="nav-text">特征工程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91"><span class="nav-number">1.0.3.</span> <span class="nav-text">决策树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-number">1.0.4.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E5%92%8C%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8"><span class="nav-number">1.0.5.</span> <span class="nav-text">梯度消失和梯度爆炸</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%83%E9%87%8D%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.0.6.</span> <span class="nav-text">权重初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E7%AE%97%E6%B3%95"><span class="nav-number">1.0.7.</span> <span class="nav-text">优化算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92"><span class="nav-number">1.0.8.</span> <span class="nav-text">逻辑回归</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SVM%E5%8F%8ASMO%E7%AE%97%E6%B3%95"><span class="nav-number">1.0.9.</span> <span class="nav-text">SVM及SMO算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%81%9A%E7%B1%BB%E7%AE%97%E6%B3%95"><span class="nav-number">1.0.10.</span> <span class="nav-text">聚类算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pytorch%E5%AE%9E%E7%8E%B0%E6%A1%88%E4%BE%8B"><span class="nav-number">1.0.11.</span> <span class="nav-text">Pytorch实现案例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.0.12.</span> <span class="nav-text">强化学习</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PSO%E7%AE%97%E6%B3%95"><span class="nav-number">1.0.13.</span> <span class="nav-text">PSO算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Embedding-Learning-%E9%9B%86%E6%88%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0"><span class="nav-number">1.0.14.</span> <span class="nav-text">Embedding Learning 集成机器学习</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB"><span class="nav-number">1.0.14.1.</span> <span class="nav-text">集成学习分类</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Transformer"><span class="nav-number">1.0.15.</span> <span class="nav-text">Transformer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#VC%E7%BB%B4"><span class="nav-number">1.0.16.</span> <span class="nav-text">VC维</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RNN-%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C"><span class="nav-number">1.0.17.</span> <span class="nav-text">RNN 循环神经网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LSTM"><span class="nav-number">1.0.18.</span> <span class="nav-text">LSTM</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="泉雨"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">泉雨</p>
+  <div class="site-description" itemprop="description">Love is patient, Love is kind.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/taoquanyus" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;taoquanyus" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:quanyu@kth.se" title="E-Mail → mailto:quanyu@kth.se" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">粤ICP备20037429号-1 </a>
+  </div>
+
+<div class="copyright">
+  
+  <!--
+  &copy; 2021-04 – 
+  <span itemprop="copyrightYear">2022</span>
+  -->
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">泉雨</span>
+</div>
+  <!-- <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>-->
+<!-- 记录访问量-->
+<!--
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_pv"></span>
+</span>
+</div>
+-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+    </div>
+  <body>
+  <!-- require APlayer -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+  <!-- require MetingJS -->
+  <script src="https://cdn.jsdelivr.net/npm/meting@1.2.0/dist/Meting.min.js"></script>
+  </body>
+  <!--如果将本体放在body里面，导致页面加载出现问题，请尝试放到body体后面-->
+  <!--7974975472 tencent-->
+  <!--6730387559 netease-->
+  <!--5399534177 netease-->
+  <!--3099335800 netease-->
+  <div class="aplayer" 
+    data-id="3099335800" 
+    data-server="netease" 
+    data-type="playlist" 
+    data-fixed="true"	
+    data-order="random"
+    data-volume="0.65"
+    data-autoplay="true"   
+    date-preload="auto"
+    data-theme="#cc543a">
+  </div>
+  <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":200,"height":400,"hOffset":5,"vOffset":10},"mobile":{"show":false}});</script></body>
+</html>
