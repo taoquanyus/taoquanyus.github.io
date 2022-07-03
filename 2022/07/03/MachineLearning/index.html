@@ -28,7 +28,7 @@
 <meta property="og:description" content="Machine Learning三四月计划投递算法实习，可春招直接一片红海，各厂连开发HC都没有，更不必说卷到天上算法岗了。最近一个月突然病倒一直住院接受治疗，可HR不断的电话轰炸提醒我无论如何还是要面临秋招的挑战。这两天状态好些重新捡起了Leetcode，发现停了一个多月甚至已有所生疏，更不必说其他的理论知识。我意识到没有办法在秋招前再好高骛远的追求算法或是DS岗了择业方向暂时调整为开发，大数据">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-03T11:47:04.000Z">
-<meta property="article:modified_time" content="2022-07-03T12:05:04.574Z">
+<meta property="article:modified_time" content="2022-07-03T12:09:34.902Z">
 <meta property="article:author" content="泉雨">
 <meta property="article:tag" content="机器学习">
 <meta property="article:tag" content="算法">
@@ -218,7 +218,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2022-07-03 19:47:04 / Modified: 20:05:04" itemprop="dateCreated datePublished" datetime="2022-07-03T19:47:04+08:00">2022-07-03</time>
+              <time title="Created: 2022-07-03 19:47:04 / Modified: 20:09:34" itemprop="dateCreated datePublished" datetime="2022-07-03T19:47:04+08:00">2022-07-03</time>
             </span>
 
           
@@ -300,13 +300,15 @@
 <li>分类问题：平方误差<ul>
 <li>对于每个特征，遍历每个取值s将数据集分成两份，计算切分后的误差<ul>
 <li>选择误差最小的特征作为树的分裂点，切分节点形成左右分支</li>
-<li>递归以上操作<h4 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h4></li>
+<li>递归以上操作</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+<h4 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h4><ul>
 <li>回归问题<ul>
 <li>MSE，MAE</li>
 </ul>
@@ -635,9 +637,12 @@ b=\frac{1}{|S|}\sum\limits_{s\in S}(y_s-wx_s)</script></li>
 <li>可以学到不同动作的差异性，在动作空间较大的环境下非常有效</li>
 </ul>
 </li>
-<li>网络结构的实现<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VAnet</span>(<span class="params">torch.nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, state_dim, hidden_dim, action_dim</span>):</span></span><br><span class="line">        <span class="built_in">super</span>(VAnet, self).__init__()</span><br><span class="line">        self.fc1 = torch.nn.Linear(state_dim, hidden_dim) <span class="comment"># 共享网络部分</span></span><br><span class="line">        self.fc_A = torch.nn.Linear(hidden_dim, action_dim)</span><br><span class="line">        self.fc_V = torch.nn.Linear(hidden_dim, <span class="number">1</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        A = self.fc_A(F.relu(self.fc1(x)))</span><br><span class="line">        V = self.fc_V(F.relu(self.fc1(x)))</span><br><span class="line">        Q = V + A - A.mean(<span class="number">1</span>).view(-<span class="number">1</span>, <span class="number">1</span>) <span class="comment"># Q值由V值和A值计算得到</span></span><br><span class="line">        <span class="keyword">return</span> Q</span><br></pre></td></tr></table></figure></li>
+<li>网络结构的实现</li>
 </ul>
 </li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">VAnet</span>(<span class="params">torch.nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, state_dim, hidden_dim, action_dim</span>):</span></span><br><span class="line">        <span class="built_in">super</span>(VAnet, self).__init__()</span><br><span class="line">        self.fc1 = torch.nn.Linear(state_dim, hidden_dim) <span class="comment"># 共享网络部分</span></span><br><span class="line">        self.fc_A = torch.nn.Linear(hidden_dim, action_dim)</span><br><span class="line">        self.fc_V = torch.nn.Linear(hidden_dim, <span class="number">1</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        A = self.fc_A(F.relu(self.fc1(x)))</span><br><span class="line">        V = self.fc_V(F.relu(self.fc1(x)))</span><br><span class="line">        Q = V + A - A.mean(<span class="number">1</span>).view(-<span class="number">1</span>, <span class="number">1</span>) <span class="comment"># Q值由V值和A值计算得到</span></span><br><span class="line">        <span class="keyword">return</span> Q</span><br></pre></td></tr></table></figure>
+<ul>
 <li>贝尔曼方程<script type="math/tex; mode=display">V(s)=r(s)+\gamma \sum\limits_{s'\in S}p(s'|s)V(s')</script></li>
 <li>在线策略和离线策略 (on-policy和off-policy)<ul>
 <li>在线策略：行为策略和目标策略是一个策略：Sarsa<ul>
@@ -653,9 +658,11 @@ b=\frac{1}{|S|}\sum\limits_{s\in S}(y_s-wx_s)</script></li>
 </li>
 <li>model-based 和model-free<ul>
 <li>model-free是agent和environment进行实时的交互，单纯通过样本来学习</li>
-<li>model-based则是先学一个model<h4 id="PSO算法"><a href="#PSO算法" class="headerlink" title="PSO算法"></a>PSO算法</h4></li>
+<li>model-based则是先学一个model</li>
 </ul>
 </li>
+</ul>
+<h4 id="PSO算法"><a href="#PSO算法" class="headerlink" title="PSO算法"></a>PSO算法</h4><ul>
 <li>粒子群算法 particle swarm optimization</li>
 <li>速度更新 <script type="math/tex">v = w[惯性因子]*v[记忆项]+c1*rand()*(pbest-x)[自身认知项]+c2*rand()*(gbest-x)[群体认知项]</script> <ul>
 <li>其中w是惯性因子，一般动态的w会比静态的w有更好的的寻优结果</li>
@@ -675,7 +682,8 @@ b=\frac{1}{|S|}\sum\limits_{s\in S}(y_s-wx_s)</script></li>
 <li>位置更新 $x=x+v$<h4 id="Embedding-Learning-集成机器学习"><a href="#Embedding-Learning-集成机器学习" class="headerlink" title="Embedding Learning 集成机器学习"></a>Embedding Learning 集成机器学习</h4>集成学习就是组合多个若监督模型以期得到一个更好更全面的强监督模型，其潜在思想就是某一个弱分类器得到了错误的预测，其他的弱分类器也能将错误纠正过来。</li>
 <li>数据集过大：划分成多个小数据集，学习多个模型进行组合</li>
 <li>数据集过小：利用Bootstrap方法进行抽样，得到多个数据集，分别训练多个模型再进行组合<h5 id="集成学习分类"><a href="#集成学习分类" class="headerlink" title="集成学习分类"></a>集成学习分类</h5></li>
-<li>Bagging<ul>
+<li><p>Bagging</p>
+<ul>
 <li>Bagging是bootstrap aggregating的简写<ul>
 <li>bootstrap：bootstrap也称为自助法，它是一种有放回的抽样方法，目的为了得到统计量的分布以及置信区间</li>
 </ul>
@@ -684,8 +692,6 @@ b=\frac{1}{|S|}\sum\limits_{s\in S}(y_s-wx_s)</script></li>
 <li>如随机森林，就是用Bagging的思想，有两个采样的过程，对输入数据的<strong>行（数据的数量）</strong>与<strong>列（数据的特征）</strong>都进行采样</li>
 </ul>
 </li>
-</ul>
-<ul>
 <li><p>Boosting</p>
 <ul>
 <li>Boosting可以直接理解为additive training</li>
