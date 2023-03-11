@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"taoquanyus.cn","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Machine Learning前言三四月曾计划投递算法实习，可春招直接一片红海，各厂连开发HC都没有，更不必说卷到天上算法岗近来突然病倒，我不得提前结束所有出国的计划。这段时间一切的学习变得有心无力，况且我也不是一个喜欢学习的人，可HR不断的电话轰炸提醒我无论如何还是要面临秋招的挑战这两天状态好些重新捡起了Leetcode，发现停了一个多月甚至写代码已有所生疏，更不必说其他的理论知识。我意识到我">
+  <meta name="description" content="Machine Learning前言三四月曾计划投递算法实习，可春招直接一片红海，各厂连开发HC都没有，更不必说卷到天上算法岗近来突然病倒，我不得提前结束所有出国的计划。这段时间一切的学习变得有心无力，况且我也不是一个喜欢学习的人，可HR不断的电话轰炸提醒我无论如何还是要面临秋招的挑战这两天状态好些重新捡起了Leetcode，发现停了一个多月甚至写代码已有所生疏，还有其他大量的基础知识。我意识到我">
 <meta property="og:type" content="article">
 <meta property="og:title" content="应用机器学习算法总结">
 <meta property="og:url" content="http://taoquanyus.cn/2022/07/03/MachineLearning/index.html">
 <meta property="og:site_name" content="Bettilarity">
-<meta property="og:description" content="Machine Learning前言三四月曾计划投递算法实习，可春招直接一片红海，各厂连开发HC都没有，更不必说卷到天上算法岗近来突然病倒，我不得提前结束所有出国的计划。这段时间一切的学习变得有心无力，况且我也不是一个喜欢学习的人，可HR不断的电话轰炸提醒我无论如何还是要面临秋招的挑战这两天状态好些重新捡起了Leetcode，发现停了一个多月甚至写代码已有所生疏，更不必说其他的理论知识。我意识到我">
+<meta property="og:description" content="Machine Learning前言三四月曾计划投递算法实习，可春招直接一片红海，各厂连开发HC都没有，更不必说卷到天上算法岗近来突然病倒，我不得提前结束所有出国的计划。这段时间一切的学习变得有心无力，况且我也不是一个喜欢学习的人，可HR不断的电话轰炸提醒我无论如何还是要面临秋招的挑战这两天状态好些重新捡起了Leetcode，发现停了一个多月甚至写代码已有所生疏，还有其他大量的基础知识。我意识到我">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-07-03T11:47:04.000Z">
-<meta property="article:modified_time" content="2022-07-12T10:22:44.616Z">
+<meta property="article:modified_time" content="2022-07-12T10:23:50.756Z">
 <meta property="article:author" content="泉雨">
 <meta property="article:tag" content="机器学习">
 <meta property="article:tag" content="算法">
@@ -224,7 +224,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2022-07-12 18:22:44" itemprop="dateModified" datetime="2022-07-12T18:22:44+08:00">2022-07-12</time>
+                <time title="Modified: 2022-07-12 18:23:50" itemprop="dateModified" datetime="2022-07-12T18:23:50+08:00">2022-07-12</time>
               </span>
 
           
@@ -238,7 +238,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Machine-Learning"><a href="#Machine-Learning" class="headerlink" title="Machine Learning"></a>Machine Learning</h2><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>三四月曾计划投递算法实习，可春招直接一片红海，各厂连开发HC都没有，更不必说卷到天上算法岗<br>近来突然病倒，我不得提前结束所有出国的计划。<br>这段时间一切的学习变得有心无力，况且我也不是一个喜欢学习的人，可HR不断的电话轰炸提醒我无论如何还是要面临秋招的挑战<br>这两天状态好些重新捡起了Leetcode，发现停了一个多月甚至写代码已有所生疏，更不必说其他的理论知识。我意识到我没有能力在秋招前再好高骛远的追求算法或是DS岗了<br>择业方向将调整为开发，大数据和量化方向，机器学习大概率是鲜有用到了<br><span id="more"></span><br>三四月做的一些机器学习的面试准备将整理于此处，便于日后阅读<br><code>mathjax</code>在部分浏览器表现不佳，当看到<strong>公式不显示</strong>时请<strong>刷新浏览器</strong><br><code>markdown</code>不同编辑器的格式不同，排版有些混乱，日后将会逐步完善</p>
+        <h2 id="Machine-Learning"><a href="#Machine-Learning" class="headerlink" title="Machine Learning"></a>Machine Learning</h2><h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>三四月曾计划投递算法实习，可春招直接一片红海，各厂连开发HC都没有，更不必说卷到天上算法岗<br>近来突然病倒，我不得提前结束所有出国的计划。<br>这段时间一切的学习变得有心无力，况且我也不是一个喜欢学习的人，可HR不断的电话轰炸提醒我无论如何还是要面临秋招的挑战<br>这两天状态好些重新捡起了Leetcode，发现停了一个多月甚至写代码已有所生疏，还有其他大量的基础知识。我意识到我没有能力在秋招前再好高骛远的追求算法或是DS岗了<br>择业方向将调整为开发，大数据和量化方向，机器学习大概率是鲜有用到了<br><span id="more"></span><br>三四月做的一些机器学习的面试准备将整理于此处，便于日后阅读<br><code>mathjax</code>在部分浏览器表现不佳，当看到<strong>公式不显示</strong>时请<strong>刷新浏览器</strong><br><code>markdown</code>不同编辑器的格式不同，排版有些混乱，日后将会逐步完善</p>
 <h4 id="指标与模型评估"><a href="#指标与模型评估" class="headerlink" title="指标与模型评估"></a>指标与模型评估</h4><ul>
 <li>评价两个特征相似度的指标：<ul>
 <li>协方差: $Cov(X,Y)=E[(X-ux)(Y-uy)]$</li>
@@ -994,7 +994,7 @@ b=\frac{1}{|S|}\sum\limits_{s\in S}(y_s-wx_s)</script><ul>
   
   <!--
   &copy; 2021-04 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   -->
   <span class="with-love">
     <i class="fa fa-heart"></i>
